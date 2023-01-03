@@ -2,7 +2,7 @@
   <NotificationComponent
       :messages="this.$store.state.messages"
   />
-  <div v-if="!parts" class="preloader"></div>
+<!--  <div v-if="!parts" class="preloader"></div>-->
   <!-- Featured Product  -->
   <section class="featured-product pt0">
     <div class="container">
