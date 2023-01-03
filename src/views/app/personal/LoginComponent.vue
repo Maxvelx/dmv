@@ -6,7 +6,7 @@
         <div class="col-md-6 col-lg-6 col-xl-5">
           <div class="login_form mt60-sm">
             <h2 class="title">Sign in</h2>
-            <p>New to Cars.com? <a href="page-register.html">Sign up.</a> Are you a dealer?</p>
+            <p>New to Cars.com? <a href="">Sign up.</a> Are you a dealer?</p>
             <form action="#">
               <div class="mb-2 mr-sm-2">
                 <label class="form-label">Username or email address  *</label>

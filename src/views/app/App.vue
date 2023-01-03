@@ -176,7 +176,7 @@
               <div class="row mt30 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="col-lg-12">
                   <div class="sign_up_form">
-                    <p>Already have a profile? <a href="page-login.html">Sign in.</a></p>
+                    <p>Already have a profile? <a href="">Sign in.</a></p>
                     <form action="#">
                       <div class="row">
                         <div class="col-lg-6">

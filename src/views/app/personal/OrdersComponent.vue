@@ -110,10 +110,10 @@
                               <th class="align-middle pl20" scope="row">
                                 <div class="car-listing bdr_none d-flex mb0">
                                   <div class="thumb w150">
-                                    <img class="img-fluid" src="images/listing/1.jpg" alt="1.jpg">
+                                    <img class="img-fluid" src="" alt="">
                                   </div>
                                   <div class="details ms-1">
-                                    <h6 class="title"><a href="page-car-single-v1.html">Volvo XC90 - 2020</a></h6>
+                                    <h6 class="title"><a href="">Volvo XC90 - 2020</a></h6>
                                     <h5 class="price">$129</h5>
                                   </div>
                                 </div>
@@ -146,10 +146,10 @@
                               <th class="align-middle pl20" scope="row">
                                 <div class="car-listing bdr_none d-flex mb0">
                                   <div class="thumb w150">
-                                    <img class="img-fluid" src="images/listing/5.jpg" alt="5.jpg">
+                                    <img class="img-fluid" src="" alt="5.jpg">
                                   </div>
                                   <div class="details ms-1">
-                                    <h6 class="title"><a href="page-car-single-v1.html">Audi A8 L 55 - 2021</a></h6>
+                                    <h6 class="title"><a href="">Audi A8 L 55 - 2021</a></h6>
                                     <h5 class="price">$129</h5>
                                   </div>
                                 </div>
@@ -182,10 +182,10 @@
                               <th class="align-middle pl20" scope="row">
                                 <div class="car-listing bdr_none d-flex mb0">
                                   <div class="thumb w150">
-                                    <img class="img-fluid" src="images/listing/7.jpg" alt="7.jpg">
+                                    <img class="img-fluid" src="" alt="7.jpg">
                                   </div>
                                   <div class="details ms-1">
-                                    <h6 class="title"><a href="page-car-single-v1.html">Bentley Bentayga V8 - 2020</a>
+                                    <h6 class="title"><a href="">Bentley Bentayga V8 - 2020</a>
                                     </h6>
                                     <h5 class="price">$129</h5>
                                   </div>
@@ -257,10 +257,10 @@
                               <th class="align-middle pl20" scope="row">
                                 <div class="car-listing bdr_none d-flex mb0">
                                   <div class="thumb w150">
-                                    <img class="img-fluid" src="images/listing/1.jpg" alt="1.jpg">
+                                    <img class="img-fluid" src="" alt="">
                                   </div>
                                   <div class="details ms-1">
-                                    <h6 class="title"><a href="page-car-single-v1.html">Volvo XC90 - 2020</a></h6>
+                                    <h6 class="title"><a href="">Volvo XC90 - 2020</a></h6>
                                     <h5 class="price">$129</h5>
                                   </div>
                                 </div>
@@ -280,79 +280,6 @@
                                     <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
                                        data-bs-original-title="Edit" aria-label="Edit"><span
                                         class="flaticon-trash"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Delete" aria-label="Delete"><span
-                                        class="flaticon-trash"></span></a>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th class="align-middle pl20" scope="row">
-                                <div class="car-listing bdr_none d-flex mb0">
-                                  <div class="thumb w150">
-                                    <img class="img-fluid" src="images/listing/5.jpg" alt="5.jpg">
-                                  </div>
-                                  <div class="details ms-1">
-                                    <h6 class="title"><a href="page-car-single-v1.html">Audi A8 L 55 - 2021</a></h6>
-                                    <h5 class="price">$129</h5>
-                                  </div>
-                                </div>
-                              </th>
-                              <td class="align-middle">Volvo</td>
-                              <td class="align-middle">2020</td>
-                              <td class="align-middle">Automatic</td>
-                              <td class="align-middle">Diesel</td>
-                              <td class="editing_list align-middle">
-                                <ul>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="View" aria-label="View"><span
-                                        class="flaticon-view"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Edit" aria-label="Edit"><span
-                                        class="flaticon-pen"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Delete" aria-label="Delete"><span
-                                        class="flaticon-trash"></span></a>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th class="align-middle pl20" scope="row">
-                                <div class="car-listing bdr_none d-flex mb0">
-                                  <div class="thumb w150">
-                                    <img class="img-fluid" src="images/listing/7.jpg" alt="7.jpg">
-                                  </div>
-                                  <div class="details ms-1">
-                                    <h6 class="title"><a href="page-car-single-v1.html">Bentley Bentayga V8 - 2020</a>
-                                    </h6>
-                                    <h5 class="price">$129</h5>
-                                  </div>
-                                </div>
-                              </th>
-                              <td class="align-middle">Volvo</td>
-                              <td class="align-middle">2020</td>
-                              <td class="align-middle">Automatic</td>
-                              <td class="align-middle">Diesel</td>
-                              <td class="editing_list align-middle">
-                                <ul>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="View" aria-label="View"><span
-                                        class="flaticon-view"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Edit" aria-label="Edit"><span
-                                        class="flaticon-pen"></span></a>
                                   </li>
                                   <li class="list-inline-item mb-1">
                                     <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""

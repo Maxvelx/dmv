@@ -175,7 +175,7 @@
                   <ul class="mb0 mt10">
                     <li class="list-inline-item">
                       <div class="portfolio_item">
-                        <img class="img-fluid" src="images/listing/a3.jpg" alt="a3.jpg">
+                        <img class="img-fluid" src="" alt="">
                         <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete"
                              data-original-title="Delete">
                           <a href="#"><span>X</span></a>
