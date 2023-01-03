@@ -114,7 +114,7 @@
                           <h5 class="fz16 mb30">Reviews</h5>
                           <div class="mbp_first d-flex align-items-center">
                             <div class="flex-shrink-0">
-                              <img src="images/blog/reviewer1.png" class="mr-3" alt="reviewer1.png">
+                              <img src="" class="mr-3" alt="reviewer1.png">
                             </div>
                             <div class="flex-grow-1 ms-4">
                               <h4 class="sub_title mt20">Bessie Cooper</h4>
@@ -138,7 +138,7 @@
                           <hr>
                           <div class="mbp_first d-flex align-items-center">
                             <div class="flex-shrink-0">
-                              <img src="images/blog/reviewer2.png" class="mr-3" alt="reviewer2.png">
+                              <img src="" class="mr-3" alt="reviewer2.png">
                             </div>
                             <div class="flex-grow-1 ms-4">
                               <h4 class="sub_title mt20">Savannah Nguyen</h4>
@@ -162,7 +162,7 @@
                           <hr>
                           <div class="mbp_first d-flex align-items-center">
                             <div class="flex-shrink-0">
-                              <img src="images/blog/reviewer3.png" class="mr-3" alt="reviewer3.png">
+                              <img src="" class="mr-3" alt="reviewer3.png">
                             </div>
                             <div class="flex-grow-1 ms-4">
                               <h4 class="sub_title mt20">Albert Flores</h4>
@@ -259,7 +259,7 @@
                 <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/1.png" alt="1.png"></div>
+                      <div class="thumb"><img src="" alt="1.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -277,7 +277,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
+                          <a class="cart_btn float-end" href=""><img src=""
                                                                                         alt="cart-bag.svg"></a>
                         </div>
                       </div>
@@ -287,7 +287,7 @@
                 <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/2.png" alt="2.png"></div>
+                      <div class="thumb"><img src="" alt="2.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -305,7 +305,34 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
+                          <a class="cart_btn float-end" href=""><img src="" alt="cart-bag.svg"></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
+                  <div class="item">
+                    <div class="shop_item">
+                      <div class="thumb"><img src="" alt="5.png"></div>
+                      <div class="details">
+                        <div class="title">12v Compact Battery Jump Starter</div>
+                        <div class="review">
+                          <ul class="mb0">
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li class="list-inline-item">4.7</li>
+                          </ul>
+                        </div>
+                        <div class="si_footer">
+                          <div class="price float-start"><small>
+                            <del>$129</del>
+                          </small>$129
+                          </div>
+                          <a class="cart_btn float-end" href=""><img src=""
                                                                                         alt="cart-bag.svg"></a>
                         </div>
                       </div>
@@ -315,7 +342,7 @@
                 <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/5.png" alt="5.png"></div>
+                      <div class="thumb"><img src="" alt="4.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -333,35 +360,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
-                                                                                        alt="cart-bag.svg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
-                  <div class="item">
-                    <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/4.png" alt="4.png"></div>
-                      <div class="details">
-                        <div class="title">12v Compact Battery Jump Starter</div>
-                        <div class="review">
-                          <ul class="mb0">
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li class="list-inline-item">4.7</li>
-                          </ul>
-                        </div>
-                        <div class="si_footer">
-                          <div class="price float-start"><small>
-                            <del>$129</del>
-                          </small>$129
-                          </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
+                          <a class="cart_btn float-end" href=""><img src=""
                                                                                         alt="cart-bag.svg"></a>
                         </div>
                       </div>
@@ -371,7 +370,7 @@
                 <div class="owl-item active" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/1.png" alt="1.png"></div>
+                      <div class="thumb"><img src="" alt="1.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -389,7 +388,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
+                          <a class="cart_btn float-end" href=""><img src=""
                                                                                         alt="cart-bag.svg"></a>
                         </div>
                       </div>
@@ -399,7 +398,7 @@
                 <div class="owl-item active" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/2.png" alt="2.png"></div>
+                      <div class="thumb"><img src="" alt="2.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -417,8 +416,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
-                                                                                        alt="cart-bag.svg"></a>
+                          <a class="cart_btn float-end" href=""><img src="" alt="cart-bag.svg"></a>
                         </div>
                       </div>
                     </div>
@@ -427,7 +425,7 @@
                 <div class="owl-item active" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/5.png" alt="5.png"></div>
+                      <div class="thumb"><img src="" alt="5.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -445,8 +443,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
-                                                                                        alt="cart-bag.svg"></a>
+                          <a class="cart_btn float-end" href=""><img src="" alt="cart-bag.svg"></a>
                         </div>
                       </div>
                     </div>
@@ -455,7 +452,7 @@
                 <div class="owl-item active" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/4.png" alt="4.png"></div>
+                      <div class="thumb"><img src="" alt="4.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -473,7 +470,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
+                          <a class="cart_btn float-end" href=""><img src=""
                                                                                         alt="cart-bag.svg"></a>
                         </div>
                       </div>
@@ -483,7 +480,7 @@
                 <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/1.png" alt="1.png"></div>
+                      <div class="thumb"><img src="" alt="1.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -501,7 +498,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
+                          <a class="cart_btn float-end" href=""><img src=""
                                                                                         alt="cart-bag.svg"></a>
                         </div>
                       </div>
@@ -511,7 +508,7 @@
                 <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/2.png" alt="2.png"></div>
+                      <div class="thumb"><img src="" alt="2.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -529,8 +526,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
-                                                                                        alt="cart-bag.svg"></a>
+                          <a class="cart_btn float-end" href=""><img src="" alt="cart-bag.svg"></a>
                         </div>
                       </div>
                     </div>
@@ -539,7 +535,7 @@
                 <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/5.png" alt="5.png"></div>
+                      <div class="thumb"><img src="" alt="5.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -557,8 +553,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
-                                                                                        alt="cart-bag.svg"></a>
+                          <a class="cart_btn float-end" href=""><img src="" alt="cart-bag.svg"></a>
                         </div>
                       </div>
                     </div>
@@ -567,7 +562,7 @@
                 <div class="owl-item cloned" style="width: 301.5px; margin-right: 30px;">
                   <div class="item">
                     <div class="shop_item">
-                      <div class="thumb"><img src="images/shop/4.png" alt="4.png"></div>
+                      <div class="thumb"><img src="" alt="4.png"></div>
                       <div class="details">
                         <div class="title">12v Compact Battery Jump Starter</div>
                         <div class="review">
@@ -585,8 +580,7 @@
                             <del>$129</del>
                           </small>$129
                           </div>
-                          <a class="cart_btn float-end" href="page-shop-cart.html"><img src="images/shop/cart-bag.svg"
-                                                                                        alt="cart-bag.svg"></a>
+                          <a class="cart_btn float-end" href=""><img src="" alt="cart-bag.svg"></a>
                         </div>
                       </div>
                     </div>
