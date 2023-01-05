@@ -19,7 +19,7 @@
           <div class="col-lg-12">
             <div class="dashboard_favorites_contents p10-520">
               <div class="row">
-                <div v-for="part in parts" class="col-sm-6 col-xl-12 col-xxl-6">
+                <div v-for="part in parts" class="py-3 col-sm-6 col-xl-12 col-xxl-6">
                   <div class="car-listing list_style">
                     <div class="thumb">
                       <div class="tag">Новинка</div>
@@ -32,12 +32,21 @@
                         <div class="mb0">
                         <h5 class="price">{{ part.price }}грн
                           <span style="float: right; margin-top: -10px">
-                          <a @click.prevent="addToWishlist(part)" style="padding-right: 10px" href=""><img src="/images/etc/heartBefore.png"></a>
-                          <a @click.prevent="addToOrder(part)" href=""><img src="/images/etc/beforeCart.png"></a>
+                            <a @click.prevent="this.$store.dispatch('addToWishlist',part)" href="">
+                              <img v-if="!this.$store.state.wishlistIds.includes(part.id)"
+                                   src="/images/etc/heartBefore.png">
+                              <img v-if="this.$store.state.wishlistIds.includes(part.id)"
+                                   src="/images/etc/heartAfter.png">
+                            </a>
+                            <a
+                                @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
+                            <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
+                            <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
+                          </a>
                           </span>
                         </h5>
                         </div>
-                        <h6 class="title"><a href="">{{ part.part_name }}</a></h6>
+                        <h6 class="title"><a href="" @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.part_name }}</a></h6>
                         <div class="listign_review">
                           <ul class="mb0">
                             <li class="list-inline-item">Виробник: {{ part.part_brand }}</li>
@@ -110,40 +119,6 @@ export default {
             this.parts = res.data.data
             this.paginate = res.data.meta
           })
-    },
-    addToWishlist(part) {
-      api.post('/api/wishlist/' + part.id)
-          .then(res => {
-            this.getUserWishlist()
-          })
-    },
-    addToOrder(part) {
-      let order = localStorage.getItem('order')
-      let newAddOrder = [
-        {
-          'id': part.id,
-          'image': part.image,
-          'name': part.part_name,
-          'number': part.part_number,
-          'price': part.price,
-          'qty': 1,
-        }
-      ]
-      if (!order) {
-        localStorage.setItem('order', JSON.stringify(newAddOrder))
-      } else {
-        order = JSON.parse(order)
-
-        order.forEach(partsInOder => {
-          if (partsInOder.id === part.id) {
-            partsInOder.qty = Number(partsInOder.qty) + 1
-            newAddOrder = null
-          }
-        })
-
-        Array.prototype.push.apply(order, newAddOrder)
-        localStorage.setItem('order', JSON.stringify(order))
-      }
     },
 
   }

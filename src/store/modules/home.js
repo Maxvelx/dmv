@@ -105,6 +105,27 @@ const store_home = createStore({
             }
         },
 
+        addToRecentViews({commit}, part) {
+            let recent_views = localStorage.getItem('recent')
+            let newAddRecentViews = [
+                {
+                    'id': part.id,
+                    'image': part.image,
+                    'name': part.part_name,
+                    'number': part.part_number,
+                    'price': part.price,
+                }
+            ]
+            if (!recent_views) {
+                localStorage.setItem('recent', JSON.stringify(newAddRecentViews))
+            } else {
+                recent_views = JSON.parse(recent_views)
+
+                Array.prototype.push.apply(recent_views, newAddRecentViews)
+                localStorage.setItem('recent', JSON.stringify(recent_views))
+            }
+        },
+
         getColor({commit}, part) {
             let message = '';
             if (this.state.wishlistIds.includes(part.id)) {
@@ -149,8 +170,9 @@ const store_home = createStore({
             }
         },
 
-        getPartSingle(context, part) {
+        getPartSingle({commit}, part) {
             router.push({name: 'part_single', params: {id: part.id}})
+            this.dispatch('addToRecentViews', part)
         },
     }
 

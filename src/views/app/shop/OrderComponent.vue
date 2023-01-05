@@ -1,110 +1,118 @@
 <template>
   <div v-if="parts !== null">
-  <div v-if="parts.length < 1">
-    {{getTotal}}
-    <div class="container-fluid  pt100 pb130">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card-body cart">
-            <div class="col-sm-12 empty-cart-cls text-center">
-              <img src="/images/etc/emptycart.jpg" width="130" height="130" class="img-fluid mb-4 mr-3">
-              <h3><strong>Зараз у вас немає запчастин у замовленні</strong></h3>
-              <h4>Але це легко виправити :)</h4>
+    <div v-if="parts.length < 1">
+      {{ getTotal }}
+      <div class="container-fluid  pt100 pb130">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card-body cart">
+              <div class="col-sm-12 empty-cart-cls text-center">
+                <img src="/images/etc/emptycart.jpg" width="130" height="130" class="img-fluid mb-4 mr-3">
+                <h3><strong>Зараз у вас немає запчастин у замовленні</strong></h3>
+                <h4>Але це легко виправити :)</h4>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div v-if="parts.length > 0">
-    <!-- Inner Page Breadcrumb -->
-    <section class="inner_page_breadcrumb style2 bgc-f9 bt1 inner_page_section_spacing">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12">
-            <div class="breadcrumb_content style2">
-              <h2 class="breadcrumb_title">Замовлення</h2>
-              <p class="subtitle">Список запчастин</p>
+    <div v-if="parts.length > 0">
+      <!-- Inner Page Breadcrumb -->
+      <section class="inner_page_breadcrumb style2 bgc-f9 bt1 inner_page_section_spacing">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="breadcrumb_content style2">
+                <h2 class="breadcrumb_title">Замовлення</h2>
+                <p class="subtitle">Список запчастин</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Shop Checkouts Content -->
-    <section class="shop-cart bgc-f9 pt0">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="row">
-              <div class="col-lg-8 col-xl-8">
-                <div class="shopping_cart_tabs ovyh">
-                  <div class="shopping_cart_table">
-                    <table>
-                      <thead>
-                      <tr>
-                        <th>Номер та назва запчастини</th>
-                        <th>Ціна</th>
-                        <th>Кількість</th>
-                        <th>Сума</th>
-                        <th>Дія</th>
-                      </tr>
-                      </thead>
-                      <tbody class="table_body">
-                      <tr v-for="part in parts">
-                        <td>
-                            <li class="list-inline-item" style="font-weight: 700;font-size: 16px"><a href="#">{{ part.number }}</a></li>
+      <!-- Shop Checkouts Content -->
+      <section class="shop-cart bgc-f9 pt0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-8 col-xl-8">
+                  <div class="shopping_cart_tabs ovyh">
+                    <div class="shopping_cart_table">
+                      <table>
+                        <thead>
+                        <tr>
+                          <th>Номер та назва запчастини</th>
+                          <th>Ціна</th>
+                          <th>Кількість</th>
+                          <th>Сума</th>
+                          <th>Дія</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table_body">
+                        <tr v-for="part in parts">
+                          <td>
+                            <li class="list-inline-item" style="font-weight: 700;font-size: 16px">{{ part.number }}</li>
                             <br>
-                            <li class="list-inline-item"><a href="#">{{ part.name }}</a></li>
-                        </td>
-                        <td>{{ part.price }}грн</td>
-                        <td><input class="cart_count text-center" v-model="part.qty" type="number"></td>
-                        <td>{{ part.price * part.qty }}грн</td>
-                        <td><a @click.prevent="removePart(part.id)" href="#"><i style="font-size: 30px" class="far fa-times"></i></a></td>
-                      </tr>
-                      </tbody>
-                    </table>
+                            <li class="list-inline-item">
+                              <a href=""
+                                 @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.name }}
+                              </a>
+                            </li>
+                          </td>
+                          <td>{{ part.price }}грн</td>
+                          <td><input class="cart_count text-center" v-model="part.qty" type="number"></td>
+                          <td>{{ part.price * part.qty }}грн</td>
+                          <td><a @click.prevent="removePart(part.id)" href="#"><i style="font-size: 30px"
+                                                                                  class="far fa-times"></i></a></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="order_sidebar_widget style2">
-                  <h4 class="title">Замовлення</h4>
-                  <ul class="mb15">
-                    <li style="font-size: 13px;font-weight: 700; overflow: hidden;">Доставка по Україні
-                      <p class="float-end" style="overflow: hidden;">За тарифами перевізника</p>
-                    </li>
-                    <li style="font-size: 13px;font-weight: 700; overflow: hidden;">Доставка з-за кордону
-                      <p class="float-end" style="overflow: hidden;">Прораховує менеджер</p>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li class="subtitle"><p>Разом до сплати<span class="float-end totals color-orose">{{ getTotal }}грн</span>
-                    </p>
-                    </li>
-                  </ul>
-                  <div class="ui_kit_button payment_widget_btn">
-                    <router-link :to="{name: 'order_confirm'}">
-                      <button type="button" class="btn btn-thm btn-block">Продовжити
-                        оформлення
-                      </button>
-                    </router-link>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                  <div class="order_sidebar_widget style2">
+                    <h4 class="title">Замовлення</h4>
+                    <ul class="mb15">
+                      <li style="font-size: 13px;font-weight: 700; overflow: hidden;">Доставка по Україні
+                        <p class="float-end" style="overflow: hidden;">За тарифами перевізника</p>
+                      </li>
+                      <li style="font-size: 13px;font-weight: 700; overflow: hidden;">Доставка з-за кордону
+                        <p class="float-end" style="overflow: hidden;">Прораховує менеджер</p>
+                      </li>
+                    </ul>
+                    <ul>
+                      <li class="subtitle"><p>Разом до сплати<span class="float-end totals color-orose">{{
+                          getTotal
+                        }}грн</span>
+                      </p>
+                      </li>
+                    </ul>
+                    <div class="ui_kit_button payment_widget_btn">
+                      <router-link :to="{name: 'order_confirm'}">
+                        <button type="button" class="btn btn-thm btn-block">Продовжити
+                          оформлення
+                        </button>
+                      </router-link>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-  <FooterComponent></FooterComponent>
+      </section>
+    </div>
+    <FooterComponent></FooterComponent>
   </div>
 </template>
 
 <script>
 import FooterComponent from "@/views/app/etc/FooterComponent.vue";
 import router from "@/router";
+
 export default {
   name: "OrderComponent",
   components: {FooterComponent},
@@ -169,7 +177,8 @@ table {
     padding-right: 18px;
 
   }
-  td{
+
+  td {
     height: 100px;
   }
 

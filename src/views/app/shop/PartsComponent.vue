@@ -77,36 +77,16 @@
                   </ul>
                 </div>
               </div>
-              <div class="sidebar_shop_recent_post">
-                <h4 class="title">Якась інформація</h4>
-                <div class="d-flex mb20">
+              <div v-if="recent_parts.length" class="sidebar_shop_recent_post">
+                <h4 class="title">Останні переглянуті товари</h4>
+                <div v-for="recent_part in recent_parts" class="d-flex mb20">
                   <div class="flex-shrink-0">
-                    <img class="align-self-start mr-3" src="/images/shop/s1.png" alt="1.png">
+                    <img class="align-self-start mr-3" :src="recent_part.image" alt="recentImg">
                   </div>
                   <div class="flex-grow-1 ms-3">
-                    <h5 class="post_title">$1290</h5>
-                    <p>USB Air</p>
-                    <p>Compressor</p>
-                  </div>
-                </div>
-                <div class="d-flex mb20">
-                  <div class="flex-shrink-0">
-                    <img class="align-self-start mr-3" src="/images/shop/s2.png" alt="s2.png">
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h5 class="post_title">$129</h5>
-                    <p>Ninja</p>
-                    <p>Sound</p>
-                  </div>
-                </div>
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <img class="align-self-start mr-3" src="/images/shop/s3.png" alt="s3.png">
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h5 class="post_title">$129</h5>
-                    <p>Car mats for BMW</p>
-                    <p>F10</p>
+                    <h5 class="post_title">{{recent_part.price}}</h5>
+                    <p>{{ recent_part.number }}</p>
+                    <p>{{ recent_part.name }}</p>
                   </div>
                 </div>
               </div>
@@ -141,10 +121,9 @@
                         <img v-if="this.$store.state.wishlistIds.includes(part.id)"
                              src="/images/etc/heartAfter.png">
                       </a>
-                      <a v-if="this.$store.state.authUser === null">
-                        <router-link to="/">
+                      <a v-if="this.$store.state.authUser === null" href="#" data-bs-toggle="modal"
+                         data-bs-target="#logInModal">
                           <img src="/images/etc/heartBefore.png">
-                        </router-link>
                       </a>
                     </h5>
                     <h6 class="title cuttedText" style="height: 50px"><a
@@ -211,6 +190,7 @@ export default {
       tags: [],
       paginate: null,
       dontShow: 1,
+      recent_parts: localStorage.getItem(JSON.parse('recent')),
     }
   },
   mounted() {

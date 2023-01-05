@@ -60,22 +60,20 @@
           <td>21 день</td>
           <td>{{ part.price }}грн</td>
           <td :class="part.qty <= 0 ? 'text-thm' : 'text-success'">
-            {{part.qty <= 0 ? 'Під замовлення' : 'У наявності'}}
+            {{ part.qty <= 0 ? 'Під замовлення' : 'У наявності' }}
           </td>
           <td>
             <a
-              @click.prevent="this.$store.dispatch('addToOrder',part)" href="" style="padding-right: 10px">
-            <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
-            <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
-          </a>
-            <a v-if="this.$store.state.authUser !== null" @click.prevent="this.$store.dispatch('addToWishlist',part)" href="">
+                @click.prevent="this.$store.dispatch('addToOrder',part)" href="" style="padding-right: 10px">
+              <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
+              <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
+            </a>
+            <a v-if="this.$store.state.authUser !== null" @click.prevent="this.$store.dispatch('addToWishlist',part)"
+               href="">
               <img v-if="!this.$store.state.wishlistIds.includes(part.id)"
                    src="/images/etc/heartBefore.png">
               <img v-if="this.$store.state.wishlistIds.includes(part.id)"
                    src="/images/etc/heartAfter.png">
-            </a>
-            <a v-if="this.$store.state.authUser === null">
-
             </a>
           </td>
         </tr>
