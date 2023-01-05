@@ -28,21 +28,8 @@
                 <li class="list-inline-item"><a href="#"><span class="fab fa-telegram"></span></a></li>
                 <li class="list-inline-item"><a href="#"><span class="fab fa-instagram"></span></a></li>
                 <li class="list-inline-item"><a href="#"><span class="fab fa-viber"></span></a></li>
-                <li v-if="token !== null" class="list-inline-item">
-                  <router-link :to="{name: 'personal'}" style="font-size: 14px">Мій кабінет</router-link>
-                </li>
-                <li v-if="token !== null" class="list-inline-item"><a style="font-size: 14px" @click.prevent="logout"
-                                                                      href="">Вихід</a></li>
-                <li v-if="token === null" class="list-inline-item"><a href="#" data-bs-toggle="modal"
-                                                                      data-bs-target="#logInModal"
-                                                                      @click.prevent="this.modal = 1"
-                                                                      style="font-size: 14px">Вхід</a>
-                </li>
-                <li v-if="token === null" class="list-inline-item"><a data-bs-toggle="modal" href="#"
-                                                                      data-bs-target="#logInModal"
-                                                                      @click.prevent="this.modal = 2"
-                                                                      style="font-size: 14px">Зареєструватися</a>
-                </li>
+                <li></li>
+                <li></li>
               </ul>
             </div>
           </div>
@@ -87,6 +74,23 @@
                 </router-link>
               </li>
             </ul>
+            <ul style="margin-top: 15px;padding-right: 20px">
+              <li v-if="token !== null" class="list-inline-item">
+                <router-link :to="{name: 'personal'}" style="font-size: 14px"><a class="nav-link">Мій кабінет</a>
+                </router-link>
+              </li>
+              <li v-if="token !== null" class="list-inline-item"><a class="nav-link" style="font-size: 14px"
+                                                                    @click.prevent="logout"
+                                                                    href="">Вихід</a></li>
+              <li v-if="token === null" class="list-inline-item"><a class="nav-link" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#logInModal"
+                                                                    style="font-size: 14px">Вхід</a>
+              </li>
+              <li v-if="token === null" class="list-inline-item"><a class="nav-link" data-bs-toggle="modal" href="#"
+                                                                    data-bs-target="#logInModal2"
+                                                                    style="font-size: 14px">Зареєструватися</a>
+              </li>
+            </ul>
             <i v-if="this.$store.state.cartIds.length > 0" style="font-size: 32px" class="fas fa-cart-shopping"></i>
             <span class="navbar-text" v-if="this.$store.state.cartIds.length > 0">
               <router-link :to="{name: 'order'}">
@@ -124,7 +128,7 @@
     </div>
     <!-- Sidebar Panel End -->
     <!-- Modal -->
-    <div class="sign_up_modal modal fade" id="logInModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    <div class="sign_up_modal modal fade" id="logInModal" data-backdrop="static" data-keyboard="false" tabindex="1"
          aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -136,14 +140,7 @@
               <div class="col-lg-12">
                 <ul class="sign_up_tab nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">
-                    <a :class="{'active': this.modal === 1}" class="nav-link" id="home-tab" data-bs-toggle="tab"
-                       href="#home"
-                       role="tab" aria-controls="home" aria-selected="true">Увійти</a>
-                  </li>
-                  <li class="nav-item">
-                    <a :class="{'active': this.modal === 2}" class="nav-link" id="profile-tab" data-bs-toggle="tab"
-                       href="#profile" role="tab"
-                       aria-controls="profile" aria-selected="false">Зареєструватися</a>
+                    <a class="nav-link">Увійти до вашого аккаунту</a>
                   </li>
                 </ul>
               </div>
@@ -153,7 +150,8 @@
                    aria-labelledby="home-tab">
                 <div class="col-lg-12">
                   <div class="login_form">
-                    <p>Вперше на ДИМАМАТВЕЙКОЛЯ.com? <a href="/">Зареєструватися.</a></p>
+                    <!--                    <p>Вперше на dmvavto.shop? <a data-bs-toggle="modal" href=""-->
+                    <!--                                                  data-bs-target="#logInModal2">Зареєструватися.</a></p>-->
                     <form action="#">
                       <div class="mb-2 mr-sm-2">
                         <label class="form-label">Email адреса</label>
@@ -173,44 +171,75 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt30 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sign_up_modal modal fade" id="logInModal2" data-backdrop="static" data-keyboard="false" tabindex="1"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body container p60">
+            <div class="row">
+              <div class="col-lg-12">
+                <ul class="sign_up_tab nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link">Зареєструвати новий аккаунт</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tab-content container p0" id="myTabContent">
+              <div class="row mt30 tab-pane fade show active" id="home" role="tabpanel"
+                   aria-labelledby="home-tab">
                 <div class="col-lg-12">
                   <div class="sign_up_form">
-                    <p>Already have a profile? <a href="">Sign in.</a></p>
+                    <!--                    <p>Маєте аккаунт на dmvavto.shop? <a data-bs-toggle="modal" href=""-->
+                    <!--                                                         data-bs-target="#logInModal">Вхід.</a></p>-->
                     <form action="#">
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="form-group">
-                            <label class="form-label">First Name</label>
-                            <input type="text" class="form-control">
+                            <label class="form-label">Ім'я</label>
+                            <input type="text" v-model="name" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control">
+                            <label class="form-label">По батькові</label>
+                            <input type="text" v-model="patronymic" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-12">
                           <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control">
+                            <label class="form-label">Телефон</label>
+                            <input type="tel" v-model="phone_number" class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label class="form-label">Email адреса</label>
+                            <input type="email" v-model="email" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group mb20">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control">
+                            <label class="form-label">Пароль</label>
+                            <input type="password" v-model="password" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group mb20">
-                            <label class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control">
+                            <label class="form-label">Підтвердження паролю</label>
+                            <input type="password" v-model="password_confirmation" class="form-control">
                           </div>
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-signup btn-thm mb0">Sign Up</button>
+                      <button type="submit" @click.prevent="registration" class="btn btn-signup btn-thm mb0">Зареєструватись</button>
                     </form>
                   </div>
                 </div>
@@ -220,6 +249,7 @@
         </div>
       </div>
     </div>
+
 
     <router-view></router-view>
     <a id="button"><i style="font-weight: normal;font-style: normal;font-size: 2em;line-height: 50px;color: #fff;"
@@ -236,8 +266,12 @@ export default {
   name: "App.vue",
   data() {
     return {
-      email: null,
+      name: null,
+      patronymic: null,
       password: null,
+      password_confirmation: null,
+      email: null,
+      phone_number: null,
       token: localStorage.getItem('token'),
       modal: null,
     }
@@ -246,6 +280,20 @@ export default {
     this.$store.commit('increment')
   },
   methods: {
+    registration() {
+      axios.post('/api/auth/register', {
+        name: this.name,
+        patronymic: this.patronymic,
+        password: this.password,
+        password_confirmation: this.password_confirmation,
+        email: this.email,
+        phone_number: this.phone_number,
+      })
+          .then(res => {
+            localStorage.setItem('token', res.data.access_token)
+            router.go()
+          })
+    },
     login() {
       axios.post('/api/auth/login', {email: this.email, password: this.password})
           .then(res => {
@@ -267,7 +315,7 @@ $(document).on('click', function () {
   $('.navbar .collapse').collapse('hide');
 });
 
-$(document).on('ready', function() {
+$(document).on('ready', function () {
   const btn = $('#button');
   $(window).scroll(function () {
     if ($(window).scrollTop() > 300) {
@@ -299,6 +347,7 @@ $(document).on('ready', function() {
 .cart_widget:hover {
   background: rgba(25, 135, 84, 1);
 }
+
 #button {
   display: inline-block;
   background-color: #f5c34b;
@@ -315,13 +364,16 @@ $(document).on('ready', function() {
   visibility: hidden;
   z-index: 1000;
 }
+
 #button:hover {
   cursor: pointer;
   background-color: #333;
 }
+
 #button:active {
   background-color: #555;
 }
+
 #button.show {
   opacity: 1;
   visibility: visible;

@@ -16,6 +16,7 @@
   </div>
   <FooterIndexComponent></FooterIndexComponent>
 
+
 </template>
 
 <script>
