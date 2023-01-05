@@ -3,7 +3,7 @@
       :messages="this.$store.state.messages"
   />
   <template v-if="searchResult !== undefined">
-    <div v-if="!searchResult" class="preloader"></div>
+    <div v-if="searchResult === null" class="preloader"></div>
   </template>
   <section style="margin-top: -30px">
     <div class="container-fluid">
@@ -171,10 +171,10 @@ table {
   width: 95%;
   margin: 0 auto;
   position: relative;
-  -webkit-box-shadow: 0px 18px 60px rgba(23, 26, 33, 0.05);
-  -moz-box-shadow: 0px 18px 60px rgba(23, 26, 33, 0.05);
-  -o-box-shadow: 0px 18px 60px rgba(23, 26, 33, 0.05);
-  box-shadow: 0px 38px 100px rgba(23, 26, 33, 0.2);
+  -webkit-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
+  -moz-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
+  -o-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
+  box-shadow: 0 38px 100px rgba(23, 26, 33, 0.2);
 
   * {
     position: relative

@@ -1,6 +1,6 @@
 <template>
   <template v-if="parts !== undefined">
-    <div v-if="!parts" class="preloader"></div>
+    <div v-if="parts === null" class="preloader"></div>
   </template>
   <NotificationComponent
       :messages="this.$store.state.messages"
@@ -197,7 +197,6 @@
 
 <script>
 import FooterComponent from "@/views/app/etc/FooterComponent.vue";
-import api from "@/api";
 import NotificationComponent from "@/views/app/notification/NotificationComponent.vue";
 import ShowPartComponent from "@/views/app/shop/ShowPartComponent.vue";
 
