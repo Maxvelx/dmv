@@ -14,7 +14,7 @@ const router = createRouter({
             component: () => import('../views/app/home/SearchPartComponent.vue')
         },
         {
-            path: '/shop/',
+            path: '/shop',
             name: 'shop',
             component: () => import('../views/app/shop/Shop.vue')
         },

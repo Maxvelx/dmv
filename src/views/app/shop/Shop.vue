@@ -1,4 +1,5 @@
 <template>
+  <div v-if="!brands" class="preloader"></div>
   <div class="container py-md-8 pt60" style="padding-bottom: 190px;">
     <div class="row justify-content-center">
       <div class="col-md-3" v-for="brand in brands">
