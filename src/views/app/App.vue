@@ -42,7 +42,7 @@
       <!-- Ace Responsive Menu -->
       <nav class="navbar navbar-expand-lg navbar-light col-10">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="/images/header-logo2.svg"></a>
+          <a class="navbar-brand" href="#"><img src="/images/header-logo2.svg" alt="logo"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                   aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -166,7 +166,7 @@
                         <label class="custom-control-label" for="exampleCheck3">Запам'ятати мене</label>
                         <a class="btn-fpswd float-end" href="#">Забули пароль?</a>
                       </div>
-                      <button @click.prevent="login" class="btn btn-log btn-thm mt5">Увійти</button>
+                      <button :disabled="!isDisabledLogin" @click.prevent="login" class="btn btn-log btn-thm mt5">Увійти</button>
                     </form>
                   </div>
                 </div>
@@ -231,15 +231,17 @@
                             <label class="form-label">Пароль</label>
                             <input type="password" v-model="password" class="form-control">
                           </div>
+                          <div class="text-danger pb10" v-if="password && password.length < 8">Пароль повинен бути від 8 символів</div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group mb20">
                             <label class="form-label">Підтвердження паролю</label>
                             <input type="password" v-model="password_confirmation" class="form-control">
                           </div>
+                          <div class="text-danger pb10" v-if="password_confirmation !== password">Пароль повинен співпадати</div>
                         </div>
                       </div>
-                      <button type="submit" @click.prevent="registration" class="btn btn-signup btn-thm mb0">Зареєструватись</button>
+                      <button :disabled="!isDisabledReg" type="submit" @click.prevent="registration" class="btn btn-signup btn-thm mb0">Зареєструватись</button>
                     </form>
                   </div>
                 </div>
@@ -278,6 +280,14 @@ export default {
   },
   mounted() {
     this.$store.commit('increment')
+  },
+  computed:{
+    isDisabledReg(){
+      return this.name && this.patronymic && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
+    },
+    isDisabledLogin(){
+      return this.email && this.password.length >= 8
+    }
   },
   methods: {
     registration() {
