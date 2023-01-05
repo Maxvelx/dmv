@@ -627,7 +627,7 @@ export default {
     getSingleProduct() {
       axios.get('/api/parts/show/' + this.$route.params.id)
           .then(res => {
-            console.log(this.part = res.data.data);
+            this.part = res.data.data
           })
     },
   }

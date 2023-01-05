@@ -283,10 +283,10 @@ export default {
   },
   computed:{
     isDisabledReg(){
-      return this.name && this.patronymic && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
+      return this.name && this.patronymic && this.password && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
     },
     isDisabledLogin(){
-      return this.email && this.password.length >= 8
+      return this.email && this.password && this.password.length >= 8
     }
   },
   methods: {

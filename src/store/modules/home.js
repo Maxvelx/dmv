@@ -121,7 +121,10 @@ const store_home = createStore({
             } else {
                 recent_views = JSON.parse(recent_views)
 
-                Array.prototype.push.apply(recent_views, newAddRecentViews)
+                Array.prototype.unshift.apply(recent_views, newAddRecentViews)
+                if (recent_views.length > 4){
+                    recent_views.splice(4)
+                }
                 localStorage.setItem('recent', JSON.stringify(recent_views))
             }
         },

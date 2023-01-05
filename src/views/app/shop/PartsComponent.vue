@@ -77,16 +77,16 @@
                   </ul>
                 </div>
               </div>
-              <div v-if="recent_parts.length" class="sidebar_shop_recent_post">
+              <div v-if="recent_parts" class="sidebar_shop_recent_post">
                 <h4 class="title">Останні переглянуті товари</h4>
                 <div v-for="recent_part in recent_parts" class="d-flex mb20">
                   <div class="flex-shrink-0">
                     <img class="align-self-start mr-3" :src="recent_part.image" alt="recentImg">
                   </div>
                   <div class="flex-grow-1 ms-3">
-                    <h5 class="post_title">{{recent_part.price}}</h5>
-                    <p>{{ recent_part.number }}</p>
-                    <p>{{ recent_part.name }}</p>
+                    <h5 class="post_title">{{recent_part.price}}грн</h5>
+                    <p class="post_title">{{ recent_part.number }}</p>
+                    <p class="cuttedText2Line">{{ recent_part.name }}</p>
                   </div>
                 </div>
               </div>
@@ -126,7 +126,7 @@
                           <img src="/images/etc/heartBefore.png">
                       </a>
                     </h5>
-                    <h6 class="title cuttedText" style="height: 50px"><a
+                    <h6 class=" title cuttedTextMaxWidth50" style="height: 35px;"><a
                         @click.prevent="this.$store.dispatch('getPartSingle',part)" href="">{{ part.part_name }}</a>
                     </h6>
                     <div class="listign_review">
@@ -190,13 +190,14 @@ export default {
       tags: [],
       paginate: null,
       dontShow: 1,
-      recent_parts: localStorage.getItem(JSON.parse('recent')),
+      recent: JSON.parse(localStorage.getItem('recent')),
+      recent_parts: null,
     }
   },
   mounted() {
     this.getPartsByCategory()
     this.$store.dispatch('getWishlist')
-    console.log(this.tags);
+    this.recentSlice()
   },
   methods: {
     getPartsByCategory(page = 1) {
@@ -210,6 +211,10 @@ export default {
               }
           )
     },
+
+    recentSlice(){
+      this.recent_parts = this.recent.slice(0,3)
+    }
   },
 
 }
