@@ -4,10 +4,10 @@
   <section class="our-dashbord dashbord">
     <div class="col-md-12 col-sm-12 row">
       <MenuComponent></MenuComponent>
-      <div class="col-md-9 col-sm-9 bgc-f9-1">
+      <div class="col-md-9 col-sm-9">
       <div class="row">
           <div class="col-xl-8">
-            <div class="col-lg-12 mb50">
+            <div class="col-lg-12 mb50 pl20">
               <div class="breadcrumb_content">
                 <h2 class="breadcrumb_title">Обрані запчастини</h2>
                 <p>Тут знаходяться ваші обрані запчастини</p>
@@ -17,7 +17,7 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <div class="dashboard_favorites_contents p10-520">
+            <div class="p10-520">
               <div class="row">
                 <div v-for="part in parts" class="py-3 col-sm-6 col-xl-12 col-xxl-6">
                   <div class="car-listing list_style">
@@ -111,6 +111,7 @@ export default {
   },
   mounted() {
     this.getUserWishlist()
+    this.$store.dispatch('getWishlist')
   },
   methods: {
     getUserWishlist(page = 1) {

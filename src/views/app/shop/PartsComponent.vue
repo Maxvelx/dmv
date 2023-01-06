@@ -126,7 +126,7 @@
                           <img src="/images/etc/heartBefore.png">
                       </a>
                     </h5>
-                    <h6 class=" title cuttedTextMaxWidth50" style="height: 35px;"><a
+                    <h6 class="title cuttedTextMaxWidth50"><a
                         @click.prevent="this.$store.dispatch('getPartSingle',part)" href="">{{ part.part_name }}</a>
                     </h6>
                     <div class="listign_review">

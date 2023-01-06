@@ -1,0 +1,39 @@
+.searchInputButton {
+    float: right;
+    margin-top: -45px;
+    padding-right: 20px;
+}
+
+@media (max-width: 568px) {
+    .searchInputButton {
+        float: right;
+        margin-top: -45px;
+        padding-right: 0;
+    }
+}
+.cart_widget {
+    position: fixed;
+    top: 80%;
+    right: 5px;
+    z-index: 11;
+    background: darkgreen;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    background: rgba(25, 135, 84, 0.4);
+}
+@media (max-width: 568px) {
+    .cart_widget {
+        top: 75%;
+        right: 10px;
+        background: rgba(25, 135, 84, 0.2);
+    }
+}
+.cart_widget:hover {
+    background: rgba(25, 135, 84, 1);
+}
+.labelProfile{
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 10px;
+}

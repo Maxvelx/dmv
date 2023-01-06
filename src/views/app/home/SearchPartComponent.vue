@@ -13,8 +13,8 @@
             <div class="advance_search_panel">
               <div class="home1_advance_search_wrapper">
                 <input type="text" v-model="search" class="form-control form-control-border"
-                       placeholder="Введіть номер або назву запчастини..." v-on:keydown.enter="startSearch()">
-                <span style="float: right; margin-top: -45px; margin-right: 20px">
+                       placeholder="Введіть номер запчастини" v-on:keydown.enter="startSearch()">
+                <span class="searchInputButton">
                   <a class="btn btn-primary" type="button" @click.prevent="startSearch()">Пошук</a>
                 </span>
               </div>
@@ -160,60 +160,60 @@ $gl-lg: "screen and (max-width: 80em)"; // max 1280px
 
 // table style
 
-table {
-  border-spacing: 1px;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 6px;
-  overflow: hidden;
-  width: 95%;
-  margin: 0 auto;
-  position: relative;
-  -webkit-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
-  -moz-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
-  -o-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
-  box-shadow: 0 38px 100px rgba(23, 26, 33, 0.2);
+   table {
+     border-spacing: 1px;
+     border-collapse: collapse;
+     background: white;
+     border-radius: 6px;
+     overflow: hidden;
+     width: 95%;
+     margin: 0 auto;
+     position: relative;
+     -webkit-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
+     -moz-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
+     -o-box-shadow: 0 18px 60px rgba(23, 26, 33, 0.05);
+     box-shadow: 0 38px 100px rgba(23, 26, 33, 0.2);
 
-  * {
-    position: relative
-  }
+* {
+  position: relative
+}
 
-  td, th {
-    padding-left: 18px;
-    padding-right: 18px;
+td, th {
+  padding-left: 18px;
+  padding-right: 18px;
 
-  }
+}
 
-  thead tr {
-    height: 60px;
-    background: #f5c34b;
-    font-size: 16px;
-  }
+thead tr {
+  height: 60px;
+  background: #f5c34b;
+  font-size: 16px;
+}
 
-  tbody tr {
-    height: 48px;
-    border-bottom: 1px solid #E3F1D5;
+tbody tr {
+  height: 48px;
+  border-bottom: 1px solid #E3F1D5;
 
-    &:last-child {
-      border: 0;
-    }
-  }
+&:last-child {
+   border: 0;
+ }
+}
 
-  td, th {
-    text-align: left;
+td, th {
+  text-align: left;
 
-    &.l {
-      text-align: right
-    }
+&.l {
+   text-align: right
+ }
 
-    &.c {
-      text-align: center
-    }
+&.c {
+   text-align: center
+ }
 
-    &.r {
-      text-align: center
-    }
-  }
+&.r {
+   text-align: center
+ }
+}
 }
 
 
@@ -222,74 +222,74 @@ table {
   table {
     display: block;
 
-    > *, tr, td, th {
-      display: block
-    }
-
-    thead {
-      display: none
-    }
-
-    tbody tr {
-      height: auto;
-      padding: 8px 0;
-
-      td {
-        padding-left: 45%;
-        margin-bottom: 12px;
-
-        &:last-child {
-          margin-bottom: 30px
-        }
-
-        &:before {
-          position: absolute;
-          font-weight: 700;
-          width: 40%;
-          left: 10px;
-          top: 0
-        }
-
-        &:nth-child(1):before {
-          content: "Бренд";
-        }
-
-        &:nth-child(2):before {
-          content: "Номер зап.";
-        }
-
-        &:nth-child(3):before {
-          content: "Назва";
-        }
-
-        &:nth-child(4):before {
-          content: "Термін поставки";
-        }
-
-        &:nth-child(5):before {
-          content: "Ціна";
-        }
-
-        &:nth-child(6):before {
-          content: "Наявність";
-        }
-
-        &:nth-child(7):before {
-          content: "Дія";
-        }
-      }
-    }
+  > *, tr, td, th {
+    display: block
   }
+
+  thead {
+    display: none
+  }
+
+  tbody tr {
+    height: auto;
+    padding: 8px 0;
+
+  td {
+    padding-left: 45%;
+    margin-bottom: 12px;
+
+&:last-child {
+   margin-bottom: 30px
+ }
+
+&:before {
+   position: absolute;
+   font-weight: 700;
+   width: 40%;
+   left: 10px;
+   top: 0
+ }
+
+&:nth-child(1):before {
+   content: "Бренд";
+ }
+
+&:nth-child(2):before {
+   content: "Номер зап.";
+ }
+
+&:nth-child(3):before {
+   content: "Назва";
+ }
+
+&:nth-child(4):before {
+   content: "Термін поставки";
+ }
+
+&:nth-child(5):before {
+   content: "Ціна";
+ }
+
+&:nth-child(6):before {
+   content: "Наявність";
+ }
+
+&:nth-child(7):before {
+   content: "Дія";
+ }
+}
+}
+}
 }
 
 
 // body style
 
-body {
-  background: #9BC86A;
-  font: 400 14px 'Calibri', 'Arial';
-  padding: 20px;
-}
+   body {
+     background: #9BC86A;
+     font: 400 14px 'Calibri', 'Arial';
+     padding: 20px;
+   }
 
 blockquote {
   color: white;

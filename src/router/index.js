@@ -49,6 +49,11 @@ const router = createRouter({
             component: () => import('../views/app/personal/LoginComponent.vue')
         },
         {
+            path: '/register',
+            name: 'register',
+            component: () => import('../views/app/personal/RegisterComponent.vue')
+        },
+        {
             path: '/personal',
             name: 'personal',
             component: () => import('../views/app/personal/Personal.vue')
@@ -83,7 +88,11 @@ const router = createRouter({
             name: '404',
             component: () => import('../views/app/etc/404.vue')
         },
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        // always scroll to top
+        return { top: 0 }
+    },
 })
 
 router.beforeEach((to, from, next) => {

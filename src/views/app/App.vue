@@ -140,7 +140,7 @@
               <div class="col-lg-12">
                 <ul class="sign_up_tab nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link">Увійти до вашого аккаунту</a>
+                    <a class="nav-link">Увійти в особистий кабінет</a>
                   </li>
                 </ul>
               </div>
@@ -150,8 +150,9 @@
                    aria-labelledby="home-tab">
                 <div class="col-lg-12">
                   <div class="login_form">
-                    <!--                    <p>Вперше на dmvavto.shop? <a data-bs-toggle="modal" href=""-->
-                    <!--                                                  data-bs-target="#logInModal2">Зареєструватися.</a></p>-->
+                                        <p>Вперше на dmvavto.shop? <a href="/register"
+                                        >Зареєструйтесь, </a>та зможете слідкувати за статусами замовлень,
+                                          додавати запчастини в обране та інші цікаві можливості.</p>
                     <form action="#">
                       <div class="mb-2 mr-sm-2">
                         <label class="form-label">Email адреса</label>
@@ -188,7 +189,7 @@
               <div class="col-lg-12">
                 <ul class="sign_up_tab nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link">Зареєструвати новий аккаунт</a>
+                    <a class="nav-link">Зареєструвати особистий акаунт</a>
                   </li>
                 </ul>
               </div>
@@ -198,8 +199,8 @@
                    aria-labelledby="home-tab">
                 <div class="col-lg-12">
                   <div class="sign_up_form">
-                    <!--                    <p>Маєте аккаунт на dmvavto.shop? <a data-bs-toggle="modal" href=""-->
-                    <!--                                                         data-bs-target="#logInModal">Вхід.</a></p>-->
+                                        <p>Маєте акаунт на dmvavto.shop? <a href="/login"
+                                                                             >Увійти в особистий кабінет.</a></p>
                     <form action="#">
                       <div class="row">
                         <div class="col-lg-6">
@@ -342,22 +343,6 @@ $(document).on('ready', function () {
 </script>
 
 <style scoped>
-.cart_widget {
-  position: fixed;
-  top: 80%;
-  right: 5px;
-  z-index: 11;
-  background: darkgreen;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  background: rgba(25, 135, 84, 0.4);
-}
-
-.cart_widget:hover {
-  background: rgba(25, 135, 84, 1);
-}
-
 #button {
   display: inline-block;
   background-color: #f5c34b;
@@ -366,13 +351,18 @@ $(document).on('ready', function () {
   text-align: center;
   border-radius: 10px;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 17px;
   transition: background-color .3s,
   opacity .5s, visibility .5s;
   opacity: 0;
   visibility: hidden;
   z-index: 1000;
+}
+@media (max-width: 568px) {
+  #button {
+    right: 20px;
+  }
 }
 
 #button:hover {

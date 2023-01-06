@@ -4,10 +4,10 @@
   <section class="our-dashbord dashbord">
     <div class="col-md-12 col-sm-12 row">
       <MenuComponent></MenuComponent>
-      <div class="col-md-9 col-sm-9 bgc-f9-1">
+      <div class="col-md-9 col-sm-9">
       <div class="row">
           <div class="col-xl-8">
-            <div class="col-lg-12 mb50">
+            <div class="col-lg-12 mb50 pl20">
               <div class="breadcrumb_content">
                 <h2 class="breadcrumb_title">Мої замовлення</h2>
                 <p>Відстежуйте статуси ваших замовлень тут</p>
@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <div class="row" style="margin-left: -100px">
+        <div class="row">
           <div class="col-lg-12">
             <div class="dashboard_favorites_contents dashboard_my_lising_tabs p10-520">
               <div class="row">

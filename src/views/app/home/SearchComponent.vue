@@ -1,5 +1,4 @@
 <template>
-
   <!-- Home Design -->
   <section>
     <div class="container-fluid" style="margin-top: -70px">
@@ -9,8 +8,8 @@
             <div class="advance_search_panel">
               <div class="home1_advance_search_wrapper">
                   <input type="text" v-model="search" class="form-control form-control-border"
-                         placeholder="Введіть номер або назву запчастини..." v-on:keydown.enter="startSearch()">
-                  <span style="float: right; margin-top: -45px; margin-right: 20px">
+                         placeholder="Введіть номер запчастини" v-on:keydown.enter="startSearch()">
+                  <span class="searchInputButton">
                   <a @click.prevent="startSearch()" class="btn btn-primary" type="submit">Пошук</a>
                 </span>
               </div>

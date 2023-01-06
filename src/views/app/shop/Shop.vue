@@ -20,7 +20,7 @@
 import FooterIndexComponent from "@/views/app/etc/FooterIndexComponent.vue";
 
 export default {
-  name: "shop",
+  name: "Shop",
   components: {FooterIndexComponent},
   data() {
     return {

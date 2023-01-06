@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3 col-sm-3">
+  <div class="col-md-3 col-sm-3 pb50">
     <div class="container-fluid">
       <ul class="nav flex-column nav-pills col-sm-4 col-md-8" style="margin-left: 30px">
         <li class="nav-item">

@@ -4,14 +4,14 @@
   <section v-if="user !== null" class="our-dashbord dashbord">
     <div class="col-md-12 col-sm-12 row">
       <MenuComponent></MenuComponent>
-      <div class="col-md-9 col-sm-9 bgc-f9-1">
+      <div class="col-md-9 col-sm-9">
         <div class="row">
-          <div class="breadcrumb_content mb50">
+          <div class="breadcrumb_content mb50 pl30">
             <h2 class="breadcrumb_title">Вітаємо, {{ this.user.name + ' ' + this.user.patronymic }}!</h2>
             <p>Раді Вас бачити!</p>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="padding: 30px">
           <div class="col-sm-6 col-lg-4">
             <div class="ff_one">
               <div class="icon"><span class="flaticon-list"></span></div>

@@ -21,6 +21,8 @@ const store_home = createStore({
             authUser: localStorage.getItem('token'),
             //massages after click wishlist or add to cart
             messages: [],
+            //userInfo
+            userInfo: null,
         }
     },
     mutations: {
@@ -47,6 +49,7 @@ const store_home = createStore({
                 state.cartIds = []
             }
         },
+
         message(state, value) {
             let timeStamp = Date.now().toLocaleString()
             state.messages.unshift({
@@ -56,15 +59,22 @@ const store_home = createStore({
                 color: value.color
             })
         },
+
         menu(state, value) {
             state.activeEl = value
         },
+
         menuPersonal(state, value) {
             state.activeElP = value
         },
+
         wishlistIds(state, value) {
             state.wishlistIds = value
         },
+
+        setUser(state, value){
+            state.userInfo = value
+        }
 
     },
     actions: {
@@ -177,7 +187,14 @@ const store_home = createStore({
             router.push({name: 'part_single', params: {id: part.id}})
             this.dispatch('addToRecentViews', part)
         },
-    }
+
+        getUser({commit}) {
+            api.post('/api/auth/me')
+                .then(res => {
+                    commit('setUser', res.data.data)
+                })
+        },
+    },
 
 })
 

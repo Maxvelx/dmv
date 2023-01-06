@@ -11,6 +11,7 @@ Tag: agriculture, bakery, ecommerce, farm, food, food shop, grocery market, natu
 ********/
 /* CSS Document */
 @import url(../css/jquery-ui.min.css);
+@import url(../css/custom.css);
 @import url(../css/fontawesome.css);
 @import url(../css/bootstrap-select.min.css);
 @import url(../css/menu.css);
@@ -23631,6 +23632,7 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
   max-width: 200px;
 }
 .cuttedTextMaxWidth50 {
+  height: 33px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -moz-box;
