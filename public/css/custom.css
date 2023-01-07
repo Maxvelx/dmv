@@ -8,7 +8,7 @@
     .searchInputButton {
         float: right;
         margin-top: -45px;
-        padding-right: 0;
+        padding-right: 10px;
     }
 }
 .cart_widget {
@@ -39,7 +39,6 @@
         background: rgba(25, 135, 84, 1);
     }
 }
-
 .labelProfile{
     font-size: 14px;
     font-weight: 700;
