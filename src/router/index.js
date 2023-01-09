@@ -91,7 +91,7 @@ const router = createRouter({
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
-        return { top: 0 }
+        return {top: 0}
     },
 })
 
@@ -107,7 +107,14 @@ router.beforeEach((to, from, next) => {
         }
     }
 
-    next()
+    if (to.name === 'login' ||
+        to.name === 'register') {
+        if (accessToken){
+            return next({name: 'index'})
+        }
+    }
+
+        next()
 })
 
 export default router

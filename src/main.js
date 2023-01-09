@@ -4,7 +4,7 @@ import router from '@/router'
 import axios from 'axios'
 import store_home from "@/store/modules/home";
 
-axios.defaults.baseURL = 'http://api.template.maxvel.pp.ua'
+axios.defaults.baseURL = 'https://api.template.maxvel.pp.ua'
 
 const app = createApp(App)
 

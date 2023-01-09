@@ -128,12 +128,14 @@ export default {
     this.getSearch()
   },
   methods: {
+
     startSearch() {
       router.push({name: 'search', params: {search: this.search}})
       this.watchSearch = this.search
       this.searchResult = null
       this.getSearch()
     },
+
     getSearch(page = 1) {
       this.axios.get('/api/search?search=' + this.watchSearch + '&page=' + page)
           .then(res => {
@@ -141,10 +143,12 @@ export default {
             this.paginate = res.data.meta
           })
     },
+
     getSearchAgain(num_oem) {
       this.watchSearch = num_oem
       this.getSearch()
     },
+
   }
 }
 </script>

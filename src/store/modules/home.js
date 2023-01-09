@@ -1,7 +1,6 @@
 import {createStore} from 'vuex'
 import api from "@/api";
 import router from "@/router";
-import axios from "axios";
 
 const store_home = createStore({
     state() {
@@ -72,7 +71,7 @@ const store_home = createStore({
             state.wishlistIds = value
         },
 
-        setUser(state, value){
+        setUser(state, value) {
             state.userInfo = value
         }
 
@@ -132,7 +131,7 @@ const store_home = createStore({
                 recent_views = JSON.parse(recent_views)
 
                 Array.prototype.unshift.apply(recent_views, newAddRecentViews)
-                if (recent_views.length > 4){
+                if (recent_views.length > 4) {
                     recent_views.splice(4)
                 }
                 localStorage.setItem('recent', JSON.stringify(recent_views))

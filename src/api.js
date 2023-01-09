@@ -1,7 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://api.template.maxvel.pp.ua'
-import router from "@/router";
+axios.defaults.baseURL = 'https://api.template.maxvel.pp.ua'
 
 const api = axios.create();
 
