@@ -15,11 +15,11 @@
             <form action="#">
               <div class="mb-2 mr-sm-2">
                 <label class="form-label">Email адреса *</label>
-                <input v-model="email" type="email" class="form-control">
+                <input v-model="email" autocomplete="new-email" type="email" class="form-control">
               </div>
               <div class="form-group mb5">
                 <label class="form-label">Пароль *</label>
-                <input v-model="password" type="password" class="form-control">
+                <input v-model="password" type="password" autocomplete="new-password" class="form-control">
               </div>
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="exampleCheck3">

@@ -22,7 +22,7 @@
                 <li class="list-inline-item mb10-400">
                   <a id="open2" class="filter_open_btn style2 dn db-lg" href="#"><img class="mr10"
                                                                                       src=""
-                                                                                      alt="filter-icon.svg">
+                                                                                      alt="">
                     Filters</a>
                 </li>
                 <li class="list-inline-item listone">Sort by:</li>
@@ -213,7 +213,9 @@ export default {
     },
 
     recentSlice(){
-      this.recent_parts = this.recent.slice(0,3)
+      if (this.recent_parts) {
+        this.recent_parts = this.recent.slice(0, 3)
+      }
     }
   },
 

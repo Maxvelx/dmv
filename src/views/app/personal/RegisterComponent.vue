@@ -32,13 +32,13 @@
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label class="form-label">Email адреса</label>
-                    <input type="email" v-model="email" class="form-control">
+                    <input type="email" v-model="email" autocomplete="new-email" class="form-control">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group mb20">
                     <label class="form-label">Пароль</label>
-                    <input type="password" v-model="password" class="form-control">
+                    <input type="password" v-model="password" autocomplete="new-password" class="form-control">
                   </div>
                   <div class="text-danger pb10" v-if="password && password.length < 8">Пароль повинен бути від 8 символів</div>
                 </div>

@@ -156,11 +156,11 @@
                     <form action="#">
                       <div class="mb-2 mr-sm-2">
                         <label class="form-label">Email адреса</label>
-                        <input v-model="email" type="text" class="form-control" placeholder="Введіть email адресу">
+                        <input v-model="email" type="text" autocomplete="new-email" class="form-control" placeholder="Введіть email адресу">
                       </div>
                       <div class="form-group mb5">
                         <label class="form-label">Пароль</label>
-                        <input v-model="password" type="password" class="form-control" placeholder="Введіть пароль">
+                        <input v-model="password" type="password" autocomplete="new-password" class="form-control" placeholder="Введіть пароль">
                       </div>
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="exampleCheck3">
@@ -224,13 +224,13 @@
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label class="form-label">Email адреса</label>
-                            <input type="email" v-model="email" class="form-control">
+                            <input type="email" autocomplete="new-email" v-model="email" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group mb20">
                             <label class="form-label">Пароль</label>
-                            <input type="password" v-model="password" class="form-control">
+                            <input type="password" autocomplete="new-password" v-model="password" class="form-control">
                           </div>
                           <div class="text-danger pb10" v-if="password && password.length < 8">Пароль повинен бути від 8 символів</div>
                         </div>
@@ -305,6 +305,7 @@ export default {
             router.go()
           })
     },
+
     login() {
       axios.post('/api/auth/login', {email: this.email, password: this.password})
           .then(res => {
@@ -312,6 +313,7 @@ export default {
             router.go()
           })
     },
+
     logout() {
       api.post('/api/auth/logout')
           .then(res => {

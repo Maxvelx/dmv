@@ -288,10 +288,6 @@ ul[data-menu-style="vertical"] li a:hover {
 ----------------------------------------*/
 /*Note: change the max-width asper your requirment and change the same in aceResponsiveMenu({resizeWidth: "768" }) function*/
 @media screen and (max-width: 768px) {
-    .demo {
-		width:96%;
-		padding:2%;
-    }
     ul[data-menu-style="vertical"] , ul[data-menu-style="accordion"],
     ul[data-menu-style="vertical"] li ul.sub-menu {
         width: 100% !important;
@@ -361,8 +357,4 @@ ul[data-menu-style="vertical"] li a:hover {
   background: #535353;
   color: #FFF;
   text-decoration: none;
-}
-a.backLink {
-  float:right;
-  margin-bottom:10px;
 }
