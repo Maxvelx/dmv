@@ -15,18 +15,17 @@
                 <input type="text" v-model="search" class="form-control form-control-border"
                        placeholder="Введіть номер запчастини" v-on:keydown.enter="startSearch()">
                 <span class="searchInputButton">
-                  <a class="btn btn-primary" type="button" @click.prevent="startSearch()">Пошук</a>
+                  <a class="btn btn-template-blue" type="button" @click.prevent="startSearch()">Пошук</a>
                 </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div style="padding-top: 55px">
+      <div style="padding-top: 45px">
         <div v-if="searchResult === undefined"
-             class="alert alart_style_two alert-dismissible fade show col-7 m-auto wow fadeInUp" data-wow-duration="1s"
-             data-wow-delay="0.1s"
-             style="text-align: center;">
+             class="alert alart_style_two alert-dismissible fade show col-md-7 m-auto wow fadeInUp" data-wow-duration="1s"
+             style="visibility: visible; animation-duration: 1s;animation-delay: 1s">
           За вашим запитом: {{ watchSearch }} нічого не знайдено, спробуйте інший номер, <br> або зателефонуйте нам 099
           123 33 22, ми з радістю Вам допоможемо
         </div>
@@ -34,10 +33,8 @@
     </div>
   </section>
   <template v-if="searchResult !== undefined">
-    <!-- /.card-header -->
-    <!--    <span class="h4 float-end"><a type="button" href="/">На головну</a></span>-->
     <div class="pb100">
-      <table class="wow fadeInUp" style="margin-top: -150px" data-wow-duration="1s" data-wow-delay="0.1s">
+      <table class="show wow fadeInUp" style="margin-top: -150px;visibility: visible; animation-duration: 1s;" data-wow-duration="1s">
         <thead>
         <tr>
           <th>Бренд</th>
@@ -79,11 +76,11 @@
         </tr>
         </tbody>
       </table>
-      <div class="row" v-if="paginate !== null && paginate.total > 10">
+      <div class="row" v-if="paginate && paginate.total > 10">
         <div class="col-lg-12">
           <div class="mbp_pagination py-3 px-3">
             <ul class="page_navigation">
-              <li v-if="paginate !== null && paginate.current_page !== 1" class="page-item">
+              <li v-if="paginate && paginate.current_page !== 1" class="page-item">
                 <a @click.prevent="getSearch(paginate.current_page -1)" class="page-link" href="" tabindex="-1">
                   <span class="fa fa-arrow-left"></span></a></li>
               <li v-for="link in paginate.links" :class="link.active ? 'active' : ''" class="page-item"

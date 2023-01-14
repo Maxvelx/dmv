@@ -66,7 +66,7 @@
                         </div>
                       </div>
                       <div class="col-lg-12">
-                        <div class="row" v-if="paginate !== null && paginate.total > 10">
+                        <div class="row" v-if="paginate && paginate.total > 10">
                           <div class="col-lg-12">
                             <div class="mbp_pagination py-3 px-3">
                               <ul class="page_navigation">

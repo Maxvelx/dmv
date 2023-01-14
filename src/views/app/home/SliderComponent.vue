@@ -4,8 +4,8 @@
     <div class="col-lg-12 m-auto">
       <div class="home_content_home7_slider">
         <div class="home_content_home7">
-          <div v-if="isActive !== null" class="wow wow fadeInUp" data-wow-duration="1s"
-               data-wow-delay="0.1s" style="visibility: visible;margin-top: -50px; animation-duration: 1s; animation-delay: 0.1s;">
+          <div v-if="isActive !== null" class="wow bounceInLeft center" data-wow-duration="1s"
+               style="visibility: visible; animation-duration: 1s;">
             <h2 class="title">Запит по Vin номеру</h2>
             <div class="row pb20">
               <div class="form_wrapper col-md-6">
@@ -40,17 +40,9 @@
               </div>
             </div>
           </div>
-          <div v-if="isActive === null" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s"
-               style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s;">
+          <div v-if="isActive === null" class="wow bounceInLeft center" data-wow-duration="1s"
+               style="visibility: visible; animation-duration: 1s;">
             <div class="wrapper text-center">
-              <!--            <h2 class="title"><a href="page-car-single-v1.html">Mercedes-Benz S-->
-              <!--              560 - 2021</a></h2>-->
-              <!--            <h3 class="subtitle text-thm">-->
-              <!--                                                        <span class="aminated-object1"><img class="objects"-->
-              <!--                                                                                            src="images/home/title-bottom-border.svg"-->
-              <!--                                                                                            alt=""></span>-->
-              <!--              <span>$746</span> <small>/ Month</small>-->
-              <!--            </h3>-->
               <div class="d-flex justify-content-center">
                 <a class="btn btn1 btn-thm2 mr20" href="" @click.prevent="isActive = 1">Запит по Vin</a>
                 <router-link :to="{name: 'shop'}"><a class="btn btn2 btn-thm" href="">Магазин</a></router-link>

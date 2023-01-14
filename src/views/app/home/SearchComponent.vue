@@ -10,7 +10,7 @@
                   <input type="text" v-model="search" class="form-control form-control-border"
                          placeholder="Введіть номер запчастини" v-on:keydown.enter="startSearch()">
                   <span class="searchInputButton">
-                  <a @click.prevent="startSearch()" class="btn btn-primary" type="submit">Пошук</a>
+                  <a @click.prevent="startSearch()" class="btn btn-template-blue" type="submit">Пошук</a>
                 </span>
               </div>
             </div>

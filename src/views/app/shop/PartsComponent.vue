@@ -10,61 +10,45 @@
     <div class="container" style="padding-top: 50px">
       <div class="row">
         <div class="sp_search_content">
-          <div class="col-sm-12 col-md-4 col-lg-4 col-xl-5">
-            <div class="left_area tac-xsd mb30-767 mt15">
-              <p>Відображено {{ paginate ? paginate.from + ' – ' + paginate.to : '' }} з <span
-                  class="heading-color fw600">{{ paginate ? paginate.total : '' }}</span> запчастин</p>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-8 col-lg-8 col-xl-7">
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 row">
             <div class="right_area text-end tac-xsd">
               <ul>
-                <li class="list-inline-item mb10-400">
-                  <a id="open2" class="filter_open_btn style2 dn db-lg" href="#"><img class="mr10"
-                                                                                      src=""
-                                                                                      alt="">
-                    Filters</a>
+                <li class="list-inline-item dn db-sm">
+                  <a class="" href="#">
+                    <img class="container-fluid w-75" :src="brandimage" alt="xd">
+                  </a>
                 </li>
-                <li class="list-inline-item listone">Sort by:</li>
-                <li class="list-inline-item listwo">
-                  <div class="dropdown bootstrap-select show-tick"><select class="selectpicker show-tick">
-                    <option>Date: newest First</option>
-                    <option>Most Recent</option>
-                    <option>Recent</option>
-                    <option>Best Selling</option>
-                    <option>Old Review</option>
-                  </select>
-                    <button type="button" tabindex="-1" class="btn dropdown-toggle btn-light"
-                            data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox"
-                            aria-expanded="false" title="Date: newest First">
-                      <div class="filter-option">
-                        <div class="filter-option-inner">
-                          <div class="filter-option-inner-inner">Date: newest First</div>
-                        </div>
-                      </div>
-                    </button>
-                    <div class="dropdown-menu ">
-                      <div class="inner show" role="listbox" id="bs-select-1" tabindex="-1">
-                        <ul class="dropdown-menu inner show" role="presentation"></ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                <a id="open2" class="pr10 dn db-sm" style="font-size: 22px" href="#"><i class="fas fa-bars"></i> Фільтра
+                </a>
               </ul>
             </div>
           </div>
         </div>
+        <div class="row col-sm-12 col-md-12 col-lg-12 col-xl-12 pb30">
+          <div class="col-sm-12 col-md-7 col-lg-8 col-xl-9" style="">
+            <p>Показано {{ paginate ? paginate.from + ' – ' + paginate.to : '' }} з <span
+                class="heading-color fw600">{{ paginate ? paginate.total : '' }}</span> запчастин</p>
+          </div>
+          <div class="col-sm-12 col-md-5 col-lg-4 col-xl-3">
+            Сортувати за:
+            <select>
+              <option>зростанням ціни</option>
+              <option>змешенням ціни</option>
+              <option>новизною</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-xl-3 dn-lg">
+      <div class="row col-xl-12 col-md-12">
+        <div class="col-xl-3 col-md-4 dn-sm">
           <div class="sidebar_listing_grid1 mb30">
             <div class="sidebar_listing_list">
               <div class="shop_category_sidebar_widgets">
                 <h4 class="title">Авто</h4>
                 <div class="widget_list">
                   <ul class="list_details">
-                    <template v-if="brand !== undefined">
-                      <img :src="brand" alt="xd">
+                    <template v-if="brandimage !== undefined">
+                      <img :src="brandimage" alt="xd">
                     </template>
                   </ul>
                 </div>
@@ -76,6 +60,12 @@
                     <input type="checkbox"> {{ tag.title }}
                   </ul>
                 </div>
+                <h3 class="mt-2">Категорії</h3>
+                <div class="widget_list">
+                  <ul v-for="category in categories" class="list_details">
+                    <input type="checkbox"> {{ category.name }}
+                  </ul>
+                </div>
               </div>
               <div v-if="recent_parts" class="sidebar_shop_recent_post">
                 <h4 class="title">Останні переглянуті товари</h4>
@@ -84,7 +74,7 @@
                     <img class="align-self-start mr-3" :src="recent_part.image" alt="recentImg">
                   </div>
                   <div class="flex-grow-1 ms-3">
-                    <h5 class="post_title">{{recent_part.price}}грн</h5>
+                    <h5 class="post_title">{{ recent_part.price }}грн</h5>
                     <p class="post_title">{{ recent_part.number }}</p>
                     <p class="cuttedText2Line">{{ recent_part.name }}</p>
                   </div>
@@ -93,7 +83,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-9 pr0">
+        <div class="col-xl-9 col-md-8 pr0">
           <div class="row">
             <div v-for="part in parts" class="col-sm-6 col-xl-4 zoom">
               <div class="car-listing">
@@ -123,7 +113,7 @@
                       </a>
                       <a v-if="this.$store.state.authUser === null" href="#" data-bs-toggle="modal"
                          data-bs-target="#logInModal">
-                          <img src="/images/etc/heartBefore.png">
+                        <img src="/images/etc/heartBefore.png">
                       </a>
                     </h5>
                     <h6 class="title cuttedTextMaxWidth50"><a
@@ -143,7 +133,7 @@
                 </div>
               </div>
             </div>
-            <div class="row" v-if="paginate !== null && paginate.total > 12">
+            <div class="row" v-if="paginate && paginate.total > 12">
               <div class="col-lg-12">
                 <div class="mbp_pagination py-3 px-3">
                   <ul class="page_navigation">
@@ -175,6 +165,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import FooterComponent from "@/views/app/etc/FooterComponent.vue";
 import NotificationComponent from "@/views/app/notification/NotificationComponent.vue";
 import ShowPartComponent from "@/views/app/shop/ShowPartComponent.vue";
@@ -185,9 +176,10 @@ export default {
 
   data() {
     return {
-      brand: null,
+      brandimage: null,
+      categories: null,
       parts: null,
-      tags: [],
+      tags: null,
       paginate: null,
       dontShow: 1,
       recent: JSON.parse(localStorage.getItem('recent')),
@@ -200,19 +192,23 @@ export default {
     this.recentSlice()
   },
   methods: {
+
     getPartsByCategory(page = 1) {
-      this.axios.post('/api/brand/show/' + this.$route.params.id + '?page=' + page)
+      axios.get('/api/brand/show/' + this.$route.params.id + '?page=' + page)
           .then(res => {
-                res.data.brand.forEach(brand => {
-                  this.brand = brand.image
-                });
+                console.log(res);
+                this.brandimage = res.data.brand.image
+                this.tags = res.data.filters
                 this.parts = res.data.data
                 this.paginate = res.data.meta
-              }
-          )
+                this.categories = res.data.categories
+              })
+          .catch(function (error) {
+            console.log(error);
+          });
     },
 
-    recentSlice(){
+    recentSlice() {
       if (this.recent_parts) {
         this.recent_parts = this.recent.slice(0, 3)
       }

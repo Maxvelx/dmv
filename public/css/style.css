@@ -10,7 +10,6 @@ Tag: agriculture, bakery, ecommerce, farm, food, food shop, grocery market, natu
 
 ********/
 /* CSS Document */
-@import url(../css/jquery-ui.min.css);
 @import url(../css/custom.css);
 @import url(../css/fontawesome.css);
 @import url(../css/bootstrap-select.min.css);
@@ -18,13 +17,9 @@ Tag: agriculture, bakery, ecommerce, farm, food, food shop, grocery market, natu
 @import url(../css/ace-responsive-menu.css);
 @import url(../css/megadropdown.css);
 @import url(../css/simplebar.min.css);
-@import url(../css/progressbar.css);
 @import url(../css/flaticon.css);
 @import url(../css/animate.css);
-@import url(../css/slider.css);
 @import url(../css/magnific-popup.css);
-@import url(../css/timecounter.css);
-@import url(../css/googlemap.css);
 @import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap);
 /* Table of contents */
 
@@ -10806,7 +10801,7 @@ a.btn_error{
   border-bottom: 1px solid #EAEAEA;
 }
 .ui_kit_tab.style2 .nav.nav-tabs .nav-item{
-  line-height: ;
+  line-height: 0;
 }
 .ui_kit_tab.style2 .nav.nav-tabs .nav-link {
   border-bottom: 3px solid transparent;
@@ -23665,4 +23660,9 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
   -moz-box-shadow:0px 18px 10px rgba(23, 26, 33, 0.05);
   -o-box-shadow:0px 18px 10px rgba(23, 26, 33, 0.05);
   box-shadow:0px 18px 10px rgba(23, 26, 33, 0.05);
+}
+.btn.btn-template-blue {
+  background-color: #0a2357;
+  color: white;
+  border-radius: 10px;
 }
