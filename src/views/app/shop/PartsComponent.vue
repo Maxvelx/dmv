@@ -196,16 +196,12 @@ export default {
     getPartsByCategory(page = 1) {
       axios.get('/api/brand/show/' + this.$route.params.id + '?page=' + page)
           .then(res => {
-                console.log(res);
                 this.brandimage = res.data.brand.image
                 this.tags = res.data.filters
                 this.parts = res.data.data
                 this.paginate = res.data.meta
                 this.categories = res.data.categories
               })
-          .catch(function (error) {
-            console.log(error);
-          });
     },
 
     recentSlice() {
