@@ -25,7 +25,7 @@
       <div style="padding-top: 45px">
         <div v-if="searchResult === undefined"
              class="alert alart_style_two alert-dismissible fade show col-md-7 m-auto wow fadeInUp" data-wow-duration="1s"
-             style="visibility: visible; animation-duration: 1s;animation-delay: 1s">
+             style="visibility: visible; animation-duration: 1s;">
           За вашим запитом: {{ watchSearch }} нічого не знайдено, спробуйте інший номер, <br> або зателефонуйте нам 099
           123 33 22, ми з радістю Вам допоможемо
         </div>
