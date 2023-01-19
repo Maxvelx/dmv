@@ -6,8 +6,8 @@
       :messages="this.$store.state.messages"
   />
   <!-- Listing Grid View -->
-  <section class="our-listing pb30-991 bgc-f9 pt0">
-    <div class="container" style="padding-top: 50px">
+  <section class="our-listing pb30-991 pt0">
+    <div class="container-fluid col-xl-11" style="padding-top: 50px">
       <div class="row">
         <div class="sp_search_content">
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 row">
@@ -18,7 +18,8 @@
                     <img class="container-fluid w-75" :src="brandimage" alt="xd">
                   </a>
                 </li>
-                <a id="open2" class="pr10 dn db-sm" style="font-size: 22px" href="#"><i class="fas fa-bars"></i> Фільтра
+                <a id="open2" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" class="pr10 dn db-sm"
+                   style="font-size: 22px" href="#"><i class="fas fa-bars"></i> Фільтра
                 </a>
               </ul>
             </div>
@@ -31,16 +32,17 @@
           </div>
           <div class="col-sm-12 col-md-5 col-lg-4 col-xl-3">
             Сортувати за:
-            <select>
-              <option>зростанням ціни</option>
-              <option>змешенням ціни</option>
-              <option>новизною</option>
+            <select v-model="orderBy">
+              <option value="null">вибрати</option>
+              <option value="1">зростанням ціни</option>
+              <option value="2">змешенням ціни</option>
+              <option value="3">новизною</option>
             </select>
           </div>
         </div>
       </div>
-      <div class="row col-xl-12 col-md-12">
-        <div class="col-xl-3 col-md-4 dn-sm">
+      <div class="row col-xl-12 col-md-12 col-lg-12">
+        <div class="col-xl-3 col-md-5 col-lg-4 dn-sm">
           <div class="sidebar_listing_grid1 mb30">
             <div class="sidebar_listing_list">
               <div class="shop_category_sidebar_widgets">
@@ -54,16 +56,22 @@
                 </div>
               </div>
               <div class="shop_category_sidebar_widgets">
-                <h4 class="title">Фільтр</h4>
-                <div class="widget_list">
-                  <ul v-for="tag in tags" class="list_details">
-                    <input type="checkbox"> {{ tag.title }}
-                  </ul>
+                <div>
+                  <a href="" style="float: right;font-size: 12px;margin-top: 5px" @click.prevent="clearFilter()">Показати
+                    все</a>
+                  <h3>Категорії </h3>
                 </div>
-                <h3 class="mt-2">Категорії</h3>
                 <div class="widget_list">
                   <ul v-for="category in categories" class="list_details">
-                    <input type="checkbox"> {{ category.name }}
+                    <a href="" @click.prevent="categoryFilter(category.id)">
+                      {{ category.name }} {{ '(' + category.count + ')' }}</a>
+                  </ul>
+                </div>
+                <h3 class="mt30">Фільтр</h3>
+                <div class="widget_list">
+                  <ul v-for="tag in tags" class="list_details">
+                    <input type="checkbox" v-model="tagsFilter" :value="tag.id"> {{ tag.title }}
+                    {{ '(' + tag.count + ')' }}
                   </ul>
                 </div>
               </div>
@@ -83,57 +91,58 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-9 col-md-8 pr0">
+        <div class="col-xl-9 col-md-7 col-lg-8 pr0">
           <div class="row">
-            <div v-for="part in parts" class="col-sm-6 col-xl-4 zoom">
-              <div class="car-listing">
-                <div class="thumb">
-                  <div class="tag">Новинка</div>
-                  <img :src="part.image" alt="1.jpg">
-                  <div class="thmb_cntnt2">
-                    <ul class="mb0">
-                    </ul>
-                  </div>
-                </div>
-                <div class="details">
-                  <div class="wrapper">
-                    <h5 class="price list-inline-item">{{ part.price }}грн</h5><a class="list-inline-item" href=""></a>
-                    <h5 class="float-end" style="margin-top: -10px;"><a
-                        @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
-                      <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
-                      <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
-                    </a></h5>
-                    <h5 class="float-end" style="margin-top: -12px;margin-right: 10px">
-                      <a v-if="this.$store.state.authUser !== null"
-                         @click.prevent="this.$store.dispatch('addToWishlist',part)" href="">
-                        <img v-if="!this.$store.state.wishlistIds.includes(part.id)"
-                             src="/images/etc/heartBefore.png">
-                        <img v-if="this.$store.state.wishlistIds.includes(part.id)"
-                             src="/images/etc/heartAfter.png">
-                      </a>
-                      <a v-if="this.$store.state.authUser === null" href="#" data-bs-toggle="modal"
-                         data-bs-target="#logInModal">
-                        <img src="/images/etc/heartBefore.png">
-                      </a>
-                    </h5>
-                    <h6 class="title cuttedTextMaxWidth50"><a
-                        @click.prevent="this.$store.dispatch('getPartSingle',part)" href="">{{ part.part_name }}</a>
-                    </h6>
-                    <div class="listign_review">
+              <div v-for="part in parts" class="col-md-6 col-xl-3 col-lg- zoom">
+                <div class="car-listing">
+                  <div class="thumb">
+                    <div class="tag">Новинка</div>
+                    <img :src="part.image" alt="1.jpg">
+                    <div class="thmb_cntnt2">
                       <ul class="mb0">
-                        <li class="list-inline-item">Виробник: {{ part.part_brand }}</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="listing_footer">
-                    <ul class="mb0">
-                      <li class="list-inline-item"><a href="#">Номер запчастини: {{ part.part_number }}</a></li>
-                    </ul>
+                  <div class="details">
+                    <div class="wrapper">
+                      <h5 class="price list-inline-item">{{ part.price }}грн</h5><a class="list-inline-item"
+                                                                                    href=""></a>
+                      <h5 class="float-end" style="margin-top: -10px;"><a
+                          @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
+                        <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
+                        <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
+                      </a></h5>
+                      <h5 class="float-end" style="margin-top: -12px;margin-right: 10px">
+                        <a v-if="this.$store.state.authUser !== null"
+                           @click.prevent="this.$store.dispatch('addToWishlist',part)" href="">
+                          <img v-if="!this.$store.state.wishlistIds.includes(part.id)"
+                               src="/images/etc/heartBefore.png">
+                          <img v-if="this.$store.state.wishlistIds.includes(part.id)"
+                               src="/images/etc/heartAfter.png">
+                        </a>
+                        <a v-if="this.$store.state.authUser === null" href="#" data-bs-toggle="modal"
+                           data-bs-target="#logInModal">
+                          <img src="/images/etc/heartBefore.png">
+                        </a>
+                      </h5>
+                      <h6 class="title cuttedTextMaxWidth50"><a
+                          @click.prevent="this.$store.dispatch('getPartSingle',part)" href="">{{ part.part_name }}</a>
+                      </h6>
+                      <div class="listign_review">
+                        <ul class="mb0">
+                          <li class="list-inline-item">Виробник: {{ part.part_brand }}</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="listing_footer">
+                      <ul class="mb0">
+                        <li class="list-inline-item"><a href="#">Номер запчастини: {{ part.part_number }}</a></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row" v-if="paginate && paginate.total > 12">
+            <div class="row" v-if="paginate && paginate.total > 1">
               <div class="col-lg-12">
                 <div class="mbp_pagination py-3 px-3">
                   <ul class="page_navigation">
@@ -160,6 +169,41 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+         tabindex="-1" style="background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */">
+      <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="shop_category_sidebar_widgets">
+              <div>
+                <a href="" style="float: right;font-size: 12px;margin-top: 5px" @click.prevent="clearFilter()">Показати
+                  все</a>
+                <h3>Категорії </h3>
+              </div>
+              <div class="widget_list">
+                <ul v-for="category in categories" class="list_details">
+                  <a href="" @click.prevent="categoryFilter(category.id)">
+                    {{ category.name }} {{ '(' + category.count + ')' }}</a>
+                </ul>
+              </div>
+              <h3 class="mt30">Фільтр</h3>
+              <div class="widget_list">
+                <ul v-for="tag in tags" class="list_details">
+                  <input type="checkbox" v-model="tagsFilter" :value="tag.id"> {{ tag.title }} {{
+                    '(' + tag.count + ')'
+                  }}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
   <FooterComponent></FooterComponent>
 </template>
@@ -176,39 +220,69 @@ export default {
 
   data() {
     return {
+      tagsFilter: [],
       brandimage: null,
       categories: null,
       parts: null,
-      tags: null,
+      tags: [],
+      modal: '',
+      orderBy: null,
+      categoryId: null,
       paginate: null,
       dontShow: 1,
-      recent: JSON.parse(localStorage.getItem('recent')),
-      recent_parts: null,
+      recent_parts: JSON.parse(localStorage.getItem('recent')),
     }
   },
   mounted() {
     this.getPartsByCategory()
     this.$store.dispatch('getWishlist')
-    this.recentSlice()
+  },
+  watch: {
+    tagsFilter: {
+      handler: function () {
+        this.getPartsByCategory()
+      }
+    },
+    orderBy: {
+      handler: function () {
+        this.getPartsByCategory()
+      }
+    }
   },
   methods: {
 
     getPartsByCategory(page = 1) {
-      axios.get('/api/brand/show/' + this.$route.params.id + '?page=' + page)
+      axios.post('/api/brand/show/' + this.$route.params.id + '?page=' + page, {
+        category_id: this.categoryId,
+        tags: this.tagsFilter,
+        orderBy: this.orderBy,
+      })
           .then(res => {
-                this.brandimage = res.data.brand.image
-                this.tags = res.data.filters
-                this.parts = res.data.data
-                this.paginate = res.data.meta
-                this.categories = res.data.categories
-              })
+            this.tags = res.data.tags
+            this.brandimage = res.data.brand.image
+            this.parts = res.data.data
+            this.paginate = res.data.meta
+            this.categories = res.data.categories
+            $('#exampleModalToggle .btn-close').click()
+          })
     },
 
-    recentSlice() {
-      if (this.recent_parts) {
-        this.recent_parts = this.recent.slice(0, 3)
-      }
-    }
+    categoryFilter(id) {
+      this.categoryId = id
+      this.getPartsByCategory()
+    },
+
+    tagFilter(id) {
+      this.tagsFilter.push(id)
+      this.getPartsByCategory()
+    },
+
+    clearFilter() {
+      this.categoryId = null
+      this.tagsFilter = []
+      this.getPartsByCategory()
+    },
+
   },
 
 }

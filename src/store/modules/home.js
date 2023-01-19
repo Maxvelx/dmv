@@ -77,6 +77,7 @@ const store_home = createStore({
 
     },
     actions: {
+
         addToOrder({commit}, part) {
             let order = localStorage.getItem('order')
             let message = {
@@ -116,6 +117,7 @@ const store_home = createStore({
 
         addToRecentViews({commit}, part) {
             let recent_views = localStorage.getItem('recent')
+
             let newAddRecentViews = [
                 {
                     'id': part.id,
@@ -130,13 +132,18 @@ const store_home = createStore({
             } else {
                 recent_views = JSON.parse(recent_views)
 
-                Array.prototype.unshift.apply(recent_views, newAddRecentViews)
-                if (recent_views.length > 4) {
-                    recent_views.splice(4)
+                recent_views.forEach(recent_part => {
+                    if (recent_part.id === part.id){
+                        newAddRecentViews = null
+                    }
+                })
+                    Array.prototype.unshift.apply(recent_views, newAddRecentViews)
+                    if (recent_views.length > 3) {
+                        recent_views.splice(3)
+                    }
+                    localStorage.setItem('recent', JSON.stringify(recent_views))
                 }
-                localStorage.setItem('recent', JSON.stringify(recent_views))
-            }
-        },
+            },
 
         getColor({commit}, part) {
             let message = '';

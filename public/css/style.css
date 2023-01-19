@@ -22787,7 +22787,7 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
   color: #F5C34B;
 }
 .category_item.home7_style{
-  border: 1px solid #EAEAEA;;
+  /*border: 1px solid #EAEAEA;;*/
   box-shadow: none;
   padding-bottom: 15px;
 }
@@ -23650,7 +23650,7 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
   overflow: hidden;
   white-space: nowrap;
 }
-.shadowNew {
+.shadowNew:hover{
   background-color:transparent;
   border-radius: 0px;
   margin: 0 auto;
