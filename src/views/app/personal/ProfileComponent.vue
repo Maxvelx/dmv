@@ -4,20 +4,10 @@
     <div class="container-fluid">
       <div class="row">
         <MenuComponent></MenuComponent>
-        <div class="col-md-9 col-sm-9">
-          <div class="row">
-            <div class="col-xl-8">
-              <div class="col-lg-12 mb50">
-                <div class="breadcrumb_content">
-                  <h2 class="breadcrumb_title">Профіль</h2>
-                  <p>Редагування профілю</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="col-md-7 col-sm-7 pt60 center-all">
           <div class="row">
             <div class="col-lg-12">
-              <div class="new_property_form mb30">
+              <div class="new_property_form mb30 float">
                 <h4 class="title mb30">Ваш профіль</h4>
                 <div class="dp_user_thumb_content">
                   <div class="mb25">
@@ -25,9 +15,7 @@
                     <label for="image1" class="labelBrowse">
                       <span class="browseButton">Browse</span>
                     </label>
-                    <small class="file_title">Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are
-                      .jpg
-                      &amp; .png</small>
+                    <small class="file_title">Max file size is 1MB</small>
                   </div>
                 </div>
                 <div v-if="message" class="text-success">{{message}}</div>
@@ -82,7 +70,7 @@
               </div>
             </div>
             <div class="col-lg-12">
-              <div class="new_property_form">
+              <div class="new_property_form float">
                 <div class="row">
                   <div class="col-lg-12">
                     <h4 class="title mb30">Змінити пароль</h4>

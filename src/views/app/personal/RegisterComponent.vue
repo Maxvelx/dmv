@@ -11,16 +11,10 @@
             </p>
             <form action="#">
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                   <div class="form-group">
                     <label class="form-label">Ім'я</label>
                     <input type="text" v-model="name" class="form-control">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-label">По батькові</label>
-                    <input type="text" v-model="patronymic" class="form-control">
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -105,7 +99,6 @@ export default {
     return {
       img: null,
       name: null,
-      patronymic: null,
       password: null,
       password_confirmation: null,
       email: null,
@@ -116,7 +109,6 @@ export default {
     registration() {
       axios.post('/api/auth/register', {
         name: this.name,
-        patronymic: this.patronymic,
         password: this.password,
         password_confirmation: this.password_confirmation,
         email: this.email,
@@ -130,7 +122,7 @@ export default {
   },
   computed: {
     isDisabledReg(){
-      return this.name && this.patronymic && this.password && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
+      return this.name  && this.password && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
     },
   },
 }

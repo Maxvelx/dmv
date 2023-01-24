@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "@/router";
 
 axios.defaults.baseURL = 'https://api.template.maxvel.pp.ua'
 
@@ -34,9 +35,13 @@ api.interceptors.response.use(config => {
                 return api.request(error.config)
             })
         }
-        // if (error.response.status === 403){
-        //     router.push('/login')
-        // }
+        if (error.response.data.message === 'Unauthenticated.'){
+            api.post('/api/auth/logout')
+                .then(res => {
+                    localStorage.removeItem('token')
+                    router.go()
+                })
+        }
     })
 
 

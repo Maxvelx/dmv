@@ -3,113 +3,19 @@
     <div class="preloader" v-if="pageLoad === null"></div>
     <CompleteOrderComponent v-if="order !== null"></CompleteOrderComponent>
     <div v-if="order === null">
-      <!-- Inner Page Breadcrumb -->
-      <div v-if="user !== null">
+      <div>
         <section class="inner_page_breadcrumb style2 bgc-f9 bt1 inner_page_section_spacing">
           <div class="container">
             <div class="row">
               <div class="col-xl-12">
-                <div class="breadcrumb_content style2">
-                  <h2 class="breadcrumb_title">Вітаємо {{ user.name + ' ' + user.patronymic }}!</h2>
-                  <p class="subtitle">Підтвердження замовлення</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Shop Checkouts Content -->
-        <section class="shop-checkouts pt0 bgc-f9 pb100">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8">
-                <div class="checkout_form style2">
-                  <h4 class="title mb30">Контактна інформація</h4>
-                  <div class="checkout_coupon ui_kit_button">
-                    Ваш тел: {{ user.phone }}
-                    <div>
-                      Адреса для відправки замовлення: {{ user.address }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 pt60">
-                  <div class="mb30 mb0">
-                    <h4 class="mb15">Додаткова інформація</h4>
-                    <label class="form-label ai_title">Вкажіть додаткову інформацію для наших менеджерів
-                      (за
-                      потреби)</label>
-                    <textarea name="form_message" class="form-control" rows="12"
-                              placeholder=""></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="order_sidebar_widget mb30">
-                  <h4 class="title">Ваше замовлення</h4>
-                  <ul>
-                    <li class="subtitle"><p>Запчастини <span class="float-end">Сума</span></p></li>
-                    <li><p class="product_name_qnt" v-for="part in parts">{{ part.name }} x{{ part.qty }} <span
-                        class="float-end">{{ part.price * part.qty }}грн</span></p></li>
-                    <li class="subtitle"><p>Доставка <span
-                        class="float-end totals">за тарифами перевізника</span></p></li>
-                    <li class="subtitle"><p>Доставка з-за кордону <span
-                        class="float-end totals">уточнює менеджер</span>
-                    </p>
-                    </li>
-                    <li class="subtitle"><p>Сума замовлення <span class="float-end totals">{{
-                        getTotal
-                      }}грн</span></p></li>
-                  </ul>
-                </div>
-                <div class="payment_widget">
-                  <div class="wrapper">
-                    <div class="ui_kit_radiobox">
-                      <div class="radio">
-                        <input id="radio_one" name="card" type="radio" checked="">
-                        <label style="color: #1A3760;font-size: 15px;font-style: normal;font-weight: 600;"
-                               for="radio_one"><span class="radio-label"></span> Оплата на картку</label>
-                      </div>
-                      <div class="radio">
-                        <input id="radio_two" name="post_pay" type="radio">
-                        <label style="color: #1A3760;font-size: 15px;font-style: normal;font-weight: 600;"
-                               for="radio_two"><span class="radio-label"></span> Післяплата при
-                          отриманні</label>
-                      </div>
-                      <div class="bt_details">
-                        <p>При умові якщо позиція у наявності, та знаходиться на основному складі</p>
-                      </div>
-                      <div class="radio">
-                        <input id="radio_three" name="pre_pay_card" type="radio">
-                        <label style="color: #1A3760;font-size: 15px;font-style: normal;font-weight: 600;"
-                               for="radio_three"><span class="radio-label"></span> Передоплата на картку</label>
-                      </div>
-                      <div class="radio">
-                        <input id="radio_four" name="pre_pay_cash" type="radio">
-                        <label style="color: #1A3760;font-size: 15px;font-style: normal;font-weight: 600;"
-                               for="radio_four"><span class="radio-label"></span> Передоплата готівкою</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="ui_kit_button payment_widget_btn">
-                  <button type="button" @click.prevent="completeOrder" class="btn btn-thm btn-block">Підтвердити
-                    замовлення
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div v-if="user === null">
-        <section class="inner_page_breadcrumb style2 bgc-f9 bt1 inner_page_section_spacing">
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-12">
-                <div class="breadcrumb_content style2">
+                <div v-if="user === null" class="breadcrumb_content style2">
                   <h2 class="breadcrumb_title">Оформлення замовлення</h2>
                   <p class="subtitle">Реєстрація нового клієнта</p>
+                </div>
+                <div v-if="user !== null" class="breadcrumb_content style2">
+                  <h2 class="breadcrumb_title">Вітаємо
+                    {{ user.name ? user.name : '' }}{{user.patronymic ? ' ' + user.patronymic : ''}}!</h2>
+                  <p class="subtitle">Підтвердження замовлення</p>
                 </div>
               </div>
             </div>
@@ -133,21 +39,23 @@
                                    placeholder="формат: 093 123 45 67">
                           </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div v-if="user === null" class="col-sm-6">
                           <div class="mb30">
                             <label class="form-label">Ваша електронна адреса *</label>
-                            <input v-model="email" class="form-control form_control" type="email"
+                            <input v-model="email" autocomplete="new-email" class="form-control form_control"
+                                   type="email"
                                    placeholder="формат: mymail@gmail.com">
                           </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div v-if="user === null" class="col-sm-6">
                           <div class="mb30">
                             <label class="form-label">Пароль *</label>
-                            <input v-model="password" class="form-control form_control" type="password"
+                            <input v-model="password" autocomplete="new-password" class="form-control form_control"
+                                   type="password"
                                    placeholder="Введіть пароль">
                           </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div v-if="user === null" class="col-sm-6">
                           <div class="mb30">
                             <label class="form-label">Підтвердження паролю *</label>
                             <input v-model="password_confirmation" class="form-control form_control" type="password"
@@ -182,9 +90,9 @@
                             <!--                          *</label>-->
                             <!--                        <input class="form-control form_control mb10" type="text"-->
                             <!--                               placeholder="формат: Відділення №8 НП, м. Київ, якщо одержувач інша особа - вкажіть її також">-->
-                            <label class="form-label">Адреса доставки (Нова пошта, Міст Експрес) *</label>
+                            <label class="form-label">Адреса доставки *</label>
                             <input v-model="address" class="form-control form_control mb10" type="text"
-                                   placeholder="формат: Відділення №1 НП, м. Київ">
+                                   placeholder="формат: Відділення №1 Нова Пошта, м. Київ">
                           </div>
                         </div>
                         <div class="col-sm-12">
@@ -207,48 +115,41 @@
                   <h4 class="title">Ваше замовлення</h4>
                   <ul>
                     <li class="subtitle"><p>Запчастини <span class="float-end">Сума</span></p></li>
-                    <li><p class="product_name_qnt" v-for="part in parts">{{ part.name }} x{{ part.qty }} <span
-                        class="float-end">{{ part.price * part.qty }}грн</span></p></li>
-                    <li class="subtitle"><p>Доставка <span
+                    <li class="display_grid" v-for="part in parts"><p class="product_name_qnt">{{ part.name }} <span
+                        style="font-weight: bold;font-size: 15px;padding-left: 10px">x{{ part.qty }}</span> <span
+                        style="float: right;font-size: 15px;font-weight: bold">{{
+                        Math.ceil(part.price * part.qty)
+                      }}{{ part.currency }}</span></p></li>
+                    <li class="subtitle mt30" style="border-top: 1px solid #E7E7EC;"><p>Доставка <span
                         class="float-end totals">за тарифами перевізника</span></p></li>
+                    <br>
                     <li class="subtitle"><p>Доставка з-за кордону <span
                         class="float-end totals">уточнює менеджер</span>
                     </p>
+                      <br>
                     </li>
-                    <li class="subtitle">
-                      <p>Сума замовлення <span class="float-end totals">{{ getTotal }}грн</span></p>
+                    <li v-if="totalUAH" class="subtitle display_grid" style="border-top: 1px solid #E7E7EC;"><p>Всього
+                      грн.
+                      <span class="float-end totals color-orose">{{ Math.ceil(totalUAH) }}грн</span>
+                    </p>
+                    </li>
+                    <li v-if="totalUSD" class="subtitle"><p>Всього USD
+                      <span class="float-end totals color-orose">{{ Math.ceil(totalUSD) }}usd</span>
+                    </p>
+                    </li>
+                    <li v-if="totalEURO" class="subtitle"><p>Всього EURO
+                      <span class="float-end totals color-orose">{{ Math.ceil(totalEURO) }}euro</span>
+                    </p>
+                    </li>
+                    <li class="subtitle" style="border-top: 1px solid #E7E7EC;"><p>Разом:
+                      <span class="float-end totals color-orose">{{
+                          totalUAH ? Math.ceil(totalUAH) + 'грн' : ''
+                        }} {{
+                          totalUSD ? ', ' + Math.ceil(totalUSD) + 'usd' : ''
+                        }} {{ totalEURO ? ', ' + Math.ceil(totalEURO) + 'euro ' : '' }}</span>
+                    </p>
                     </li>
                   </ul>
-                </div>
-                <div class="payment_widget">
-                  <div class="wrapper">
-                    <div class="ui_kit_radiobox">
-                      <div class="radio">
-                        <input id="radio_one" name="card" type="radio" checked>
-                        <label style="color: #1A3760;font-size: 15px;font-style: normal;font-weight: 600;"
-                               for="radio_one"><span class="radio-label"></span> Оплата на картку</label>
-                      </div>
-                      <div class="radio">
-                        <input id="radio_two" name="post_pay" type="radio">
-                        <label style="color: #1A3760;font-size: 15px;font-style: normal;font-weight: 600;"
-                               for="radio_two"><span class="radio-label"></span> Післяплата при
-                          отриманні</label>
-                      </div>
-                      <div class="bt_details">
-                        <p>При умові якщо позиція у наявності, та знаходиться на основному складі</p>
-                      </div>
-                      <div class="radio">
-                        <input id="radio_three" name="pre_pay_card" type="radio">
-                        <label style="color: #1A3760;font-size: 15px;font-style: normal;font-weight: 600;"
-                               for="radio_three"><span class="radio-label"></span> Передоплата на картку</label>
-                      </div>
-                      <div class="radio">
-                        <input id="radio_four" name="pre_pay_cash" type="radio">
-                        <label style="color: #1A3760;font-size: 15px;font-style: normal;font-weight: 600;"
-                               for="radio_four"><span class="radio-label"></span> Передоплата готівкою</label>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div class="ui_kit_button payment_widget_btn">
                   <button type="button" @click.prevent="completeOrder" class="btn btn-thm btn-block">Підтвердити
@@ -262,6 +163,7 @@
       </div>
     </div>
   </div>
+  {{ getTotal }}
   <FooterComponent></FooterComponent>
 </template>
 
@@ -288,13 +190,16 @@ export default {
       address: null,
       lastName: null,
       patronymic: null,
+      totalEURO: null,
+      totalUSD: null,
+      totalUAH: null,
     }
   },
   methods: {
+
     completeOrder() {
       api.post('/api/order', {
         'parts': this.parts,
-        'total_price': this.getTotal,
         'name': this.name,
         'phone_number': this.phone_number,
         'email': this.email,
@@ -305,17 +210,27 @@ export default {
         'patronymic': this.patronymic,
       })
           .then(res => {
-            this.order = res.data.data
-            localStorage.removeItem('order')
+            if (res.status === 201) {
+              this.order = res.data.data
+              localStorage.removeItem('order')
+            }
           })
     },
+
     getUser() {
       api.post('/api/auth/me')
           .then(res => {
             this.user = res.data.data
+            this.name = this.user.name
+            this.phone_number = this.user.phone
+            this.email = this.user.email
+            this.address = this.user.address
+            this.lastName = this.user.lastName
+            this.patronymic = this.user.patronymic
             this.pageLoad = 1
           })
     },
+
   },
   mounted() {
     if (localStorage.getItem('token') !== null) {
@@ -329,16 +244,32 @@ export default {
   },
   computed: {
     getTotal() {
-      let total = null
-      this.parts.forEach(part => {
-        total += part.price * part.qty
-      })
-      return total
+      let totalUSD = null
+      let totalEURO = null
+      let totalUAH = null
+      if (this.parts) {
+        this.parts.forEach(part => {
+          if (part.currency === 'usd') {
+            totalUSD += part.price * part.qty
+          }
+          if (part.currency === 'euro') {
+            totalEURO += part.price * part.qty
+          }
+          if (part.currency === 'грн') {
+            totalUAH += part.price * part.qty
+          }
+        })
+        this.$store.commit('increment')
+      }
+      this.totalEURO = totalEURO
+      this.totalUSD = totalUSD
+      this.totalUAH = totalUAH
     },
   },
 }
 </script>
 
 <style scoped>
+
 
 </style>

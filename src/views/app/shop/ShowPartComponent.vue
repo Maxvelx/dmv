@@ -5,7 +5,7 @@
         :messages="this.$store.state.messages"
     />
   <!-- Shop Single Content -->
-  <section class="shop-single-content pt100 pb40 ovh bgc-f9">
+  <section class="shop-single-content pt100 pb40 ovh">
     <div class="container">
       <div class="row">
         <div class="col-lg-6">

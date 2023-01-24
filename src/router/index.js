@@ -74,6 +74,11 @@ const router = createRouter({
             component: () => import('../views/app/personal/WishlistComponent.vue')
         },
         {
+            path: '/personal/garage',
+            name: 'personal_garage',
+            component: () => import('../views/app/personal/GarageComponent.vue')
+        },
+        {
             path: '/about',
             name: 'about',
             component: () => import('../views/app/other/AboutUsComponent.vue')
@@ -101,7 +106,8 @@ router.beforeEach((to, from, next) => {
     if (to.name === 'personal' ||
         to.name === 'personal_profile' ||
         to.name === 'personal_orders' ||
-        to.name === 'personal_wishlist') {
+        to.name === 'personal_wishlist' ||
+        to.name === 'personal_garage') {
         if (!accessToken) {
             return next({name: 'login'})
         }
@@ -109,12 +115,12 @@ router.beforeEach((to, from, next) => {
 
     if (to.name === 'login' ||
         to.name === 'register') {
-        if (accessToken){
+        if (accessToken) {
             return next({name: 'index'})
         }
     }
 
-        next()
+    next()
 })
 
 export default router

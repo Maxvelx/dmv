@@ -55,7 +55,7 @@
           </td>
           <td><a href="" @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.part_name }}</a></td>
           <td>{{part.time}}</td>
-          <td>{{ part.price }}грн</td>
+          <td>{{ part.price }}{{part.currency}}</td>
           <td :class="part.qty <= 0 ? 'text-thm' : 'text-success'">
             {{ part.qty <= 0 ? 'Під замовлення' : 'У наявності' }}
           </td>

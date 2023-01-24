@@ -22,20 +22,20 @@
                       <ul>
                         <li class="list-inline-item">
                           <p>Номер замовлення</p>
-                          <h5>{{this.order.order_number}}</h5>
+                          <h5>{{order.order_number}}</h5>
                         </li>
                         <li class="list-inline-item">
-                          <p>Date</p>
-                          <h5>27/07/2021</h5>
+                          <p>Дата створення</p>
+                          <h5>{{ order.time }}</h5>
                         </li>
                         <li class="list-inline-item">
-                          <p>Разом</p>
-                          <h5>{{this.order.total_price}}грн</h5>
+                          <p>Всього запчастин</p>
+                          <h5>{{order.parts.length}} од.</h5>
                         </li>
-                        <li class="list-inline-item">
-                          <p>Статус оплати</p>
-                          <h5>Тут статус оплати</h5>
-                        </li>
+<!--                        <li class="list-inline-item">-->
+<!--                          <p>Статус оплати</p>-->
+<!--                          <h5>Тут статус оплати</h5>-->
+<!--                        </li>-->
                       </ul>
                     </div>
                     <div class="order_details">
@@ -44,14 +44,20 @@
                         <ul>
                           <li class="subtitle bb1 mb20 pb5"><p>Запчастини <span class="float-end">Всього</span></p>
                           </li>
-                          <template v-for="part in this.order.parts">
-                          <li><p class="product_name_qnt">{{part.number}} {{part.name}} <span class="float-end">{{ part.price }}грн</span></p></li>
+                          <template v-for="part in order.parts">
+                          <li class="display_grid"><p class="product_name_qnt">{{part.number}} {{part.name}} <span class="float-end">{{ part.price }}{{ part.currency }}</span></p></li>
                           </template>
-                          <li class="subtitle bb1 mb15 mt20"><p>Всього <span class="float-end">{{this.order.total_price}}грн</span></p>
-                          </li>
-                          <li class="subtitle bb1 mb20"><p>Доставка <span
+                          <li class="subtitle  mt30"><p>Доставка <span
                               class="float-end fwn_bd_color">За тарифами міжнародного перевізника</span></p></li>
-                          <li class="subtitle"><p>Разом <span class="float-end totals">{{this.order.total_price}}грн</span></p></li>
+                          <br>
+                          <li class="subtitle  mb15 mt20"><p>Разом:
+                            <span class="float-end totals color-orose">{{
+                                totalUAH ? Math.ceil(totalUAH) + 'грн' : ''
+                              }} {{
+                                totalUSD ? ', ' + Math.ceil(totalUSD) + 'usd' : ''
+                              }} {{ totalEURO ? ', ' + Math.ceil(totalEURO) + 'euro ' : '' }}</span>
+                          </p>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -63,6 +69,7 @@
         </div>
       </div>
     </div>
+    {{getTotal}}
   </section>
 </template>
 
@@ -72,12 +79,40 @@ export default {
   name: "CompleteOrderComponent",
   data() {
     return {
-      order: this.$parent.order
+      order: this.$parent.order,
+      parts: this.$parent.order.parts,
+      totalEURO: null,
+      totalUSD: null,
+      totalUAH: null,
     }
   },
   mounted() {
     this.$store.commit('increment')
-  }
+  },
+  computed: {
+    getTotal() {
+      let totalUSD = null
+      let totalEURO = null
+      let totalUAH = null
+      if (this.parts) {
+        this.parts.forEach(part => {
+          if (part.currency === 'usd') {
+            totalUSD += part.price * part.qty
+          }
+          if (part.currency === 'euro') {
+            totalEURO += part.price * part.qty
+          }
+          if (part.currency === 'грн') {
+            totalUAH += part.price * part.qty
+          }
+        })
+        this.$store.commit('increment')
+      }
+      this.totalEURO = totalEURO
+      this.totalUSD = totalUSD
+      this.totalUAH = totalUAH
+    },
+  },
 }
 </script>
 

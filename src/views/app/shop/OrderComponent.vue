@@ -61,9 +61,9 @@
                               </a>
                             </li>
                           </td>
-                          <td>{{ part.price }}грн</td>
+                          <td>{{ part.price }}{{ part.currency }}</td>
                           <td><input class="cart_count text-center" v-model="part.qty" type="number"></td>
-                          <td>{{ part.price * part.qty }}грн</td>
+                          <td>{{ Math.ceil(part.price * part.qty) }}{{ part.currency }}</td>
                           <td><a @click.prevent="removePart(part.id)" href="#"><i style="font-size: 30px"
                                                                                   class="far fa-times"></i></a></td>
                         </tr>
@@ -83,10 +83,17 @@
                         <p class="float-end" style="overflow: hidden;">Прораховує менеджер</p>
                       </li>
                     </ul>
-                    <ul>
-                      <li class="subtitle"><p>Разом до сплати<span class="float-end totals color-orose">{{
-                          getTotal
-                        }}грн</span>
+                    <ul>{{getTotal }}
+                      <li v-if="totalUAH" class="subtitle"><p>Разом до сплати в грн.
+                        <span class="float-end totals color-orose">{{ Math.ceil(totalUAH) }} грн</span>
+                      </p>
+                      </li>
+                      <li v-if="totalUSD" class="subtitle"><p>Разом до сплати в USD
+                        <span class="float-end totals color-orose">{{ Math.ceil(totalUSD) }} usd</span>
+                      </p>
+                      </li>
+                      <li v-if="totalEURO" class="subtitle"><p>Разом до сплати в EURO
+                        <span class="float-end totals color-orose">{{ Math.ceil(totalEURO) }} euro</span>
                       </p>
                       </li>
                     </ul>
@@ -119,6 +126,9 @@ export default {
   data() {
     return {
       parts: JSON.parse(localStorage.getItem('order')),
+      totalEURO: null,
+      totalUSD: null,
+      totalUAH: null,
     }
   },
   mounted() {
@@ -134,14 +144,26 @@ export default {
   },
   computed: {
     getTotal() {
-      let total = null
+      let totalUSD = null
+      let totalEURO = null
+      let totalUAH = null
       if (this.parts) {
         this.parts.forEach(part => {
-          total += part.price * part.qty
+          if (part.currency === 'usd') {
+            totalUSD += part.price * part.qty
+          }
+          if (part.currency === 'euro') {
+            totalEURO += part.price * part.qty
+          }
+          if (part.currency === 'грн') {
+            totalUAH += part.price * part.qty
+          }
         })
         this.$store.commit('increment')
-        return total
       }
+      this.totalEURO = totalEURO
+      this.totalUSD = totalUSD
+      this.totalUAH = totalUAH
     },
   },
 

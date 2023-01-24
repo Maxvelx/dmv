@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="row col-xl-12 col-md-12 col-lg-12">
+      <div class="row col-xl-12 col-xxl-12 col-md-12 col-lg-12">
         <div class="col-xl-3 col-md-5 col-lg-4 dn-sm">
           <div class="sidebar_listing_grid1 mb30">
             <div class="sidebar_listing_list">
@@ -93,7 +93,7 @@
         </div>
         <div class="col-xl-9 col-md-7 col-lg-8 pr0">
           <div class="row">
-              <div v-for="part in parts" class="col-md-6 col-xl-3 col-lg- zoom">
+              <div v-for="part in parts" class="col-md-6 col-xl-4 col-xxl-4 col-lg-4 zoom">
                 <div class="car-listing">
                   <div class="thumb">
                     <div class="tag">Новинка</div>
@@ -142,7 +142,7 @@
                   </div>
                 </div>
               </div>
-            <div class="row" v-if="paginate && paginate.total > 1">
+            <div class="row" v-if="paginate && paginate.total > 12">
               <div class="col-lg-12">
                 <div class="mbp_pagination py-3 px-3">
                   <ul class="page_navigation">

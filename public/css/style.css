@@ -14485,9 +14485,8 @@ header.header-nav.menu_style_home_one.dashbord_style{
 }
 /*== DashBoard Pages ==*/
 .ff_one {
-  background-color: #ffffff;
   border: 1px solid #EAEAEA;
-  border-radius: 8px;
+  border-radius: 15px;
   margin-bottom: 30px;
   position: relative;
   padding: 30px 30px 35px;
@@ -14609,7 +14608,6 @@ header.header-nav.menu_style_home_one.dashbord_style{
 .dashboard_favorites_contents{
   background-color: #fff;
   border-radius: 8px;
-  border: 1px solid #EAEAEA;
   padding-top: 60px;
   position: relative;
 }
@@ -19165,7 +19163,7 @@ canvas {
   margin-bottom: 30px;
 }
 .order_sidebar_widget li.subtitle{
-  border-bottom: 1px solid #E7E7EC;
+  /*border-bottom: 1px solid #E7E7EC;*/
   line-height: 40px;
 }
 .order_sidebar_widget li:last-child.subtitle{
@@ -22793,19 +22791,23 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
 }
 .car-listing:hover,
 .category_item.home7_style:hover{
-  -webkit-box-shadow:0px 18px 60px rgba(23, 26, 33, 0.05);
-  -moz-box-shadow:0px 18px 60px rgba(23, 26, 33, 0.05);
-  -o-box-shadow:0px 18px 60px rgba(23, 26, 33, 0.05);
-  box-shadow:0px 18px 60px rgba(23, 26, 33, 0.05);
+  /*-webkit-box-shadow:0px 18px 60px rgba(23, 26, 33, 0.05);*/
+  /*-moz-box-shadow:0px 18px 60px rgba(23, 26, 33, 0.05);*/
+  /*-o-box-shadow:0px 18px 60px rgba(23, 26, 33, 0.05);*/
+  /*box-shadow:0px 18px 60px rgba(23, 26, 33, 0.05);*/
+  box-shadow: 8px 8px 15px #CFDAE7;
+  -webkit-box-shadow: 8px 8px 15px #CFDAE7;
+  -o-box-: 8px 8px 15px #CFDAE7;
+  -moz-box-shadow: 8px 8px 15px #CFDAE7;
 }
 .category_item.home7_style .details .title{
   margin-bottom: 15px;
 }
 .car-listing{
   background-color: #fff;
-  border: 1px solid #EAEAEA;;
+  /*border: 1px solid #EAEAEA;*/
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   padding: 10px;
   position: relative;
 }
@@ -23645,11 +23647,7 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.cuttedTextLine200 {
-  width: 200.8px;
-  overflow: hidden;
-  white-space: nowrap;
-}
+
 .shadowNew:hover{
   background-color:transparent;
   border-radius: 0px;

@@ -1,12 +1,11 @@
 <template>
   <div>
     <router-link v-if="this.$store.state.count > 0" :to="{name: 'order'}">
-      <div class="cart_widget"><i style="font-size: 32px" class="fas fa-cart-shopping"></i><br>
-        <div style="color: white">{{ this.$store.state.count }}шт.</div>
-        <div style="color: white">на суму: <br>{{ this.$store.state.totalPrice }}грн</div>
+      <div class="cart_widget shadow3"><i style="font-size: 32px" class="fas fa-cart-shopping"></i><br>
+        <div>{{ this.$store.state.count }}шт.</div>
       </div>
     </router-link>
-    <div class="header_top home3_style dn-992" style="background:#fff;">
+    <div class="header_top home3_style dn-992" style="background:transparent;">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-xl-7">
@@ -49,25 +48,25 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+              <li class="nav-item pr5">
                 <router-link :to="{name: 'index'}"><a :class="{'active': this.$store.state.activeEl === 1}"
                                                       @click="this.$store.commit('menu', 1)"
                                                       class="nav-link" aria-current="page">Головна</a>
                 </router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item pr5">
                 <router-link :to="{name: 'shop'}"><a :class="{'active': this.$store.state.activeEl === 2}"
                                                      @click="this.$store.commit('menu', 2)"
                                                      class=" nav-link">Магазин</a>
                 </router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item pr5">
                 <router-link :to="{name: 'about'}"><a :class="{'active': this.$store.state.activeEl === 3}"
                                                       @click="this.$store.commit('menu', 3)"
                                                       class=" nav-link">Про нас</a>
                 </router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item pr5">
                 <router-link :to="{name: 'contact'}"><a :class="{'active': this.$store.state.activeEl === 4}"
                                                         @click="this.$store.commit('menu', 4)"
                                                         class=" nav-link">Контакти</a>
@@ -76,7 +75,7 @@
             </ul>
             <ul style="margin-top: 15px;padding-right: 20px">
               <li v-if="token !== null" class="list-inline-item">
-                <router-link :to="{name: 'personal'}" style="font-size: 14px"><a class="nav-link">Мій кабінет</a>
+                <router-link :to="{name: 'personal'}" @click="menuPersonal" style="font-size: 14px"><a class="nav-link">Мій кабінет</a>
                 </router-link>
               </li>
               <li v-if="token !== null" class="list-inline-item"><a class="nav-link" style="font-size: 14px"
@@ -95,7 +94,6 @@
             <span class="navbar-text" v-if="this.$store.state.cartIds.length > 0">
               <router-link :to="{name: 'order'}">
                 {{ this.$store.state.count }} шт.
-                <br>на суму {{ this.$store.state.totalPrice }}грн
               </router-link>
             </span>
           </div>
@@ -203,16 +201,10 @@
                                                                              >Увійти в особистий кабінет.</a></p>
                     <form action="#">
                       <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                           <div class="form-group">
                             <label class="form-label">Ім'я</label>
                             <input type="text" v-model="name" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label class="form-label">По батькові</label>
-                            <input type="text" v-model="patronymic" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-12">
@@ -255,8 +247,9 @@
 
 
     <router-view></router-view>
-    <a id="button"><i style="font-weight: normal;font-style: normal;font-size: 2em;line-height: 50px;color: #fff;"
-                      class="fas fa-arrow-up"></i></a>
+    <a id="button">
+      <i style="font-size: 2em;line-height: 50px;" class="fas fa-arrow-up"></i>
+    </a>
   </div>
 </template>
 
@@ -270,7 +263,6 @@ export default {
   data() {
     return {
       name: null,
-      patronymic: null,
       password: null,
       password_confirmation: null,
       email: null,
@@ -284,7 +276,7 @@ export default {
   },
   computed:{
     isDisabledReg(){
-      return this.name && this.patronymic && this.password && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
+      return this.name && this.password && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
     },
     isDisabledLogin(){
       return this.email && this.password && this.password.length >= 8
@@ -294,7 +286,6 @@ export default {
     registration() {
       axios.post('/api/auth/register', {
         name: this.name,
-        patronymic: this.patronymic,
         password: this.password,
         password_confirmation: this.password_confirmation,
         email: this.email,
@@ -322,6 +313,11 @@ export default {
           })
     },
 
+    menuPersonal(){
+      this.$store.commit('menu', null)
+      this.$store.commit('menuPersonal', 1)
+    }
+
   },
 }
 $(document).on('click', function () {
@@ -346,8 +342,9 @@ $(document).on('ready', function () {
 
 <style scoped>
 #button {
+  color: white;
   display: inline-block;
-  background-color: #f5c34b;
+  background-image: linear-gradient(135deg, #FFE259, #FFA751 );
   width: 50px;
   height: 50px;
   text-align: center;
@@ -359,7 +356,7 @@ $(document).on('ready', function () {
   opacity .5s, visibility .5s;
   opacity: 0;
   visibility: hidden;
-  z-index: 1000;
+  z-index: 11;
 }
 @media (max-width: 568px) {
   #button {
@@ -369,11 +366,11 @@ $(document).on('ready', function () {
 
 #button:hover {
   cursor: pointer;
-  background-color: #333;
+  background-image: linear-gradient(135deg, #FFE259, #FFA751 );
 }
 
 #button:active {
-  background-color: #555;
+  background-image: linear-gradient(135deg, #FFE259, #FFA751 );
 }
 
 #button.show {

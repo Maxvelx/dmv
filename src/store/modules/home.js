@@ -93,6 +93,7 @@ const store_home = createStore({
                     'number': part.part_number,
                     'price': part.price,
                     'qty': 1,
+                    'currency':part.currency
                 }
             ]
             if (!order) {

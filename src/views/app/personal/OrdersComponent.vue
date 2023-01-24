@@ -1,322 +1,112 @@
 <template>
   <div v-if="orders === null" class="preloader"></div>
   <!-- Our Dashbord -->
-  <section class="our-dashbord dashbord">
+  <section>
     <div class="col-md-12 col-sm-12 row">
       <MenuComponent></MenuComponent>
-      <div class="col-md-9 col-sm-9">
-      <div class="row">
-          <div class="col-xl-8">
-            <div class="col-lg-12 mb50 pl20">
-              <div class="breadcrumb_content">
-                <h2 class="breadcrumb_title">Мої замовлення</h2>
-                <p>Відстежуйте статуси ваших замовлень тут</p>
+      <div class="col-md-10 col-sm-10 center-all">
+        <div class="col-lg-12">
+          <div class="row">
+
+            <div v-for="order in orders" class="card shadow2 zoom">
+              <pre class="font_size_20" v-if="!isEdit(order.id)"
+                   @click.prevent="nameForOrder(order.id, order.label)"><i class="fas fa-signature"></i> {{
+                  order.label ? order.label : 'Додати свою назву замовленню'
+                }}</pre>
+
+              <div v-if="isEdit(order.id)" class="row" style="width: 390px;position: relative;padding-bottom: 20px;">
+                <input style="border-radius: 20em; border: 1px solid #EAEAEA;height: 50px;
+    width: 60%;" placeholder="Ваша назва для замовлення" v-model="label">
+                <button @click.prevent="addNewLabel(order.id, order.label)" :disabled="label && label.length > 30"
+                        class="icon-btn add-btn">
+                  <div class="add-icon"></div>
+                  <div class="btn-txt">Додати</div>
+                </button>
+              </div>
+              <pre class="font_size_20"><i class="fas fa-barcode"></i> <span> №{{ order.order_number }}</span></pre>
+              <pre v-if="isEdit(order.id) && label && label.length > 30" class="text-danger">Не більше 30 символів</pre>
+              <pre class="font_size_20"><i class="fas fa-list-ol"></i>  Кількість деталей: {{
+                  order.parts.length
+                }}</pre>
+              <pre class="font_size_20"><i class="fas fa-calendar"></i> {{ order.time }}</pre>
+              <button @click.prevent="getModal(order)" class="card-button">Детальніше</button>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="row" v-if="paginate && paginate.total > 6">
+                <div class="col-lg-12">
+                  <div class="mbp_pagination py-3 px-3">
+                    <ul class="page_navigation">
+                      <li v-if="paginate.current_page !== 1" class="page-item">
+                        <a @click.prevent="getUserOrders(paginate.current_page -1)" class="page-link" href=""
+                           tabindex="-1">
+                          <span class="fa fa-arrow-left"></span></a></li>
+                      <li v-for="link in paginate.links" :class="link.active ? 'active' : ''" class="page-item"
+                          aria-current="page">
+                        <template v-if="Number(link.label)">
+                          <a @click.prevent="getUserOrders(link.label)" class="page-link" href="">{{ link.label }}
+                            <span
+                                class="sr-only"></span></a>
+                        </template>
+                      </li>
+                      <li v-if="paginate.current_page !== paginate.last_page" class="page-item">
+                        <a class="page-link" href="" @click.prevent="getUserOrders(paginate.current_page +1)">
+                          <span class="fa fa-arrow-right"></span></a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="dashboard_favorites_contents dashboard_my_lising_tabs p10-520">
-              <div class="row">
-                <div class="col-lg-12">
-                  <!-- Nav tabs -->
-                  <div class="nav nav-tabs justify-content-start" role="tablist" style="padding-left: 30px">
-                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                            role="tab" aria-controls="nav-home" aria-selected="true">Всі замовлення
-                    </button>
-                    <button class="nav-link" id="nav-shopping-tab" data-bs-toggle="tab" data-bs-target="#nav-shopping"
-                            role="tab" aria-controls="nav-shopping" aria-selected="false">В Україні
-                    </button>
-                    <button class="nav-link" id="nav-hotels-tab" data-bs-toggle="tab" data-bs-target="#nav-hotels"
-                            role="tab" aria-controls="nav-hotels" aria-selected="false">Викупленні
-                    </button>
-                  </div>
-                </div>
-                <!-- Tab panes -->
-                <div class="col-lg-12 mt50" style="padding-left: 30px;padding-right: 30px">
-                  <div class="tab-content row" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                      <div class="col-lg-12">
-                        <div class="table-responsive my_lisging_table">
-                          <table class="table">
-                            <thead class="table-light">
-                            <tr class="thead_row">
-                              <th class="thead_title pl20" scope="col">Номер замовлення</th>
-                              <th class="thead_title" scope="col">Кількість позицій</th>
-                              <th class="thead_title" scope="col">Дата замовлення</th>
-                              <th class="thead_title" scope="col">Сума</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="order in orders">
-                              <th class="align-middle pl20" scope="row">
-                                <div class="car-listing bdr_none d-flex mb0">
-                                  <div class="details ms-1">
-                                    <h6 class="title"><a href="">{{order.order_number}}</a></h6>
-                                  </div>
-                                </div>
-                              </th>
-                              <td class="align-middle"><p>{{order.parts.length}}</p></td>
-                              <td class="align-middle">{{order.time}}</td>
-                              <td class="align-middle">{{ order.total_price }}грн</td>
-                            </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div class="row" v-if="paginate && paginate.total > 10">
-                          <div class="col-lg-12">
-                            <div class="mbp_pagination py-3 px-3">
-                              <ul class="page_navigation">
-                                <li v-if="paginate.current_page !== 1" class="page-item">
-                                  <a @click.prevent="getUserOrders(paginate.current_page -1)" class="page-link" href=""
-                                     tabindex="-1">
-                                    <span class="fa fa-arrow-left"></span></a></li>
-                                <li v-for="link in paginate.links" :class="link.active ? 'active' : ''" class="page-item"
-                                    aria-current="page">
-                                  <template v-if="Number(link.label)">
-                                    <a @click.prevent="getUserOrders(link.label)" class="page-link" href="">{{ link.label }}
-                                      <span
-                                          class="sr-only"></span></a>
-                                  </template>
-                                </li>
-                                <li v-if="paginate.current_page !== paginate.last_page" class="page-item">
-                                  <a class="page-link" href="" @click.prevent="getUserOrders(paginate.current_page +1)">
-                                    <span class="fa fa-arrow-right"></span></a></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-shopping" role="tabpanel" aria-labelledby="nav-shopping-tab">
-                      <div class="col-lg-12">
-                        <div class="table-responsive my_lisging_table">
-                          <table class="table">
-                            <thead class="table-light">
-                            <tr class="thead_row">
-                              <th class="thead_title pl20" scope="col">Make</th>
-                              <th class="thead_title" scope="col">Model</th>
-                              <th class="thead_title" scope="col">Year</th>
-                              <th class="thead_title" scope="col">Transmission</th>
-                              <th class="thead_title" scope="col">FuelType</th>
-                              <th class="thead_title" scope="col">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                              <th class="align-middle pl20" scope="row">
-                                <div class="car-listing bdr_none d-flex mb0">
-                                  <div class="thumb w150">
-                                    <img class="img-fluid" src="" alt="">
-                                  </div>
-                                  <div class="details ms-1">
-                                    <h6 class="title"><a href="">Volvo XC90 - 2020</a></h6>
-                                    <h5 class="price">$129</h5>
-                                  </div>
-                                </div>
-                              </th>
-                              <td class="align-middle">Volvo</td>
-                              <td class="align-middle">2020</td>
-                              <td class="align-middle">Automatic</td>
-                              <td class="align-middle">Diesel</td>
-                              <td class="editing_list align-middle">
-                                <ul>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="View" aria-label="View"><span
-                                        class="flaticon-view"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Edit" aria-label="Edit"><span
-                                        class="flaticon-trash"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Delete" aria-label="Delete"><span
-                                        class="flaticon-trash"></span></a>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th class="align-middle pl20" scope="row">
-                                <div class="car-listing bdr_none d-flex mb0">
-                                  <div class="thumb w150">
-                                    <img class="img-fluid" src="" alt="5.jpg">
-                                  </div>
-                                  <div class="details ms-1">
-                                    <h6 class="title"><a href="">Audi A8 L 55 - 2021</a></h6>
-                                    <h5 class="price">$129</h5>
-                                  </div>
-                                </div>
-                              </th>
-                              <td class="align-middle">Volvo</td>
-                              <td class="align-middle">2020</td>
-                              <td class="align-middle">Automatic</td>
-                              <td class="align-middle">Diesel</td>
-                              <td class="editing_list align-middle">
-                                <ul>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="View" aria-label="View"><span
-                                        class="flaticon-view"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Edit" aria-label="Edit"><span
-                                        class="flaticon-pen"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Delete" aria-label="Delete"><span
-                                        class="flaticon-trash"></span></a>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th class="align-middle pl20" scope="row">
-                                <div class="car-listing bdr_none d-flex mb0">
-                                  <div class="thumb w150">
-                                    <img class="img-fluid" src="" alt="7.jpg">
-                                  </div>
-                                  <div class="details ms-1">
-                                    <h6 class="title"><a href="">Bentley Bentayga V8 - 2020</a>
-                                    </h6>
-                                    <h5 class="price">$129</h5>
-                                  </div>
-                                </div>
-                              </th>
-                              <td class="align-middle">Volvo</td>
-                              <td class="align-middle">2020</td>
-                              <td class="align-middle">Automatic</td>
-                              <td class="align-middle">Diesel</td>
-                              <td class="editing_list align-middle">
-                                <ul>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="View" aria-label="View"><span
-                                        class="flaticon-view"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Edit" aria-label="Edit"><span
-                                        class="flaticon-pen"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Delete" aria-label="Delete"><span
-                                        class="flaticon-trash"></span></a>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div class="mbp_pagination mt10">
-                          <ul class="page_navigation">
-                            <li class="page-item">
-                              <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span
-                                  class="fa fa-arrow-left"></span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active" aria-current="page">
-                              <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                              <a class="page-link" href="#"><span class="fa fa-arrow-right"></span></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-hotels" role="tabpanel" aria-labelledby="nav-hotels-tab">
-                      <div class="col-lg-12">
-                        <div class="table-responsive my_lisging_table">
-                          <table class="table">
-                            <thead class="table-light">
-                            <tr class="thead_row">
-                              <th class="thead_title pl20" scope="col">Make</th>
-                              <th class="thead_title" scope="col">Model</th>
-                              <th class="thead_title" scope="col">Year</th>
-                              <th class="thead_title" scope="col">Transmission</th>
-                              <th class="thead_title" scope="col">FuelType</th>
-                              <th class="thead_title" scope="col">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                              <th class="align-middle pl20" scope="row">
-                                <div class="car-listing bdr_none d-flex mb0">
-                                  <div class="thumb w150">
-                                    <img class="img-fluid" src="" alt="">
-                                  </div>
-                                  <div class="details ms-1">
-                                    <h6 class="title"><a href="">Volvo XC90 - 2020</a></h6>
-                                    <h5 class="price">$129</h5>
-                                  </div>
-                                </div>
-                              </th>
-                              <td class="align-middle">Volvo</td>
-                              <td class="align-middle">2020</td>
-                              <td class="align-middle">Automatic</td>
-                              <td class="align-middle">Diesel</td>
-                              <td class="editing_list align-middle">
-                                <ul>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="View" aria-label="View"><span
-                                        class="flaticon-view"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Edit" aria-label="Edit"><span
-                                        class="flaticon-trash"></span></a>
-                                  </li>
-                                  <li class="list-inline-item mb-1">
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Delete" aria-label="Delete"><span
-                                        class="flaticon-trash"></span></a>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div class="mbp_pagination mt10">
-                          <ul class="page_navigation">
-                            <li class="page-item">
-                              <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span
-                                  class="fa fa-arrow-left"></span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active" aria-current="page">
-                              <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                              <a class="page-link" href="#"><span class="fa fa-arrow-right"></span></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div id="modal-container">
+      <div class="modal-background center-all">
+        <div v-if="order" class="modal modal-responsive">
+          <p style="font-size: 18px;border: 1px solid #EAEAEA;border-radius: 8px;">№: <span
+              style="font-size: 20px; font-weight: 700">{{ order.order_number }}
+          </span> <i class="fas fa-calendar"></i>{{ order.time }}<br>
+            <i class="fas fa-calendar"></i> Дата проплати: {{ order.time }}
+            <br>
+            <i class="fas fa-credit-card"></i> Сума замовлення:
+            <span style="font-weight: 700;">{{ totalUSD ? totalUSD : '' }}</span><span style="color: #329d01;">{{totalUSD? '$, ': ''}} </span>
+            <span style="font-weight: 700">{{ totalEURO ? totalEURO : '' }}</span><span style="color: #0633de;">{{totalEURO? '€, ': ''}} </span>
+            <span style="font-weight: 700">{{ totalUAH ? totalUAH : ''}}</span><span style="color: #a28a00;">{{totalUAH? 'грн': ''}} </span>
+          </p>
+          <h2>
+            <table style="margin-bottom: -200px">
+              <thead>
+              <tr>
+                <th>Номер та назва запчастини</th>
+                <th>Ціна</th>
+                <th>Кількість</th>
+                <th>Сума</th>
+              </tr>
+              </thead>
+              <tbody class="table_body">
+              <tr v-for="part in order.parts">
+                <td>
+                  <li class="list-inline-item" style="font-weight: 700;font-size: 16px">{{ part.number }}</li>
+                  <br>
+                  <li class="list-inline-item">
+                    <a href=""
+                       @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.name }}
+                    </a>
+                  </li>
+                </td>
+                <td>{{ part.price }}{{ part.currency }}</td>
+                <td>{{ part.qty }} од.</td>
+                <td>{{ Math.ceil(part.price * part.qty) }}{{ part.currency }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </h2>
+          {{ getTotal }}
+          <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+               preserveAspectRatio="none">
+            <rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+          </svg>
         </div>
       </div>
     </div>
@@ -333,25 +123,351 @@ export default {
   data() {
     return {
       user: null,
-      orders:null,
+      orders: null,
       paginate: null,
+      order: null,
+      orderId: null,
+      label: null,
+      totalEURO: null,
+      totalUSD: null,
+      totalUAH: null,
     }
   },
   mounted() {
     this.getUserOrders()
   },
   methods: {
-    getUserOrders(page = 1){
-      api.post('/api/orders'+ '?page=' + page)
-          .then(res =>{
+
+    getUserOrders(page = 1) {
+      api.post('/api/orders' + '?page=' + page)
+          .then(res => {
             this.orders = res.data.data
             this.paginate = res.data.meta
           })
+    },
+
+    getModal(order) {
+      $('#modal-container').removeAttr('class').addClass('one');
+      $('body').addClass('modal-active');
+
+      $('#modal-container').click(function () {
+        $(this).addClass('out');
+        $('body').removeClass('modal-active');
+      });
+      this.order = order
+    },
+
+    addNewLabel(id, label) {
+      if (this.label !== label) {
+        api.post('/api/orders/edit/' + id, {
+          'label': this.label,
+        })
+            .then(res => {
+              this.getUserOrders()
+            })
+      }
+      this.orderId = null
+    },
+
+    nameForOrder(id, label) {
+      this.label = label
+      this.orderId = id
+    },
+
+    isEdit(id) {
+      return this.orderId === id
+    }
+
+  },
+  computed: {
+
+    getTotal() {
+      let totalUSD = null
+      let totalEURO = null
+      let totalUAH = null
+      if (this.order.parts) {
+        this.order.parts.forEach(part => {
+          if (part.currency === 'usd') {
+            totalUSD += part.price * part.qty
+          }
+          if (part.currency === 'euro') {
+            totalEURO += part.price * part.qty
+          }
+          if (part.currency === 'грн') {
+            totalUAH += part.price * part.qty
+          }
+        })
+        this.$store.commit('increment')
+      }
+      this.totalEURO = totalEURO
+      this.totalUSD = totalUSD
+      this.totalUAH = totalUAH
+    },
+
+  },
+}
+
+</script>
+
+<style scoped lang="scss">
+.font_forPrice {
+  font-weight: 700;
+  color: #0c4128;
+}
+
+.font_size_20 {
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#modal-container {
+  position: fixed;
+  display: table;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 100;
+
+  &.one {
+    transform: scaleY(.01) scaleX(0);
+    animation: unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+
+    .modal-background {
+      .modal {
+        transform: scale(0);
+        animation: zoomIn .5s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      }
+    }
+
+    &.out {
+      transform: scale(1);
+      animation: unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+
+      .modal-background {
+        .modal {
+          animation: zoomOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        }
+      }
+    }
+  }
+
+  .modal-background {
+    display: table-cell;
+    background: rgba(0, 0, 0, .8);
+    text-align: center;
+    vertical-align: middle;
+
+    .modal {
+      background: white;
+      padding: 20px;
+      display: inline-block;
+      border-radius: 3px;
+      font-weight: 300;
+      position: relative;
+      overflow-y: auto;
+
+      h2 {
+        font-size: 14px;
+
+      }
+
+      p {
+
+      }
+
+      .modal-svg {
+        position: fixed;
+        top: 40%;
+        left: 40%;
+        height: 100%;
+        width: 100%;
+        border-radius: 3px;
+        z-index: 1;
+
+        rect {
+          stroke: #fff;
+          stroke-width: 2px;
+          stroke-dasharray: 778;
+          stroke-dashoffset: 778;
+        }
+      }
     }
   }
 }
-</script>
 
-<style scoped>
+@keyframes zoomIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(.005) scaleX(0);
+  }
+  50% {
+    transform: scaleY(.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes unfoldOut {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: scaleY(.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(.005) scaleX(0);
+  }
+}
+
+
+// sets
+
+$gl-ms: "screen and (max-width: 23.5em)"; // up to 360px
+$gl-xs: "screen and (max-width: 35.5em)"; // up to 568px
+$gl-sm: "screen and (max-width: 48em)"; // max 768px
+$gl-md: "screen and (max-width: 64em)"; // max 1024px
+$gl-lg: "screen and (max-width: 80em)"; // max 1280px
+
+// table style
+
+table {
+  border-spacing: 1px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  margin: 0 auto;
+  position: relative;
+
+  * {
+    position: relative
+  }
+
+  td, th {
+    padding-left: 18px;
+    padding-right: 18px;
+
+  }
+
+  td {
+    height: 100px;
+  }
+
+  thead tr {
+    height: 60px;
+    background: #f5c34b;
+    font-size: 16px;
+  }
+
+  tbody tr {
+    height: 48px;
+    border-bottom: 1px solid #E3F1D5;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  td, th {
+    text-align: left;
+
+    &.l {
+      text-align: right
+    }
+
+    &.c {
+      text-align: center
+    }
+
+    &.r {
+      text-align: center
+    }
+  }
+}
+
+
+@media #{$gl-xs} {
+
+  table {
+    display: block;
+
+    > *, tr, td, th {
+      display: block
+    }
+
+    thead {
+      display: none
+    }
+
+    tbody tr {
+      height: auto;
+      padding: 8px 0;
+
+      td {
+        padding-left: 45%;
+        margin-bottom: 12px;
+        height: 100%;
+
+        &:last-child {
+          margin-bottom: 30px
+        }
+
+        &:before {
+          position: absolute;
+          font-weight: 700;
+          width: 40%;
+          left: 10px;
+          top: 0
+        }
+
+        &:nth-child(1):before {
+          content: "Номер та назва запчастини";
+        }
+
+        &:nth-child(2):before {
+          content: "Ціна";
+        }
+
+        &:nth-child(3):before {
+          content: "Кількість";
+        }
+
+        &:nth-child(4):before {
+          content: "Сума";
+        }
+      }
+    }
+  }
+}
+
+
+// body style
+
+blockquote {
+  color: white;
+  text-align: center;
+}
 
 </style>

@@ -2,24 +2,11 @@
   <div v-if="parts === null" class="preloader"></div>
   <!-- Our Dashbord -->
   <section class="our-dashbord dashbord">
-    <div class="col-md-12 col-sm-12 row">
+    <div class="col-md-12 col-sm-12 col-lg-12 row">
       <MenuComponent></MenuComponent>
-      <div class="col-md-9 col-sm-9">
-      <div class="row">
-          <div class="col-xl-8">
-            <div class="col-lg-12 mb50 pl20">
-              <div class="breadcrumb_content">
-                <h2 class="breadcrumb_title">Обрані запчастини</h2>
-                <p>Тут знаходяться ваші обрані запчастини</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="p10-520">
+      <div class="col-md-10 col-sm-10 col-lg-10 pt40 center-all">
               <div class="row">
-                <div v-for="part in parts" class="py-3 col-sm-6 col-xl-12 col-xxl-6">
+                <div v-for="part in parts" class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4">
                   <div class="car-listing list_style">
                     <div class="thumb">
                       <div class="tag">Новинка</div>
@@ -46,7 +33,7 @@
                           </span>
                         </h5>
                         </div>
-                        <h6 class="title"><a href="" @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.part_name }}</a></h6>
+                        <h6 class="title cuttedText2Line"><a href="" @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.part_name }}</a></h6>
                         <div class="listign_review">
                           <ul class="mb0">
                             <li class="list-inline-item">Виробник: {{ part.part_brand }}</li>
@@ -88,9 +75,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 </template>
