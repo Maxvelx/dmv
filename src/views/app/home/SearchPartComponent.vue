@@ -49,10 +49,7 @@
         <tbody>
         <tr v-for="part in this.searchResult">
           <td>{{ part.part_brand }}</td>
-          <td>
-            <a type="submit" @click.prevent="getSearchAgain(part.number_oem)"
-               class="bg-transparent border-0 text-success">{{ part.part_number }}</a>
-          </td>
+          <td>{{ part.part_number }}</td>
           <td><a href="" @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.part_name }}</a></td>
           <td>{{part.time}}</td>
           <td>{{ part.price }}{{part.currency}}</td>
@@ -141,10 +138,10 @@ export default {
           })
     },
 
-    getSearchAgain(num_oem) {
-      this.watchSearch = num_oem
-      this.getSearch()
-    },
+    // getSearchAgain(num_oem) {
+    //   this.watchSearch = num_oem
+    //   this.getSearch()
+    // },
 
   }
 }
