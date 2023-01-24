@@ -193,7 +193,7 @@
               <h3 class="mt30">Фільтр</h3>
               <div class="widget_list">
                 <ul v-for="tag in tags" class="list_details">
-                  <input type="checkbox" v-model="tagsFilter" :value="tag.id"> <span v-if="tag.count">{{ tag.title }} {{'(' + tag.count + ')' }}</span>
+                  <input v-if="tag.count" type="checkbox" v-model="tagsFilter" :value="tag.id"> <span v-if="tag.count">{{ tag.title }} {{'(' + tag.count + ')' }}</span>
                 </ul>
               </div>
             </div>
