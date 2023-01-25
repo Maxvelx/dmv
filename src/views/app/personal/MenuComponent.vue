@@ -176,6 +176,7 @@ export default {
 
   .toogler {
     padding-bottom: 20px;
+    margin-bottom: 10px;
     visibility: visible;
   }
 

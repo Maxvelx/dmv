@@ -25,7 +25,7 @@
         <div class="col-lg-6">
           <div class="shop_single_product_details p0-414">
             <h3 class="title mb50">{{part.part_name}}</h3>
-            <div class="sspd_price mb30">{{part.price}}грн</div>
+            <div class="sspd_price mb30">{{part.price}}{{ part.currency }}</div>
             <ul class="cart_btns instock_area mb30">
               <li v-if="part.qty && part.qty != 0" style="font-size: 16px" class="list-inline-item"><span class="fa fa-check-circle text-thm3 ml10 mr5 fz18"></span> {{part.qty}}шт. <span class="text-success"> у наявності</span></li>
             <li v-if="part.qty <= 0" class="text-warning" style="font-size: 16px">Під замовлення</li>
