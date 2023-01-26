@@ -18,7 +18,7 @@
                     <small class="file_title">Max file size is 1MB</small>
                   </div>
                 </div>
-                <div v-if="message" class="text-success">{{message}}</div>
+                <div v-if="message" class="text-success">{{ message }}</div>
                 <form class="contact_form" name="contact_form" action="#" method="post" novalidate="">
                   <div class="row">
                     <div class="col-lg-7">
@@ -53,10 +53,18 @@
                         </div>
                         <div class="col-sm-12">
                           <div class="mb20">
-                            <label class="labelProfile">Адреса для доставки (за потреби вкажіть декілька)</label>
-                            <textarea style="height: 100px" name="form_name" class="form-control form_control" v-model="address" type="text"
-                                      placeholder="Адреса для доставки"></textarea>
+                            <label class="labelProfile">Адреса для доставки</label>
+                            <input name="form_name" class="form-control form_control" v-model="address" type="text"
+                                   placeholder="формат: Відділення №1, м. Київ">
                           </div>
+                        </div>
+                        <div class="mb20">
+                          <label class="form-label">Виберіть перевізника *</label>
+                          <select :selected="delivery_company" required v-model="delivery_company" class="form-select form-select-lg mb-3">
+                            <option v-for="company in deliveryCompanies" :value="company.id">
+                              {{company.title }}
+                            </option>
+                          </select>
                         </div>
                         <div class="col-lg-12">
                           <div class="new_propertyform_btn">
@@ -107,6 +115,7 @@
 <script>
 import MenuComponent from "@/views/app/personal/MenuComponent.vue";
 import api from "@/api";
+import axios from "axios";
 
 export default {
   name: "ProfileComponent",
@@ -123,11 +132,14 @@ export default {
       passwordOld: null,
       password: null,
       password_confirmation: null,
+      delivery_company: null,
+      deliveryCompanies: null,
 
     }
   },
   mounted() {
     this.getUser()
+    this.getDeliveryCompany()
   },
   methods: {
 
@@ -136,27 +148,38 @@ export default {
           .then(res => {
             let user = res.data.data
             this.lastName = user.lastName
-            this.name  = user.name
+            this.name = user.name
             this.patronymic = user.patronymic
             this.phone_number = user.phone
             this.address = user.address
             this.loader = 1
+            this.delivery_company = user.delivery_company
           })
     },
 
-    editUser(){
+    editUser() {
       this.loader = null
-      api.post('/api/auth/edit',{
+      api.post('/api/auth/edit', {
         name: this.name,
         lastName: this.lastName,
         patronymic: this.patronymic,
         phone_number: this.phone_number,
-        address: this.address,})
-          .then(res =>{
-            console.log(this.message = res.data.message);
+        address: this.address,
+        delivery_company: this.delivery_company
+      })
+          .then(res => {
+            this.message = res.data.message
             this.loader = 1
           })
     },
+
+    getDeliveryCompany() {
+      axios.get('api/delivery_companies')
+          .then(res => {
+            this.deliveryCompanies = res.data
+          })
+    },
+
   },
   computed: {
 

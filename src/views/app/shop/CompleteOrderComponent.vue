@@ -52,10 +52,10 @@
                           <br>
                           <li class="subtitle  mb15 mt20"><p>Разом:
                             <span class="float-end totals color-orose">{{
-                                totalUAH ? Math.ceil(totalUAH) + 'грн' : ''
-                              }} {{
-                                totalUSD ? ', ' + Math.ceil(totalUSD) + 'usd' : ''
-                              }} {{ totalEURO ? ', ' + Math.ceil(totalEURO) + 'euro ' : '' }}</span>
+                                totalUAH ? Math.ceil(totalUAH) + ' ₴' : ''
+                              }}{{totalUAH && totalUSD ? ' та ': ''}}{{
+                                totalUSD ? Math.ceil(totalUSD) + ' $' : ''
+                              }}{{totalUAH && totalEURO || totalUSD && totalEURO ? ' та ':''}}{{ totalEURO ? + Math.ceil(totalEURO) + ' €' : '' }}</span>
                           </p>
                           </li>
                         </ul>
@@ -96,13 +96,13 @@ export default {
       let totalUAH = null
       if (this.parts) {
         this.parts.forEach(part => {
-          if (part.currency === 'usd') {
+          if (part.currency == '$') {
             totalUSD += part.price * part.qty
           }
-          if (part.currency === 'euro') {
+          if (part.currency == '€') {
             totalEURO += part.price * part.qty
           }
-          if (part.currency === 'грн') {
+          if (part.currency == '₴') {
             totalUAH += part.price * part.qty
           }
         })

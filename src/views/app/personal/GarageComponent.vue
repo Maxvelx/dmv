@@ -22,13 +22,13 @@
                   </div>
                   <div class="listing_footer">
                     <ul class="mb0">
-                      <li class="list-inline-item"><a href="#"><span
+                      <li v-if="car.body != 'null'" class="list-inline-item"><a href="#"><span
                           class="flaticon-road-perspective me-2"></span>{{ car.body }}</a>
                       </li>
                       <li class="list-inline-item"><a href="#"><span
                           class="flaticon-gas-station me-2"></span>{{ car.engine }}</a>
                       </li>
-                      <li class="list-inline-item"><a href="#"><span
+                      <li v-if="car.transmission != 'null'" class="list-inline-item"><a href="#"><span
                           class="flaticon-gear me-2"></span>{{ car.transmission }}</a>
                       </li>
                     </ul>

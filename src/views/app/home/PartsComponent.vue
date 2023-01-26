@@ -38,7 +38,7 @@
                     <div class="car-listing">
                       <div class="thumb">
                         <div class="tag">Новинка</div>
-                        <img :src="part.image" alt="1.jpg">
+                        <img style="height: 300px; aspect-ratio:3/2;object-fit: contain" :src="part.image" alt="1.jpg">
                         <div class="thmb_cntnt2">
                           <ul class="mb0">
                           </ul>
@@ -47,7 +47,7 @@
                       <div class="details">
                         <div class="wrapper">
 
-                          <h5 class="price list-inline-item">{{ part.price }}грн</h5><a class="list-inline-item"
+                          <h5 class="price list-inline-item">{{ part.price }} {{ part.currency }}</h5><a class="list-inline-item"
                                                                                         href=""></a>
                           <h5 class="float-end" style="margin-top: -10px;"><a
                               @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
@@ -99,7 +99,7 @@
                       </div>
                       <div class="details">
                         <div class="wrapper">
-                          <h5 class="price list-inline-item">{{ part.price }}грн</h5><a class="list-inline-item"
+                          <h5 class="price list-inline-item">{{ part.price }} {{part.currency}}</h5><a class="list-inline-item"
                                                                                         href=""></a>
                           <h5 class="float-end" style="margin-top: -10px;"><a
                               @click.prevent="this.$store.dispatch('addToOrder',part)" href="">

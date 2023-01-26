@@ -78,11 +78,15 @@
                 <h4 class="title">Останні переглянуті товари</h4>
                 <div v-for="recent_part in recent_parts" class="d-flex mb20">
                   <div class="flex-shrink-0">
-                    <img class="align-self-start mr-3" :src="recent_part.image" alt="recentImg">
+                    <img class="align-self-start mr-3" :src="recent_part.image ? recent_part.image : '/images/etc/zaglushkaPart.jpg'" alt="recentImg">
                   </div>
                   <div class="flex-grow-1 ms-3">
                     <h5 class="post_title">{{ recent_part.price }}грн</h5>
-                    <p class="post_title">{{ recent_part.number }}</p>
+                    <p class="post_title">
+                      <a @click.prevent="this.$store.dispatch('getPartSingle',recent_part)" href="">
+                        {{ recent_part.number }}
+                      </a>
+                    </p>
                     <p class="cuttedText2Line">{{ recent_part.name }}</p>
                   </div>
                 </div>
@@ -96,7 +100,7 @@
                 <div class="car-listing">
                   <div class="thumb">
                     <div class="tag">Новинка</div>
-                    <img :src="part.image" alt="1.jpg">
+                    <img style="height: 300px; aspect-ratio:3/2;object-fit: contain" :src="part.image" alt="partimage">
                     <div class="thmb_cntnt2">
                       <ul class="mb0">
                       </ul>
@@ -124,8 +128,10 @@
                           <img src="/images/etc/heartBefore.png">
                         </a>
                       </h5>
-                      <h6 class="title cuttedTextMaxWidth50"><a
-                          @click.prevent="this.$store.dispatch('getPartSingle',part)" href="">{{ part.part_name }}</a>
+                      <h6 class="title cuttedTextMaxWidth50">
+                        <a @click.prevent="this.$store.dispatch('getPartSingle',part)" href="">
+                          {{ part.part_name }}
+                        </a>
                       </h6>
                       <div class="listign_review">
                         <ul class="mb0">

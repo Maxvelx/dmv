@@ -18,7 +18,7 @@
     </div>
     <div v-if="parts.length > 0">
       <!-- Inner Page Breadcrumb -->
-      <section class="inner_page_breadcrumb style2 bgc-f9 bt1 inner_page_section_spacing">
+      <section style="background: transparent; border-top: 0" class="inner_page_breadcrumb style2 bt1 inner_page_section_spacing">
         <div class="container">
           <div class="row">
             <div class="col-xl-12">
@@ -32,7 +32,7 @@
       </section>
 
       <!-- Shop Checkouts Content -->
-      <section class="shop-cart bgc-f9 pt0">
+      <section class="shop-cart pt0">
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -85,15 +85,15 @@
                     </ul>
                     <ul>{{getTotal }}
                       <li v-if="totalUAH" class="subtitle"><p>Разом до сплати в грн.
-                        <span class="float-end totals color-orose">{{ Math.ceil(totalUAH) }} грн</span>
+                        <span class="float-end totals color-orose">{{ Math.ceil(totalUAH) }} ₴</span>
                       </p>
                       </li>
                       <li v-if="totalUSD" class="subtitle"><p>Разом до сплати в USD
-                        <span class="float-end totals color-orose">{{ Math.ceil(totalUSD) }} usd</span>
+                        <span class="float-end totals color-orose">{{ Math.ceil(totalUSD) }} $</span>
                       </p>
                       </li>
                       <li v-if="totalEURO" class="subtitle"><p>Разом до сплати в EURO
-                        <span class="float-end totals color-orose">{{ Math.ceil(totalEURO) }} euro</span>
+                        <span class="float-end totals color-orose">{{ Math.ceil(totalEURO) }} €</span>
                       </p>
                       </li>
                     </ul>
@@ -149,13 +149,13 @@ export default {
       let totalUAH = null
       if (this.parts) {
         this.parts.forEach(part => {
-          if (part.currency === 'usd') {
+          if (part.currency == '$') {
             totalUSD += part.price * part.qty
           }
-          if (part.currency === 'euro') {
+          if (part.currency == '€') {
             totalEURO += part.price * part.qty
           }
-          if (part.currency === 'грн') {
+          if (part.currency == '₴') {
             totalUAH += part.price * part.qty
           }
         })

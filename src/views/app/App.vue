@@ -90,12 +90,12 @@
                                                                     style="font-size: 14px">Зареєструватися</a>
               </li>
             </ul>
+            <router-link :to="{name: 'order'}">
             <i v-if="this.$store.state.cartIds.length > 0" style="font-size: 32px" class="fas fa-cart-shopping"></i>
             <span class="navbar-text" v-if="this.$store.state.cartIds.length > 0">
-              <router-link :to="{name: 'order'}">
                 {{ this.$store.state.count }} шт.
-              </router-link>
             </span>
+            </router-link>
           </div>
         </div>
       </nav>
