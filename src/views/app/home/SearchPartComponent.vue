@@ -138,11 +138,6 @@ export default {
           })
     },
 
-    // getSearchAgain(num_oem) {
-    //   this.watchSearch = num_oem
-    //   this.getSearch()
-    // },
-
   }
 }
 </script>

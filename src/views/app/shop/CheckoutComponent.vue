@@ -95,8 +95,10 @@
                         </div>
                         <div class="col-sm-6">
                           <label class="form-label">Виберіть перевізника *</label>
-                          <select required v-model="delivery_company" class="form-select form-select-lg mb-3">
-                            <option v-for="company in deliveryCompanies" :value="company.id">{{ company.title }}</option>
+                          <select required :selected="delivery_company" v-model="delivery_company" class="form-select form-select-lg mb-3">
+                            <option v-for="company in deliveryCompanies" :value="company.id">
+                              {{ company.title }}
+                            </option>
                           </select>
                         </div>
                         <div class="col-sm-12">
@@ -237,6 +239,7 @@ export default {
             this.address = this.user.address
             this.lastName = this.user.lastName
             this.patronymic = this.user.patronymic
+            this.delivery_company = this.user.delivery_company
             this.pageLoad = 1
           })
     },

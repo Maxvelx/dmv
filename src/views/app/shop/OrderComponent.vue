@@ -62,7 +62,7 @@
                             </li>
                           </td>
                           <td>{{ part.price }}{{ part.currency }}</td>
-                          <td><input class="cart_count text-center" v-model="part.qty" type="number"></td>
+                          <td><input class="cart_count text-center" min="1" v-model="part.qty" v-if="part.qty < 1 ? part.qty =1 : part.qty" type="number"></td>
                           <td>{{ Math.ceil(part.price * part.qty) }}{{ part.currency }}</td>
                           <td><a @click.prevent="removePart(part.id)" href="#"><i style="font-size: 30px"
                                                                                   class="far fa-times"></i></a></td>
@@ -143,6 +143,7 @@ export default {
     },
   },
   computed: {
+
     getTotal() {
       let totalUSD = null
       let totalEURO = null
@@ -165,6 +166,7 @@ export default {
       this.totalUSD = totalUSD
       this.totalUAH = totalUAH
     },
+
   },
 
 }
