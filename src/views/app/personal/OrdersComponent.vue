@@ -7,13 +7,9 @@
       <div class="col-md-10 col-sm-10 center-all">
         <div class="col-lg-12">
           <div class="row">
-
-            <div v-for="order in orders" class="card shadow2 zoom">
-              <pre class="font_size_20" v-if="!isEdit(order.id)"
-                   @click.prevent="nameForOrder(order.id, order.label)"><i class="fas fa-signature"></i>
-                {{order.label ? order.label : 'Додати свою назву замовленню' }}
-              </pre>
-
+            <div v-for="order in orders" class="card1 shadow2 zoom">
+              <pre class="font_size_18" v-if="!isEdit(order.id)" @click.prevent="nameForOrder(order.id, order.label)"><i
+                  class="fas fa-signature"></i>{{ order.label ? order.label : 'Додати свою назву замовленню' }}</pre>
               <div v-if="isEdit(order.id)" class="row" style="width: 390px;position: relative;padding-bottom: 20px;">
                 <input style="border-radius: 20em; border: 1px solid #EAEAEA;height: 50px;
     width: 60%;" placeholder="Ваша назва для замовлення" v-model="label">
@@ -23,12 +19,10 @@
                   <div class="btn-txt">Додати</div>
                 </button>
               </div>
-              <pre class="font_size_20"><i class="fas fa-barcode"></i> <span> №{{ order.order_number }}</span></pre>
               <pre v-if="isEdit(order.id) && label && label.length > 30" class="text-danger">Не більше 30 символів</pre>
-              <pre class="font_size_20"><i class="fas fa-list-ol"></i>  Кількість деталей:
-                {{ order.parts.length }}
-              </pre>
-              <pre class="font_size_20"><i class="fas fa-calendar"></i> {{ order.time }}</pre>
+              <pre class="font_size_18"><i class="fas fa-barcode"></i> <span> №{{ order.order_number }}</span></pre>
+              <pre class="font_size_18"><i class="fas fa-list-ol"></i>  Кількість деталей:{{ order.parts.length }}</pre>
+              <pre class="font_size_18"><i class="fas fa-calendar"></i> {{ order.time }}</pre>
               <button @click.prevent="getModal(order)" class="card-button">Детальніше</button>
             </div>
 
@@ -70,9 +64,12 @@
             <i class="fas fa-calendar"></i> Дата проплати: {{ order.time }}
             <br>
             <i class="fas fa-credit-card"></i> Сума замовлення:
-            <span style="font-weight: 700;">{{ totalUSD ? totalUSD : '' }}</span><span style="color: #329d01;">{{totalUSD? '$ ': ''}} </span>
-            <span style="font-weight: 700">{{ totalEURO ? totalEURO : '' }}</span><span style="color: #0633de;">{{totalEURO? '€ ': ''}} </span>
-            <span style="font-weight: 700">{{ totalUAH ? totalUAH : ''}}</span><span style="color: #a28a00;">{{totalUAH? '₴': ''}} </span>
+            <span style="font-weight: 700;">{{ totalUSD ? totalUSD : '' }}</span><span
+                style="color: #329d01;">{{ totalUSD ? '$ ' : '' }} </span>
+            <span style="font-weight: 700">{{ totalEURO ? totalEURO : '' }}</span><span
+                style="color: #0633de;">{{ totalEURO ? '€ ' : '' }} </span>
+            <span style="font-weight: 700">{{ totalUAH ? totalUAH : '' }}</span><span
+                style="color: #a28a00;">{{ totalUAH ? '₴' : '' }} </span>
           </p>
           <h2>
             <table style="margin-bottom: -200px">
@@ -215,7 +212,7 @@ export default {
   color: #0c4128;
 }
 
-.font_size_20 {
+.font_size_18 {
   font-size: 18px;
 }
 

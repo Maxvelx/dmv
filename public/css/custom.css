@@ -21,12 +21,12 @@
     padding: 10px;
     border-radius: 10px;
     text-align: center;
-    background-image: linear-gradient(135deg, #50D5b7, #067D68 );
+    background-image: linear-gradient(135deg, #50D5b7, #067D68);
     opacity: 0.4;
 }
 
 .cart_widget:hover {
-    background-image: linear-gradient(135deg, #50D5b7, #067D68 );
+    background-image: linear-gradient(135deg, #50D5b7, #067D68);
     opacity: 1;
 }
 
@@ -39,12 +39,12 @@
         z-index: 11;
         border-radius: 10px;
         text-align: center;
-        background-image: linear-gradient(135deg, #50D5b7, #067D68 );
+        background-image: linear-gradient(135deg, #50D5b7, #067D68);
         opacity: 0.4;
     }
 
     .cart_widget:hover {
-        background-image: linear-gradient(135deg, #50D5b7, #067D68 );
+        background-image: linear-gradient(135deg, #50D5b7, #067D68);
         opacity: 1;
     }
 }
@@ -108,6 +108,14 @@
     z-index: 10;
 }
 
+.zoom2 {
+    transition: transform 1s; /* Animation */
+}
+
+.zoom2:hover {
+    transform: scale(1.15); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 .border {
     border: 1px solid #EAEAEA;
     border-radius: 8px;
@@ -116,19 +124,20 @@
 .shadow2 {
     box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
 }
+
 .shadow3 {
     box-shadow: -3px 6px 15px #9fafc2;
 }
 
-.card {
-padding: 30px;
+.card1 {
+    padding: 30px;
     background: linear-gradient(#fff, #fff);
     max-width: 400px;
     border-radius: 20px;
     margin: 60px auto;
 }
 
-.card:hover .card-button {
+.card1:hover .card-button {
     transform: translate(-50%, 50%);
     opacity: 1;
 }
@@ -148,6 +157,7 @@ padding: 30px;
     opacity: 0;
     transition: 0.3s ease-out;
 }
+
 .modal-responsive {
     width: 70%;
     height: auto;
@@ -156,6 +166,7 @@ padding: 30px;
     border-radius: 20px;
 
 }
+
 @media (max-width: 768px) {
     .modal-responsive {
         width: 90%;
@@ -289,7 +300,7 @@ padding: 30px;
     color: rgb(100, 100, 100);
 }
 
-.inputGroup :is(input:focus, input:valid)~label {
+.inputGroup :is(input:focus, input:valid) ~ label {
     transform: translateY(-50%) scale(.9);
     margin: 0em;
     margin-left: 1.3em;
@@ -338,10 +349,158 @@ padding: 30px;
     text-overflow: ellipsis;
 }
 
+.cuttedText3Line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    max-width: 350px;
+}
+
 .display_grid {
-    display:grid;
+    display: grid;
     padding-bottom: 7px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Work+Sans:wght@800&display=swap');
 
+.model_grid {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+    height: 170px;
+    aspect-ratio: 3/2;
+    object-fit: contain
+}
+
+.index_brand_grid {
+    margin-top: -50px;
+    padding: 10px;
+    height: 200px;
+    width: 250px;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+}
+
+.price_nw {
+    width: 153px;
+    height: 42px;
+    left: 13px;
+    top: 15px;
+    position: absolute;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 100%;
+    color: rgba(99.88, 99.88, 99.88, 1);
+}
+
+.widget_same {
+    width: 284px;
+    height: 116px;
+    left: 14px;
+    top: 9px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: relative;
+}
+
+.replace_heart_wishlist {
+    width: 38px;
+    height: 38px;
+    left: 235px;
+    top: 87px;
+    position: absolute;
+}
+
+.replace_cart_add {
+    width: 45px;
+    height: 45px;
+    left: 231px;
+    top: 130px;
+    position: absolute;
+}
+
+.widget_replace {
+    width: 284px;
+    height: 188px;
+    left: 14px;
+    top: 9px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: relative;
+}
+
+.widget_replace_start {
+    width: 312px;
+    height: 216px;
+    background-color: white;
+    position: relative;
+}
+
+.price_replace_widget {
+    width: 161px;
+    height: 27px;
+    left: 16px;
+    top: 44px;
+    position: absolute;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 100%;
+    color: rgba(99.88, 99.88, 99.88, 1);
+}
+
+.brand_replace_widget {
+    width: 204px;
+    height: 14px;
+    left: 16px;
+    top: 87px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 100%;
+    color: rgba(66.45, 120.62, 201.88, 1);
+}
+
+.number_part_replace_widget {
+    width: 251px;
+    height: 15px;
+    left: 16px;
+    top: 13px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 100%;
+    color: rgba(128.61, 133.95, 147.69, 1);
+}
+
+.replace_widget_can_order {
+    width: 204px;
+    height: 15px;
+    left: 16px;
+    top: 133px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 100%;
+    color: rgba(204, 146.88, 0, 1);
+}
+
+.replace_widget_ready_to_pick {
+    width: 204px;
+    height: 14px;
+    left: 16px;
+    top: 157px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 100%;
+    color: #98C900;
+}

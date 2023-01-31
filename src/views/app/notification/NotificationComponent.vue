@@ -45,7 +45,7 @@ export default {
       if (this.messages.length) {
         setTimeout(function () {
           vm.messages.splice(vm.messages.length - 1, 1)
-        }, 3000)
+        }, 1000)
       }
     }
   },

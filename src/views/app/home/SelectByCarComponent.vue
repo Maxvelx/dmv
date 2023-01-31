@@ -69,10 +69,8 @@
         <div v-for="brand in brands" class="col-6 col-sm-6 col-md-4 col-lg col-xl wow fadeInUp" data-wow-duration="1s"
              data-wow-delay="0.1s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s;">
           <router-link :to="{name: 'parts', params: {id: brand.id}}">
-            <div class="category_item home7_style">
-              <div class="thumb">
-                <img :src="brand.image" alt="1.png">
-              </div>
+            <div  class="category_item home7_style">
+                <img class="index_brand_grid" :src="brand.image" alt="1.png">
               <div class="details">
                 <p class="title"><a href="">{{ brand.name }}</a></p>
               </div>

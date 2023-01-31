@@ -88,12 +88,12 @@ const store_home = createStore({
             let newAddOrder = [
                 {
                     'id': part.id,
-                    'image': part.image,
                     'name': part.part_name,
                     'number': part.part_number,
                     'price': part.price,
                     'qty': 1,
-                    'currency':part.currency
+                    'currency':part.currency,
+                    'label': part.label,
                 }
             ]
             if (!order) {

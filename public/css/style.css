@@ -19413,7 +19413,7 @@ canvas {
 .single_product_grid .sps_content {
   background-color: #fff;
   border: 1px solid #EAEAEA;
-  border-radius: 8px;
+  border-radius: 50px;
   padding: 30px;
 }
 .single_product_grid .sps_content .content{
@@ -19446,7 +19446,7 @@ canvas {
   margin-right: 14px !important;
 }
 .shop_single_product_details .title{
-  font-size: 26px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: 31px;
@@ -19484,7 +19484,7 @@ canvas {
 }
 .shop_single_product_details .sspd_price{
   color: #1A3760;
-  font-size: 20px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: 24px;

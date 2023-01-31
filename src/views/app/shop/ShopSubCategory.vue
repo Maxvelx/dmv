@@ -6,8 +6,8 @@
       <div class="col-md-3" v-for="brand in brands">
         <div class="shadowNew" style="border-radius: 50px;height: 200px;display: grid;
   align-items: end;">
-          <router-link :to="{name: 'parts', params: {id: brand.id}}"><img :src="brand.image" alt="modelImg"
-                                                                          style="width: 200px;display: block;margin: 0 auto;">
+          <router-link :to="{name: 'parts', params: {id: brand.id}}">
+            <img class="model_grid" :src="brand.image" alt="modelImg">
           </router-link>
           <p class="h4" style="text-align: center;">{{ brand.name }}</p>
         </div>
