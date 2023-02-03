@@ -69,7 +69,7 @@
                 </div>
               </div>
               <div class="col-lg-8 col-xl-5">
-                <h4 class="pb10">Інші ціни виробника: {{part.part_brand}}</h4>
+                <h4 class="pb10">Інші ціни виробника: {{ part.part_brand }}</h4>
                 <div v-for="replace_part in replace_parts">
                   <div v-if="replace_part.id !== part.id && replace_part.part_number === part.part_number"
                        style="width: 312px; height: 144px; background-color: white; position: relative;">
@@ -140,7 +140,8 @@
                       Має варіанти доставки</p>
                     <p v-if="replace_part.qty <= 0" class="replace_widget_can_order">
                       Під замовлення<br/><br/></p>
-                    <p v-if="replace_part.qty > 0" class="replace_widget_can_order"><span style="color: rgba(128.61, 133.95, 147.69, 1)">{{
+                    <p v-if="replace_part.qty > 0" class="replace_widget_can_order"><span
+                        style="color: rgba(128.61, 133.95, 147.69, 1)">{{
                         replace_part.qty
                       }} од. в наявності</span><br/><br/></p>
                     <a href="" v-if="this.$store.state.authUser !== null"
@@ -157,7 +158,11 @@
                       <img class="replace_heart_wishlist" src="/images/etc/heartBefore.png"/>
                     </a>
                     <p class="brand_replace_widget">Бренд: {{ replace_part.part_brand }}</p>
-                    <p class="number_part_replace_widget">Номер: {{ replace_part.part_number }}</p>
+                    <p class="number_part_replace_widget">
+                      <a href="" @click.prevent="this.$store.dispatch('getPartSingle',replace_part)">
+                        Номер: {{ replace_part.part_number }}
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -189,6 +194,15 @@ export default {
   mounted() {
     this.getSingleProduct()
     this.$store.dispatch('getWishlist')
+  },
+  watch:{
+    '$route' (to, from) {
+      if(to !== from ) {
+        this.part = null
+        this.getSingleProduct()
+        this.$store.dispatch('getWishlist')
+      }
+    }
   },
   methods: {
     getSingleProduct() {

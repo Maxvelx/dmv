@@ -44,7 +44,6 @@
           <th>Бренд</th>
           <th>Номер зап.</th>
           <th>Назва</th>
-          <th>Термін поставки</th>
           <th>Ціна</th>
           <th>Наявність</th>
           <th>Термін</th>
@@ -57,7 +56,6 @@
             <td>{{ part.part_brand }}</td>
             <td>{{ part.part_number }}</td>
             <td><a href="" @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.part_name }}</a></td>
-            <td>{{ part.time }}</td>
             <td>{{ part.price }}{{ part.currency }}</td>
             <td v-if="part.qty > 0" class="text-success">
               {{ part.qty }} од. в наявності
@@ -119,20 +117,28 @@
         </div>
       </div>
       <div v-if="paginate_replace" class="text-success pl50 pb20 pt20">Знайдено аналогів для цієї запчастини: {{paginate_replace.total}}</div>
+      <div v-if="paginate_replace" style="font-weight: 600;font-size: 20px;padding: 20px; padding-left: 40px">
+        Аналоги (замінники для цієї запчастини від других виробників)
+      </div>
       <table v-if="searchResult_replace" class="show wow fadeInUp" style="visibility: visible; animation-duration: 1s;"
              data-wow-duration="1s">
         <thead>
+        <tr>
+          <th>Бренд</th>
+          <th>Номер зап.</th>
+          <th>Назва</th>
+          <th>Ціна</th>
+          <th>Наявність</th>
+          <th>Термін</th>
+          <th>Дія</th>
+        </tr>
         </thead>
         <tbody>
-        <td style="text-decoration: underline;font-weight: 600;font-size: 20px;padding: 20px">
-          Аналоги
-        </td>
         <template v-for="part in this.searchResult_replace">
           <tr>
             <td>{{ part.part_brand }}</td>
             <td>{{ part.part_number }}</td>
             <td><a href="" @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.part_name }}</a></td>
-            <td>{{ part.time }}</td>
             <td>{{ part.price }}{{ part.currency }}</td>
             <td v-if="part.qty > 0" class="text-success">
               {{ part.qty }} од. в наявності
@@ -234,7 +240,6 @@ export default {
     getSearch(page = 1) {
       this.axios.get('/api/search?search=' + this.watchSearch + '&page=' + page)
           .then(res => {
-            console.log(res);
             this.searchResult_replace = res.data.data
             this.paginate_replace = res.data.meta
           })
@@ -366,15 +371,15 @@ table {
         }
 
         &:nth-child(4):before {
-          content: "Термін поставки";
-        }
-
-        &:nth-child(5):before {
           content: "Ціна";
         }
 
-        &:nth-child(6):before {
+        &:nth-child(5):before {
           content: "Наявність";
+        }
+
+        &:nth-child(6):before {
+          content: "Термін";
         }
 
         &:nth-child(7):before {

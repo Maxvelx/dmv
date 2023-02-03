@@ -96,11 +96,12 @@
         </div>
         <div class="col-xl-9 col-md-7 col-lg-8 pr0">
           <div class="row">
-              <div v-for="part in parts" class="col-md-6 col-xl-4 col-xxl-4 col-lg-4 zoom">
-                <div class="car-listing">
+              <div v-for="part in parts" class="col-sm-6 col-xs-6 col-md-6 col-xl col-xxl-3 col-lg-4 zoom">
+                <div class="car-listing border">
                   <div class="thumb">
-                    <div class="tag">Новинка</div>
-                    <img style="height: 300px; aspect-ratio:3/2;object-fit: contain" :src="part.image" alt="partimage">
+<!--                    <div class="tag">Новинка</div>-->
+                    <img style="height: 200px; aspect-ratio:3/2;object-fit: contain"
+                         :src="part.image ? part.image :'/images/etc/zaglushkaPart.jpg'" alt="partimage">
                     <div class="thmb_cntnt2">
                       <ul class="mb0">
                       </ul>
@@ -108,7 +109,7 @@
                   </div>
                   <div class="details">
                     <div class="wrapper">
-                      <h5 class="price list-inline-item">{{ part.price }}грн</h5><a class="list-inline-item"
+                      <h5 class="price list-inline-item">{{ part.price }} {{ part.currency }}</h5><a class="list-inline-item"
                                                                                     href=""></a>
                       <h5 class="float-end" style="margin-top: -10px;"><a
                           @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
@@ -135,13 +136,13 @@
                       </h6>
                       <div class="listign_review">
                         <ul class="mb0">
-                          <li class="list-inline-item">Виробник: {{ part.part_brand }}</li>
+                          <li class="list-inline-item">Номер: {{ part.part_number }}</li>
                         </ul>
                       </div>
                     </div>
-                    <div class="listing_footer">
+                    <div class="listing_footer" style="margin-bottom: -10px">
                       <ul class="mb0">
-                        <li class="list-inline-item"><a href="#">Номер запчастини: {{ part.part_number }}</a></li>
+                        <li class="list-inline-item">Виробник: {{ part.part_brand }}</li>
                       </ul>
                     </div>
                   </div>
