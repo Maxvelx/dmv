@@ -85,11 +85,11 @@
 <!--              </div>-->
               <div class="tab-pane show active" id="nav-shopping" role="tabpanel"
                    aria-labelledby="nav-shopping-tab">
-                <div class="row justify-content-center">
-                  <div v-for="part in parts" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl zoom" >
+                <div class="row justify-content-center container_hover">
+                  <div v-for="part in parts" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl zoom item_for_container_hover">
                     <div class="car-listing border">
                       <div class="thumb">
-                        <div class="tag" >Новинка</div>
+                        <div class="tag">Новинка</div>
                         <img style="aspect-ratio:3/2;object-fit: contain;height: 200px"
                              :src="part.image ? part.image :'/images/etc/zaglushkaPart.jpg'" alt="1.jpg">
                         <div class="thmb_cntnt2">

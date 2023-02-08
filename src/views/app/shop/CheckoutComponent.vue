@@ -95,7 +95,7 @@
                         </div>
                         <div class="col-sm-6">
                           <label class="form-label">Виберіть перевізника *</label>
-                          <select required :selected="delivery_company" v-model="delivery_company" class="form-select form-select-lg mb-3">
+                          <select style="font-size: 14px;height: 50px;" required :selected="delivery_company" v-model="delivery_company" class="form-select form-select-lg mb-3">
                             <option v-for="company in deliveryCompanies" :value="company.id">
                               {{ company.title }}
                             </option>
@@ -107,7 +107,7 @@
                             <label class="form-label ai_title">Вкажіть додаткову інформацію для наших менеджерів
                               (за
                               потреби)</label>
-                            <textarea name="form_message" class="form-control" rows="12"
+                            <textarea v-model="message_order" name="form_message" class="form-control" rows="12"
                                       placeholder=""></textarea>
                           </div>
                         </div>
@@ -204,6 +204,7 @@ export default {
       totalUAH: null,
       deliveryCompanies: null,
       delivery_company: null,
+      message_order: null,
     }
   },
   methods: {
@@ -219,7 +220,8 @@ export default {
         address: this.address,
         lastName: this.lastName,
         patronymic: this.patronymic,
-        delivery_company: this.delivery_company
+        delivery_company: this.delivery_company,
+        message_order: this.message_order,
       })
           .then(res => {
             if (res.status === 201) {
@@ -264,6 +266,7 @@ export default {
     this.getDeliveryCompany()
   },
   computed: {
+
     getTotal() {
       let totalUSD = null
       let totalEURO = null

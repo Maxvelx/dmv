@@ -60,7 +60,7 @@
                         </div>
                         <div class="mb20">
                           <label class="form-label">Виберіть перевізника *</label>
-                          <select :selected="delivery_company" required v-model="delivery_company" class="form-select form-select-lg mb-3">
+                          <select style="font-size: 14px;height: 50px;" :selected="delivery_company" required v-model="delivery_company" class="form-select form-select-lg mb-3">
                             <option v-for="company in deliveryCompanies" :value="company.id">
                               {{company.title }}
                             </option>

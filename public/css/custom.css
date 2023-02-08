@@ -504,3 +504,12 @@
     line-height: 100%;
     color: #98C900;
 }
+
+.container_hover:hover > :not(:hover){
+    opacity: .4;
+    transform: scale(0.9);
+}
+.item_for_container_hover{
+    transition: .35s;
+    cursor: pointer;
+}

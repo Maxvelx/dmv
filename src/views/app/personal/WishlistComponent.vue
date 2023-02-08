@@ -7,12 +7,10 @@
       <div class="col-md-10 col-sm-10 col-lg-10 pt40 center-all">
               <div class="row">
                 <div v-for="part in parts" class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4">
-                  <div class="car-listing list_style">
+                  <div class="car-listing list_style border zoom">
                     <div class="thumb">
-                      <div class="tag">Новинка</div>
-                      <img class="img-fluid" :src="part.image" alt="">
-                      <div class="thmb_cntnt2">
-                      </div>
+                      <img style="aspect-ratio:16/9;object-fit: contain;height: 200px;margin-top: -30px"
+                          :src="part.image ? part.image :'/images/etc/zaglushkaPart.jpg'" alt="">
                     </div>
                     <div class="details">
                       <div class="wrapper">

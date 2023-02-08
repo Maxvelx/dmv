@@ -154,11 +154,11 @@
                     <form action="#">
                       <div class="mb-2 mr-sm-2">
                         <label class="form-label">Email адреса</label>
-                        <input v-model="email" type="text" autocomplete="new-email" class="form-control" placeholder="Введіть email адресу">
+                        <input v-model="email" type="text" class="form-control" placeholder="Введіть email адресу">
                       </div>
                       <div class="form-group mb5">
                         <label class="form-label">Пароль</label>
-                        <input v-model="password" type="password" autocomplete="new-password" class="form-control" placeholder="Введіть пароль">
+                        <input v-model="password" type="password" class="form-control" placeholder="Введіть пароль">
                       </div>
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="exampleCheck3">

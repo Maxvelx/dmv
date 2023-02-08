@@ -87,7 +87,7 @@
                         {{ recent_part.number }}
                       </a>
                     </p>
-                    <p class="cuttedText2Line">{{ recent_part.name }}</p>
+                    <p class="cuttedText2Line center-all">{{ recent_part.name }}</p>
                   </div>
                 </div>
               </div>

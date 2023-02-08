@@ -29,11 +29,25 @@
                   <h3 class="title mb40">{{ part.part_name }}</h3>
                   <div class="sspd_price mb20">{{ part.price }}{{ part.currency }}</div>
                   <ul class="cart_btns instock_area mb30">
-                    <li v-if="part.qty && part.qty != 0" style="font-size: 16px" class="list-inline-item"><span
+                    <li v-if="part.qty && part.qty > 0" style="font-size: 16px" class="list-inline-item fw-bold"><span
                         class="fa fa-check-circle text-success mr5 fz18"></span> {{ part.qty }} од. <span
-                        class="text-success"> у наявності</span></li>
-                    <li v-if="part.qty <= 0" style="font-size: 16px"><span class="text-warning">Під замовлення</span> |
-                      <span>{{ part.time }}</span></li>
+                        class="text-success"> у наявності</span>
+                    </li>
+                    <li class="list-inline-item">
+                    <p v-if="part.qty > 0" style="font-size: 16px" class="text-success mr5 fz18 fw-bold">
+                      {{
+                        part.time !== null ? '| На складі через: ' + part.time : '| Готово до видачі'
+                      }} </p>
+                    </li >
+                    <li style="margin-left: -5px" class="list-inline-item" v-if="part.qty <= 0">
+                      <span class="text-warning mr5 fz16">Під замовлення</span>
+                    </li>
+                    <li class="list-inline-item">
+                      <p style="font-size: 16px" class="text-dark mr5 fz16" v-if="part.time !== null && part.qty <= 0" >
+                       | Через {{ part.time }} на складі</p>
+                      <p style="font-size: 16px" class="text-dark mr5 fz16" v-if="part.time === null && part.qty <= 0">
+                       | Має варіанти доставки</p>
+                    </li>
                   </ul>
                   <ul class="mb40">
                     <li class="list-inline-item pb20">

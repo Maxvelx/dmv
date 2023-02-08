@@ -9,7 +9,7 @@
           <div class="row">
             <div v-for="order in orders" class="card1 shadow2 zoom">
               <pre class="font_size_18" v-if="!isEdit(order.id)" @click.prevent="nameForOrder(order.id, order.label)"><i
-                  class="fas fa-signature"></i>{{ order.label ? order.label : 'Додати свою назву замовленню' }}</pre>
+                  class="fas fa-signature"></i> {{ order.label ? order.label : 'Додати свою назву замовленню' }}</pre>
               <div v-if="isEdit(order.id)" class="row" style="width: 390px;position: relative;padding-bottom: 20px;">
                 <input style="border-radius: 20em; border: 1px solid #EAEAEA;height: 50px;
     width: 60%;" placeholder="Ваша назва для замовлення" v-model="label">
