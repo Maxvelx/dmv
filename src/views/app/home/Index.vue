@@ -1,8 +1,8 @@
 <template>
       <SearchComponent></SearchComponent>
   <!-- Start Our Footer -->
-  <section class="footer_one home7_style" style="margin-top: -100px">
-    <div class="container" style="margin-bottom: -120px">
+  <section class="footer_one home7_style" style="margin-top: -100px;margin-bottom: -190px;z-index: 2;">
+    <div class="container" style="margin-bottom: -100px">
       <div class="feature_icons home7_style">
         <div class="row">
           <div class="col-lg-6 col-xl-7">
@@ -28,8 +28,8 @@
         </div>
       </div>
     </div>
-    <FooterIndexComponent></FooterIndexComponent>
   </section>
+  <FooterIndexComponent></FooterIndexComponent>
   <!-- End Our Footer -->
 </template>
 <script>

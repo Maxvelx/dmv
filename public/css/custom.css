@@ -133,7 +133,7 @@
     padding: 30px;
     background: linear-gradient(#fff, #fff);
     max-width: 400px;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     margin: 60px auto;
 }
 
@@ -159,11 +159,11 @@
 }
 
 .modal-responsive {
-    width: 70%;
+    width: 80%;
     height: auto;
     min-height: 80%;
     overflow-y: hidden;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
 
 }
 
@@ -173,7 +173,7 @@
         height: auto;
         min-height: 70%;
         overflow-y: hidden;
-        border-radius: 20px;
+        /*border-radius: 20px;*/
     }
 }
 
@@ -387,14 +387,9 @@
 }
 
 .price_nw {
-    width: 153px;
-    height: 42px;
-    left: 13px;
-    top: 15px;
-    position: absolute;
-    font-size: 28px;
+    text-align: left;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 100%;
     color: rgba(99.88, 99.88, 99.88, 1);
 }
 
@@ -505,11 +500,17 @@
     color: #98C900;
 }
 
-.container_hover:hover > :not(:hover){
+.container_hover:hover > :not(:hover) {
     opacity: .4;
-    transform: scale(0.9);
+    transform: scale(1);
 }
-.item_for_container_hover{
+
+.item_for_container_hover {
     transition: .35s;
     cursor: pointer;
+}
+
+.addToWish {
+    margin-top: -10px;
+    margin-right: 5px
 }

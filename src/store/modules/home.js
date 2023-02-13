@@ -1,6 +1,7 @@
 import {createStore} from 'vuex'
 import api from "@/api";
 import router from "@/router";
+import axios from "axios";
 
 const store_home = createStore({
     state() {
@@ -22,6 +23,8 @@ const store_home = createStore({
             messages: [],
             //userInfo
             userInfo: null,
+            //Site info
+            siteInfo:null,
         }
     },
     mutations: {
@@ -73,10 +76,21 @@ const store_home = createStore({
 
         setUser(state, value) {
             state.userInfo = value
-        }
+        },
+
+        getInfo (state, value){
+            state.siteInfo = value
+        },
 
     },
     actions: {
+
+        getSiteInfo({commit}){
+            axios.get('/api/index/site_info')
+                .then(res => {
+                    commit('getInfo', res.data)
+                })
+        },
 
         addToOrder({commit}, part) {
             let order = localStorage.getItem('order')

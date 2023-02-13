@@ -4,7 +4,7 @@
     <div class="col-lg-12 m-auto">
       <div class="home_content_home7_slider">
         <div class="home_content_home7">
-          <div v-if="isActive !== null" class="wow bounceInLeft center" data-wow-duration="1s"
+          <div :class="isActiveVin" class="wow bounceInLeft center" data-wow-duration="1s"
                style="visibility: visible; animation-duration: 1s;">
             <h2 class="title">Запит по Vin номеру</h2>
             <form @submit.prevent="sendVinRequest">
@@ -15,7 +15,6 @@
                   <div v-if="vin_number && vin_number.length !== 17" class="text-danger">VIN номер має бути 17
                     символів
                   </div>
-
                 </div>
                 <div class="form_wrapper col-md-6">
                   <input v-model="name" required type="text" class="form-control form-control-border col-md-5"
@@ -24,8 +23,8 @@
               </div>
               <div class="row pb20">
                 <div class="form_wrapper col-md-6">
-                  <input v-model="phone_number" required type="text" class="form-control form-control-border col-md-5"
-                         placeholder="Ваш номер телефону">
+                  <input v-model="phone_number" type="tel" id="phone" required
+                         class="form-control form-control-border col-md-5" placeholder="XXX XXX XXXX">
                 </div>
                 <div class="form_wrapper col-md-6">
                   <input v-model="email" required type="email" class="form-control form-control-border col-md-5"
@@ -48,10 +47,10 @@
               </div>
             </form>
           </div>
-          <div v-if="isActive === null" class="wow bounceInLeft center" data-wow-duration="1s"
+          <div :class="isActiveMain" class="wow bounceInLeft center" data-wow-duration="1s"
                style="visibility: visible; animation-duration: 1s;">
             <div class="wrapper text-center">
-              <div v-if="message" class="text-success pb30">{{message}}</div>
+              <div v-if="message" class="text-success pb30">{{ message }}</div>
               <div class="d-flex justify-content-center">
                 <a class="btn btn1 btn-thm2 mr20" href="" @click.prevent="isActive = 1">Запит по Vin</a>
                 <router-link :to="{name: 'shop'}"><a class="btn btn2 btn-thm" href="">Магазин</a></router-link>
@@ -72,6 +71,7 @@
 import SearchPartComponent from "@/views/app/home/SearchPartComponent.vue";
 import axios from "axios";
 import api from "@/api";
+import Inputmask from "inputmask";
 
 export default {
   name: "SliderComponent",
@@ -85,19 +85,21 @@ export default {
       email: null,
       request_parts: null,
       message: null,
-      id:null,
+      id: null,
     }
   },
   mounted() {
     if (localStorage.getItem('token')) {
       this.getUser()
     }
+    var selector = document.getElementById("phone");
+    Inputmask({"mask": "(999) 999-9999"}).mask(selector);
   },
   methods: {
 
-    getUser(){
+    getUser() {
       api.post('api/auth/me')
-          .then(res =>{
+          .then(res => {
             this.name = res.data.data.name
             this.phone_number = res.data.data.phone
             this.email = res.data.data.email
@@ -115,12 +117,26 @@ export default {
         user_id: this.id
       })
           .then(res => {
-            if (res.status === 200){
+            if (res.status === 200) {
               this.isActive = null,
-              this.message = 'Дякуемо, Ви успішно відправили запит! Наш менеджер найближчим часом зв\'яжеться з Вами.'
+                  this.vin_number = null,
+                  this.request_parts = null,
+                  this.message = 'Дякуемо, Ви успішно відправили запит! Наш менеджер найближчим часом зв\'яжеться з Вами.'
+
             }
           })
-    }
+    },
+
+  },
+  computed: {
+    isActiveVin() {
+      return this.isActive === 1 ? '' : 'd-none'
+    },
+
+    isActiveMain(){
+      return this.isActive === null ? '' : 'd-none'
+    },
+
   },
 }
 </script>

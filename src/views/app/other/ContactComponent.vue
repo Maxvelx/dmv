@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="h600" id="map-canvas" style="position: relative; overflow: hidden;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2542.8836084513346!2d30.337541715916156!3d50.40600669844704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cbca24fac26f%3A0xd40c40213dcf94da!2z0J3QvtCy0LDRjyDQv9C-0YfRgtCwIOKEljEy!5e0!3m2!1suk!2sua!4v1672159588572!5m2!1suk!2sua" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div v-html="this.$store.state.siteInfo.google_maps"></div>
           </div>
         </div>
       </div>
@@ -19,15 +19,37 @@
           <div class="contact_icon_box mb50">
             <div class="details">
               <h3 class="title">Зв'язок з нами</h3>
-              <p>Україна, Київська область<br> с. Софіївська Борщагівка<br>вул. Київська, 4</p>
-              <h4 class="subtitle">+38 099 123 22 33</h4>
-              <p>myemail@gmail.com</p>
-              <div class="footer_social_widget">
+              <p>{{ this.$store.state.siteInfo.city }}<br> {{ this.$store.state.siteInfo.state }}
+                <br>{{ this.$store.state.siteInfo.address }}</p>
+              <h4 class="footer_phone pb10">{{ this.$store.state.siteInfo.phone }}</h4>
+              Наш email:
+              <a :href="'mailto:'+this.$store.state.siteInfo.email">
+                {{ this.$store.state.siteInfo.email }}</a>
+              <div class="footer_social_widget mt30">
                 <ul class="mb0">
-                  <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li class="list-inline-item"><a href="#"><i class="fab fa-telegram"></i></a></li>
-                  <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                  <li class="list-inline-item"><a href="#"><i class="fab fa-viber"></i></a></li>
+                  <a style="padding-left: 7px" :href="this.$store.state.siteInfo.facebook"
+                     rel="noopener noreferrer nofollow"
+                     target="_blank">
+                    <li class="list-inline-item">
+                      <i style="margin-top: 14px" class="fab fa-facebook-f"></i>
+                    </li>
+                  </a>
+                  <a style="padding-left: 7px" :href="'tg://resolve?domain='+this.$store.state.siteInfo.telegram">
+                    <li class="list-inline-item">
+                      <i style="margin-top: 14px" class="fab fa-telegram"></i>
+                    </li>
+                  </a>
+                  <a style="padding-left: 7px" rel="noopener noreferrer nofollow" target="_blank"
+                     :href="'https://www.instagram.com/'+this.$store.state.siteInfo.instagram">
+                    <li class="list-inline-item">
+                      <i style="margin-top: 14px" class="fab fa-instagram"></i>
+                    </li>
+                  </a>
+                  <a style="padding-left: 7px" :href="'viber://chat?number=%2B'+this.$store.state.siteInfo.viber">
+                    <li class="list-inline-item">
+                      <i style="margin-top: 14px" class="fab fa-viber"></i>
+                    </li>
+                  </a>
                 </ul>
               </div>
             </div>
@@ -66,7 +88,7 @@
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label class="form-label">Ваше звернення*</label>
-                      <textarea name="form_message" class="form-control" rows="6" ></textarea>
+                      <textarea name="form_message" class="form-control" rows="6"></textarea>
                     </div>
                     <div class="form-group mb0">
                       <button type="button" class="btn btn-thm">Відправити</button>

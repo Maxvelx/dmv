@@ -6,16 +6,24 @@
       </div>
     </router-link>
     <div class="header_top home3_style dn-992" style="background:transparent;">
-      <div class="container">
+      <div class="container" v-if="this.$store.state.siteInfo">
         <div class="row">
           <div class="col-lg-8 col-xl-7">
             <div class="header_top_contact_opening_widget text-center text-md-start">
               <ul class="mb0">
-                <li class="list-inline-item"><a href="#"><span class="flaticon-phone-call"></span>093 123 33 22</a></li>
-                <li class="list-inline-item"><a href="#"><span class="flaticon-map"></span>м. Київ, вул. Київська, 4</a>
+                <li class="list-inline-item"><a :href="'tel:'+this.$store.state.siteInfo.phone">
+                  <span class="flaticon-phone-call"></span>{{ this.$store.state.siteInfo.phone }}</a></li>
+                <li class="list-inline-item"><a href="#" @click="this.$store.commit('menu', 4)">
+                  <router-link :to="{name: 'contact'}">
+                    <span
+                        class="flaticon-map"></span>{{
+                      this.$store.state.siteInfo.city + ', ' + this.$store.state.siteInfo.address
+                    }}
+                  </router-link>
+                </a>
                 </li>
-                <li class="list-inline-item"><a href="#"><span class="flaticon-clock"></span>Понеділок - П'ятниця 8:00 -
-                  18:00</a>
+                <li class="list-inline-item"><a href="#"><span class="flaticon-clock"></span>
+                  {{ this.$store.state.siteInfo.work_hour }}</a>
                 </li>
               </ul>
             </div>
@@ -23,10 +31,16 @@
           <div class="col-lg-4 col-xl-5">
             <div class="header_top_social_widgets text-center text-md-end">
               <ul class="m0">
-                <li class="list-inline-item"><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                <li class="list-inline-item"><a href="#"><span class="fab fa-telegram"></span></a></li>
-                <li class="list-inline-item"><a href="#"><span class="fab fa-instagram"></span></a></li>
-                <li class="list-inline-item"><a href="#"><span class="fab fa-viber"></span></a></li>
+                <li class="list-inline-item"><a :href="this.$store.state.siteInfo.facebook" rel="noopener noreferrer"
+                                                target="_blank"><span class="fab fa-facebook-f"></span></a></li>
+                <li class="list-inline-item"><a :href="'tg://resolve?domain='+this.$store.state.siteInfo.telegram"><span
+                    class="fab fa-telegram"></span> </a></li>
+                <li class="list-inline-item"><a rel="noopener noreferrer"
+                                                target="_blank"
+                                                :href="'https://www.instagram.com/'+this.$store.state.siteInfo.instagram"><span
+                    class="fab fa-instagram"></span></a></li>
+                <li class="list-inline-item"><a :href="'viber://chat?number=%2B'+this.$store.state.siteInfo.viber"><span
+                    class="fab fa-viber"></span></a></li>
                 <li></li>
                 <li></li>
               </ul>
@@ -74,10 +88,13 @@
               </li>
             </ul>
             <ul style="margin-top: 15px;padding-right: 20px">
-              <li v-if="token !== null" class="list-inline-item">
-                <router-link :to="{name: 'personal'}" @click="menuPersonal" style="font-size: 14px"><a class="nav-link">Мій кабінет</a>
+              <a v-if="token !== null" href="" class="link_for_cabinet">
+                <img src="/images/etc/avatar_tor.png"
+                     class="user_image" alt="User Image">
+                <router-link :to="{name: 'personal'}" @click="menuPersonal" style="font-size: 14px">
+                  Мій кабінет
                 </router-link>
-              </li>
+              </a>
               <li v-if="token !== null" class="list-inline-item"><a class="nav-link" style="font-size: 14px"
                                                                     @click.prevent="logout"
                                                                     href="">Вихід</a></li>
@@ -91,8 +108,8 @@
               </li>
             </ul>
             <router-link :to="{name: 'order'}">
-            <i v-if="this.$store.state.cartIds.length > 0" style="font-size: 32px" class="fas fa-cart-shopping"></i>
-            <span class="navbar-text" v-if="this.$store.state.cartIds.length > 0">
+              <i v-if="this.$store.state.cartIds.length > 0" style="font-size: 32px" class="fas fa-cart-shopping"></i>
+              <span class="navbar-text" v-if="this.$store.state.cartIds.length > 0">
                 {{ this.$store.state.count }} шт.
             </span>
             </router-link>
@@ -148,9 +165,9 @@
                    aria-labelledby="home-tab">
                 <div class="col-lg-12">
                   <div class="login_form">
-                                        <p>Вперше на dmvavto.shop? <a href="/register"
-                                        >Зареєструйтесь, </a>та зможете слідкувати за статусами замовлень,
-                                          додавати запчастини в обране та інші цікаві можливості.</p>
+                    <p>Вперше на dmvavto.shop? <a href="/register"
+                    >Зареєструйтесь, </a>та зможете слідкувати за статусами замовлень,
+                      додавати запчастини в обране та інші цікаві можливості.</p>
                     <form action="#">
                       <div class="mb-2 mr-sm-2">
                         <label class="form-label">Email адреса</label>
@@ -165,7 +182,9 @@
                         <label class="custom-control-label" for="exampleCheck3">Запам'ятати мене</label>
                         <a class="btn-fpswd float-end" href="#">Забули пароль?</a>
                       </div>
-                      <button :disabled="!isDisabledLogin" @click.prevent="login" class="btn btn-log btn-thm mt5">Увійти</button>
+                      <button :disabled="!isDisabledLogin" @click.prevent="login" class="btn btn-log btn-thm mt5">
+                        Увійти
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -197,8 +216,8 @@
                    aria-labelledby="home-tab">
                 <div class="col-lg-12">
                   <div class="sign_up_form">
-                                        <p>Маєте акаунт на dmvavto.shop? <a href="/login"
-                                                                             >Увійти в особистий кабінет.</a></p>
+                    <p>Маєте акаунт на dmvavto.shop? <a href="/login"
+                    >Увійти в особистий кабінет.</a></p>
                     <form action="#">
                       <div class="row">
                         <div class="col-lg-12">
@@ -224,17 +243,23 @@
                             <label class="form-label">Пароль</label>
                             <input type="password" autocomplete="new-password" v-model="password" class="form-control">
                           </div>
-                          <div class="text-danger pb10" v-if="password && password.length < 8">Пароль повинен бути від 8 символів</div>
+                          <div class="text-danger pb10" v-if="password && password.length < 8">Пароль повинен бути від 8
+                            символів
+                          </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group mb20">
                             <label class="form-label">Підтвердження паролю</label>
                             <input type="password" v-model="password_confirmation" class="form-control">
                           </div>
-                          <div class="text-danger pb10" v-if="password_confirmation !== password">Пароль повинен співпадати</div>
+                          <div class="text-danger pb10" v-if="password_confirmation !== password">Пароль повинен
+                            співпадати
+                          </div>
                         </div>
                       </div>
-                      <button :disabled="!isDisabledReg" type="submit" @click.prevent="registration" class="btn btn-signup btn-thm mb0">Зареєструватись</button>
+                      <button :disabled="!isDisabledReg" type="submit" @click.prevent="registration"
+                              class="btn btn-signup btn-thm mb0">Зареєструватись
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -272,17 +297,19 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch('getSiteInfo')
     this.$store.commit('increment')
   },
-  computed:{
-    isDisabledReg(){
+  computed: {
+    isDisabledReg() {
       return this.name && this.password && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
     },
-    isDisabledLogin(){
+    isDisabledLogin() {
       return this.email && this.password && this.password.length >= 8
     }
   },
   methods: {
+
     registration() {
       axios.post('/api/auth/register', {
         name: this.name,
@@ -313,7 +340,7 @@ export default {
           })
     },
 
-    menuPersonal(){
+    menuPersonal() {
       this.$store.commit('menu', null)
       this.$store.commit('menuPersonal', 1)
     }
@@ -344,7 +371,7 @@ $(document).on('ready', function () {
 #button {
   color: white;
   display: inline-block;
-  background-image: linear-gradient(135deg, #FFE259, #FFA751 );
+  background-image: linear-gradient(135deg, #FFE259, #FFA751);
   width: 50px;
   height: 50px;
   text-align: center;
@@ -358,6 +385,7 @@ $(document).on('ready', function () {
   visibility: hidden;
   z-index: 11;
 }
+
 @media (max-width: 568px) {
   #button {
     right: 20px;
@@ -366,11 +394,11 @@ $(document).on('ready', function () {
 
 #button:hover {
   cursor: pointer;
-  background-image: linear-gradient(135deg, #FFE259, #FFA751 );
+  background-image: linear-gradient(135deg, #FFE259, #FFA751);
 }
 
 #button:active {
-  background-image: linear-gradient(135deg, #FFE259, #FFA751 );
+  background-image: linear-gradient(135deg, #FFE259, #FFA751);
 }
 
 #button.show {
@@ -378,4 +406,19 @@ $(document).on('ready', function () {
   visibility: visible;
 }
 
+.user_image {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  border-radius: 50%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+
+.link_for_cabinet:hover {
+  /*display:block;*/
+  padding-block:25px;
+  border-radius: 3px;
+  background-image: linear-gradient(to right bottom, #f5c34b, #f7c54a, #f8c649, #fac847, #fbca46, #fbcc48, #fccd49, #fccf4b, #fcd250, #fbd455, #fbd75a, #fbd95f);
+}
 </style>

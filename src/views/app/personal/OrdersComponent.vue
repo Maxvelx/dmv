@@ -7,7 +7,7 @@
       <div class="col-md-10 col-sm-10 center-all">
         <div class="col-lg-12">
           <div class="row">
-            <div v-for="order in orders" class="card1 shadow2 zoom">
+            <div v-for="order in orders" style="border: 1px solid #EAEAEA;" class="card1 zoom">
               <pre class="font_size_18" v-if="!isEdit(order.id)" @click.prevent="nameForOrder(order.id, order.label)"><i
                   class="fas fa-signature"></i> {{ order.label ? order.label : 'Додати свою назву замовленню' }}</pre>
               <div v-if="isEdit(order.id)" class="row" style="width: 390px;position: relative;padding-bottom: 20px;">
@@ -58,21 +58,31 @@
     <div id="modal-container">
       <div class="modal-background center-all">
         <div v-if="order" class="modal modal-responsive">
-          <p style="font-size: 18px;border: 1px solid #EAEAEA;border-radius: 8px;">№: <span
-              style="font-size: 20px; font-weight: 700">{{ order.order_number }}
-          </span> <i class="fas fa-calendar"></i>{{ order.time }}<br>
-            <i class="fas fa-calendar"></i> Дата проплати: {{ order.time }}
-            <br>
-            <i class="fas fa-credit-card"></i> Сума замовлення:
-            <span style="font-weight: 700;">{{ totalUSD ? totalUSD : '' }}</span><span
-                style="color: #329d01;">{{ totalUSD ? '$ ' : '' }} </span>
-            <span style="font-weight: 700">{{ totalEURO ? totalEURO : '' }}</span><span
-                style="color: #0633de;">{{ totalEURO ? '€ ' : '' }} </span>
-            <span style="font-weight: 700">{{ totalUAH ? totalUAH : '' }}</span><span
-                style="color: #a28a00;">{{ totalUAH ? '₴' : '' }} </span>
-          </p>
+          <div class="row">
+            <div style="text-align: left" class="col-md-6 col-sm-12 align-content-lg-start">
+              <p style="font-size: 20px;font-weight: 500">
+                <i class="fas fa-calendar"></i> Дата проплати: {{ order.time }} р.
+                <br>
+                <i class="fas fa-credit-card"></i> Разом до сплати:
+                <span style="font-weight: 700;">{{ totalUSD ? totalUSD : '' }}</span><span
+                  style="color: #329d01;">{{ totalUSD ? '$ ' : '' }} </span>
+                <span style="font-weight: 700">{{ totalEURO ? totalEURO : '' }}</span><span
+                  style="color: #0633de;">{{ totalEURO ? '€ ' : '' }} </span>
+                <span style="font-weight: 700">{{ totalUAH ? totalUAH : '' }}</span><span
+                  style="color: #a28a00;">{{ totalUAH ? '₴' : '' }} </span>
+              </p>
+            </div>
+            <div style="text-align: right" class="col-md-6 col-sm-12 align-content-lg-end">
+              <p style="font-size: 20px;font-weight: 500"><i class="fa fa-briefcase"></i>
+                Замовлення №: <span style="font-weight: 700">{{ order.order_number }}</span>
+                  <br>
+          <i class="fas fa-calendar"></i> Створенний: {{ order.time }} р.<br>
+              </p>
+            </div>
+
+          </div>
           <h2>
-            <table style="margin-bottom: -200px">
+            <table>
               <thead>
               <tr>
                 <th>Номер та назва запчастини</th>
@@ -84,13 +94,14 @@
               <tbody class="table_body">
               <tr v-for="part in order.parts">
                 <td>
+                  <a href=""
+                     @click.prevent="this.$store.dispatch('getPartSingle',part)">
                   <li class="list-inline-item" style="font-weight: 700;font-size: 16px">{{ part.number }}</li>
                   <br>
                   <li class="list-inline-item">
-                    <a href=""
-                       @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.name }}
-                    </a>
+                   {{ part.name }}
                   </li>
+                  </a>
                 </td>
                 <td>{{ part.price }}{{ part.currency }}</td>
                 <td>{{ part.qty }} од.</td>
@@ -120,6 +131,7 @@ export default {
   data() {
     return {
       user: null,
+      parts: null,
       orders: null,
       paginate: null,
       order: null,
@@ -182,8 +194,8 @@ export default {
       let totalUSD = null
       let totalEURO = null
       let totalUAH = null
-      if (this.parts) {
-        this.parts.forEach(part => {
+      if (this.order.parts) {
+        this.order.parts.forEach(part => {
           if (part.currency == '$') {
             totalUSD += part.price * part.qty
           }
@@ -356,6 +368,7 @@ table {
   background: white;
   border-radius: 6px;
   margin: 0 auto;
+  width: 100%;
   position: relative;
 
   * {
@@ -369,7 +382,7 @@ table {
   }
 
   td {
-    height: 100px;
+    height: 50px;
   }
 
   thead tr {

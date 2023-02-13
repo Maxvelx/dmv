@@ -78,11 +78,14 @@
             <!--            {{ part.qty <= 0 ? 'Під замовлення' : 'У наявності' }} {{part.qty}}-->
             <!--          </td>-->
             <td>
-              <a
-                  @click.prevent="this.$store.dispatch('addToOrder',part)" href="" style="padding-right: 10px">
-                <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
-                <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
+              <a v-if="!this.$store.state.cartIds.includes(part.id)"
+                 @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
+                <img src="/images/etc/beforeCart.png">
               </a>
+              <router-link v-if="this.$store.state.cartIds.includes(part.id)"
+                           :to="{name: 'order'}">
+                <img src="/images/etc/afterCart2.png">
+              </router-link>
               <a v-if="this.$store.state.authUser !== null" @click.prevent="this.$store.dispatch('addToWishlist',part)"
                  href="">
                 <img v-if="!this.$store.state.wishlistIds.includes(part.id)"
@@ -140,29 +143,32 @@
             <td>{{ part.part_number }}</td>
             <td><a href="" @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.part_name }}</a></td>
             <td>{{ part.price }}{{ part.currency }}</td>
-            <td v-if="part.qty > 0" class="text-success">
+            <td v-if="part.qty > '0'" class="text-success">
               {{ part.qty }} од. в наявності
             </td>
-            <td v-if="part.qty <= 0" class="text-thm">
+            <td v-if="part.qty <= '0'" class="text-thm">
               Під замовлення
             </td>
-            <td v-if="part.qty > 0" style="color: #98C900">
+            <td v-if="part.qty > '0'" style="color: #98C900">
               {{
                 part.time !== null ? 'На складі через: ' + part.time : 'Готово до видачі'
               }}
             </td>
-            <td v-if="part.time !== null && part.qty <= 0">
+            <td v-if="part.time !== null && part.qty <= '0'">
               Через {{ part.time }} на складі
             </td>
-            <td v-if="part.time === null && part.qty <= 0">
+            <td v-if="part.time === null && part.qty <= '0'">
               Має варіанти доставки
             </td>
             <td>
-              <a
-                  @click.prevent="this.$store.dispatch('addToOrder',part)" href="" style="padding-right: 10px">
-                <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
-                <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
+              <a v-if="!this.$store.state.cartIds.includes(part.id)"
+                 @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
+                <img src="/images/etc/beforeCart.png">
               </a>
+              <router-link v-if="this.$store.state.cartIds.includes(part.id)"
+                           :to="{name: 'order'}">
+                <img src="/images/etc/afterCart2.png">
+              </router-link>
               <a v-if="this.$store.state.authUser !== null" @click.prevent="this.$store.dispatch('addToWishlist',part)"
                  href="">
                 <img v-if="!this.$store.state.wishlistIds.includes(part.id)"

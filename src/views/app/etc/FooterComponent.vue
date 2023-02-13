@@ -1,6 +1,6 @@
 <template>
   <!-- Our Footer -->
-  <section class="footer_one pt20 pb10">
+  <section class="footer_one pt20 pb10" v-if="this.$store.state.siteInfo">
 
     <div class="container pt10 pt10-sm pb0-sm">
       <div class="row">
@@ -15,9 +15,15 @@
               <li class="list-inline-item">
                 <router-link :to="{name: 'index'}">Головна</router-link>
               </li>
-              <li class="list-inline-item"><router-link :to="{name: 'shop'}">Магазин</router-link></li>
-              <li class="list-inline-item"><router-link :to="{name: 'about'}">Про нас</router-link></li>
-              <li class="list-inline-item"><router-link :to="{name: 'contact'}">Контакти</router-link></li>
+              <li class="list-inline-item">
+                <router-link :to="{name: 'shop'}">Магазин</router-link>
+              </li>
+              <li class="list-inline-item">
+                <router-link :to="{name: 'about'}">Про нас</router-link>
+              </li>
+              <li class="list-inline-item">
+                <router-link :to="{name: 'contact'}">Контакти</router-link>
+              </li>
             </ul>
           </div>
         </div>
@@ -26,20 +32,23 @@
         <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
           <div class="footer_about_widget">
             <h5 class="title">Адреса</h5>
-            <p>Україна, Київська область<br> с. Софіївська Борщагівка<br>вул. Київська, 4</p>
+            <p>{{ this.$store.state.siteInfo.city }}<br> {{ this.$store.state.siteInfo.state }}
+              <br>{{ this.$store.state.siteInfo.address }}</p>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
           <div class="footer_contact_widget">
             <h5 class="title">Зв'язок з нами</h5>
-            <div class="footer_phone">+38 099 123 22 33</div>
-            <p>myemail@gmail.com</p>
+            <div class="footer_phone pb10">{{ this.$store.state.siteInfo.phone }}</div>
+            Наш email:
+            <a style="color: #f0f0f0" :href="'mailto:'+this.$store.state.siteInfo.email">
+              {{ this.$store.state.siteInfo.email }}</a>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
           <div class="footer_contact_widget">
             <h5 class="title">Ми працюємо</h5>
-            <p>Понеділок – П'ятниця: 09:00 – 18:00<br>Суббота: 09:00 – 17:00<br>Неділя: Вихідний</p>
+            <p>{{ this.$store.state.siteInfo.work_hour }}</p>
           </div>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
@@ -62,16 +71,34 @@
       <div class="row">
         <div class="col-md-6 col-lg-8 col-xl-9">
           <div class="copyright-widget mt5 text-start mb20-sm">
-            <p>Maxvel © 2022.</p>
+            <p>Maxvel © 2023.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
           <div class="footer_social_widget text-start text-md-end">
             <ul class="mr30">
-              <li class="list-inline-item"><a href="#"><i style="margin-top: 14px" class="fab fa-facebook-f"></i></a></li>
-              <li class="list-inline-item"><a href="#"><i style="margin-top: 14px" class="fab fa-telegram"></i></a></li>
-              <li class="list-inline-item"><a href="#"><i style="margin-top: 14px" class="fab fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#"><i style="margin-top: 14px" class="fab fa-viber"></i></a></li>
+              <a style="color: white;padding-left: 7px" :href="this.$store.state.siteInfo.facebook" rel="noopener noreferrer nofollow"
+                 target="_blank">
+              <li class="list-inline-item">
+                  <i style="margin-top: 14px" class="fab fa-facebook-f"></i>
+              </li>
+              </a>
+              <a style="color: white;padding-left: 7px" :href="'tg://resolve?domain='+this.$store.state.siteInfo.telegram">
+              <li class="list-inline-item">
+                <i style="margin-top: 14px" class="fab fa-telegram"></i>
+              </li>
+              </a>
+              <a style="color: white;padding-left: 7px" rel="noopener noreferrer nofollow" target="_blank"
+                 :href="'https://www.instagram.com/'+this.$store.state.siteInfo.instagram">
+              <li class="list-inline-item">
+                <i style="margin-top: 14px" class="fab fa-instagram"></i>
+              </li>
+              </a>
+              <a style="color: white;padding-left: 7px" :href="'viber://chat?number=%2B'+this.$store.state.siteInfo.viber">
+              <li class="list-inline-item">
+                  <i style="margin-top: 14px" class="fab fa-viber"></i>
+              </li>
+              </a>
             </ul>
           </div>
         </div>
@@ -83,6 +110,9 @@
 <script>
 export default {
   name: "FooterComponent",
+  mounted() {
+    this.$store.dispatch('getSiteInfo')
+  },
 }
 </script>
 

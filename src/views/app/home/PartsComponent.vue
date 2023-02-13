@@ -101,11 +101,16 @@
                         <div class="wrapper">
                           <h5 class="price list-inline-item">{{ part.price }} {{part.currency}}</h5><a class="list-inline-item"
                                                                                         href=""></a>
-                          <h5 class="float-end" style="margin-top: -10px;"><a
-                              @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
-                            <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
-                            <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
-                          </a></h5>
+                          <h5 class="float-end" style="margin-top: -10px;">
+                            <a v-if="!this.$store.state.cartIds.includes(part.id)"
+                                                                               @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
+                            <img src="/images/etc/beforeCart.png">
+                          </a>
+                            <router-link v-if="this.$store.state.cartIds.includes(part.id)"
+                                         :to="{name: 'order'}">
+                              <img src="/images/etc/afterCart2.png">
+                            </router-link>
+                          </h5>
                           <h5 class="float-end" style="margin-top: -10px;margin-right: 15px">
                             <a v-if="this.$store.state.authUser !== null"
                                @click.prevent="this.$store.dispatch('addToWishlist',part)" href="">

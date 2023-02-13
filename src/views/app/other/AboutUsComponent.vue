@@ -25,12 +25,8 @@
         </div>
         <div class="col-lg-5 offset-lg-1">
           <div class="about_content">
-            <h2 class="title">Вітаємо Вас на нашому сайті!</h2>
-            <p class="mb15">Ми займаємося запчастинами на американські та європейські бренди автомобілів</p>
-            <p>Маємо відпрацьовану стратегію доставки запчастин з Европи і Америки вже понад 10 років.</p>
-            <p class="mb50">Працюємо напряму з дилером Ford, Mercedes, Audi.</p>
-            <p>Готові до плідної співпраці у будь-якому напрямку, щоб дізнатись більше перейдіть за посиланням</p>
-            <a class="btn btn-thm about-btn" href="#">Дізнатись більше</a>
+            <div v-html="this.$store.state.siteInfo.about_us_text">
+            </div>
           </div>
         </div>
       </div>
@@ -72,107 +68,6 @@
             <div class="details">
               <h5 class="title">Кращі ціни</h5>
               <p>Ми працюємо напряму з дилером у оригінальних запчастинах, та з перевіреними брендами</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Testimonials  -->
-  <section class="our-testimonials-home1 pt120 pb120">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="main-title text-center">
-            <h2>Відгуки про нас</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="testimonial_slider_home1 owl-carousel owl-theme owl-loaded">
-
-
-            <div class="owl-stage-outer">
-              <div class="owl-stage">
-                <div class="owl-item cloned" style="width: 648px; margin-right: 0px;">
-                  <div class="item">
-                    <div class="testimonial_box">
-                      <div class="thumb">
-                        <img class="rounded-circle" src="/images/testimonial/1.png" alt="1.png">
-                        <h4 class="title">Вася Щипач <br><small>Оператор колл-центру "Приват-Банк"</small></h4>
-                      </div>
-                      <div class="details">
-                        <div class="icon"><span class="fa fa-quote-left"></span></div>
-                        <p>Я сщитаю шо все гуд, впредь будьте внимательнее</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="owl-item cloned" style="width: 648px; margin-right: 0px;">
-                  <div class="item">
-                    <div class="testimonial_box">
-                      <div class="thumb">
-                        <img class="rounded-circle" src="/images/testimonial/2.png" alt="2.png">
-                        <h4 class="title">Постоянний кліент Васі Щипача <br><small>Доверяет "Приват-Банку"</small></h4>
-                      </div>
-                      <div class="details">
-                        <div class="icon"><span class="fa fa-quote-left"></span></div>
-                        <p>І снова я попался, но в следующий раз не клюну</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Partners -->
-  <section class="our-partner pb100">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-          <div class="main-title text-center">
-            <h2>Наші партнери</h2>
-          </div>
-        </div>
-      </div>
-      <div class="partner_divider">
-        <div class="row">
-          <div class="col-6 col-xs-6 col-sm-4 col-xl-2">
-            <div class="partner_item">
-              <img src="/images/partners/1.png" alt="1.png">
-            </div>
-          </div>
-          <div class="col-6 col-xs-6 col-sm-4 col-xl-2">
-            <div class="partner_item">
-              <img src="/images/partners/2.png" alt="2.png">
-            </div>
-          </div>
-          <div class="col-6 col-xs-6 col-sm-4 col-xl-2">
-            <div class="partner_item">
-              <img src="/images/partners/1.png" alt="3.png">
-            </div>
-          </div>
-          <div class="col-6 col-xs-6 col-sm-4 col-xl-2">
-            <div class="partner_item">
-              <img src="/images/partners/2.png" alt="4.png">
-            </div>
-          </div>
-          <div class="col-6 col-xs-6 col-sm-4 col-xl-2">
-            <div class="partner_item">
-              <img src="/images/partners/1.png" alt="5.png">
-            </div>
-          </div>
-          <div class="col-6 col-xs-6 col-sm-4 col-xl-2">
-            <div class="partner_item">
-              <img src="/images/partners/2.png" alt="6.png">
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 <template>
-  <template v-if="parts !== undefined">
-    <div v-if="parts === null" class="preloader"></div>
-  </template>
+    <template v-if="parts !== undefined">
+      <div v-if="isPartsLoading" class="preloader"></div>
+    </template>
   <NotificationComponent
       :messages="this.$store.state.messages"
   />
   <!-- Listing Grid View -->
-  <section class="our-listing pb30-991 pt0">
+  <section v-if="!isPartsLoading" class="our-listing pb30-991 pt0">
     <div class="container-fluid col-xl-11" style="padding-top: 50px">
       <div class="row">
         <div class="sp_search_content">
@@ -70,7 +70,8 @@
                 <h3 class="mt30">Фільтр</h3>
                 <div class="widget_list">
                   <ul v-for="tag in tags" class="list_details">
-                    <input v-if="tag.count" type="checkbox" v-model="tagsFilter" :value="tag.id"> <span v-if="tag.count">{{ tag.title }} {{ '(' + tag.count + ')' }}</span>
+                    <input v-if="tag.count" type="checkbox" v-model="tagsFilter" :value="tag.id"> <span
+                      v-if="tag.count">{{ tag.title }} {{ '(' + tag.count + ')' }}</span>
                   </ul>
                 </div>
               </div>
@@ -78,7 +79,8 @@
                 <h4 class="title">Останні переглянуті товари</h4>
                 <div v-for="recent_part in recent_parts" class="d-flex mb20">
                   <div class="flex-shrink-0">
-                    <img class="align-self-start mr-3" :src="recent_part.image ? recent_part.image : '/images/etc/zaglushkaPart.jpg'" alt="recentImg">
+                    <img class="align-self-start mr-3"
+                         :src="recent_part.image ? recent_part.image : '/images/etc/zaglushkaPart.jpg'" alt="recentImg">
                   </div>
                   <div class="flex-grow-1 ms-3">
                     <h5 class="post_title">{{ recent_part.price }}грн</h5>
@@ -96,58 +98,66 @@
         </div>
         <div class="col-xl-9 col-md-7 col-lg-8 pr0">
           <div class="row">
-              <div v-for="part in parts" class="col-sm-6 col-xs-6 col-md-6 col-xl col-xxl-3 col-lg-4 zoom">
-                <div class="car-listing border">
-                  <div class="thumb">
-<!--                    <div class="tag">Новинка</div>-->
-                    <img style="height: 200px; aspect-ratio:3/2;object-fit: contain"
-                         :src="part.image ? part.image :'/images/etc/zaglushkaPart.jpg'" alt="partimage">
-                    <div class="thmb_cntnt2">
+            <div v-if="error" class="text-danger" style="text-align: center;font-size: 16px">{{ error }}
+            </div>
+            <div v-for="part in parts" class="col-sm-6 col-xs-6 col-md-6 col-xl col-xxl-3 col-lg-4 zoom">
+              <div class="car-listing border">
+                <div class="thumb">
+                  <!--                    <div class="tag">Новинка</div>-->
+                  <img style="height: 200px; aspect-ratio:3/2;object-fit: contain"
+                       :src="part.image ? part.image :'/images/etc/zaglushkaPart.jpg'" alt="partimage">
+                  <div class="thmb_cntnt2">
+                    <ul class="mb0">
+                    </ul>
+                  </div>
+                </div>
+                <div class="details">
+                  <div class="wrapper">
+                    <h5 class="price list-inline-item">{{ part.price }} {{ part.currency }}</h5><a
+                      class="list-inline-item"
+                      href=""></a>
+                    <h5 class="float-end" style="margin-top: -10px;">
+                      <a v-if="!this.$store.state.cartIds.includes(part.id)"
+                         @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
+                        <img src="/images/etc/beforeCart.png">
+                      </a>
+                      <router-link v-if="this.$store.state.cartIds.includes(part.id)"
+                                   :to="{name: 'order'}">
+                        <img src="/images/etc/afterCart2.png">
+                      </router-link>
+                    </h5>
+                    <h5 class="float-end" style="margin-top: -12px;margin-right: 10px">
+                      <a v-if="this.$store.state.authUser !== null"
+                         @click.prevent="this.$store.dispatch('addToWishlist',part)" href="">
+                        <img v-if="!this.$store.state.wishlistIds.includes(part.id)"
+                             src="/images/etc/heartBefore.png">
+                        <img v-if="this.$store.state.wishlistIds.includes(part.id)"
+                             src="/images/etc/heartAfter.png">
+                      </a>
+                      <a v-if="this.$store.state.authUser === null" href="#" data-bs-toggle="modal"
+                         data-bs-target="#logInModal">
+                        <img src="/images/etc/heartBefore.png">
+                      </a>
+                    </h5>
+                    <h6 class="title cuttedTextMaxWidth50">
+                      <a @click.prevent="this.$store.dispatch('getPartSingle',part)" href="">
+                        {{ part.part_name }}
+                      </a>
+                    </h6>
+                    <div class="listign_review">
                       <ul class="mb0">
+                        <li class="list-inline-item">Номер: {{ part.part_number }}</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="details">
-                    <div class="wrapper">
-                      <h5 class="price list-inline-item">{{ part.price }} {{ part.currency }}</h5><a class="list-inline-item"
-                                                                                    href=""></a>
-                      <h5 class="float-end" style="margin-top: -10px;"><a
-                          @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
-                        <img v-if="!this.$store.state.cartIds.includes(part.id)" src="/images/etc/beforeCart.png">
-                        <img v-if="this.$store.state.cartIds.includes(part.id)" src="/images/etc/afterCart2.png">
-                      </a></h5>
-                      <h5 class="float-end" style="margin-top: -12px;margin-right: 10px">
-                        <a v-if="this.$store.state.authUser !== null"
-                           @click.prevent="this.$store.dispatch('addToWishlist',part)" href="">
-                          <img v-if="!this.$store.state.wishlistIds.includes(part.id)"
-                               src="/images/etc/heartBefore.png">
-                          <img v-if="this.$store.state.wishlistIds.includes(part.id)"
-                               src="/images/etc/heartAfter.png">
-                        </a>
-                        <a v-if="this.$store.state.authUser === null" href="#" data-bs-toggle="modal"
-                           data-bs-target="#logInModal">
-                          <img src="/images/etc/heartBefore.png">
-                        </a>
-                      </h5>
-                      <h6 class="title cuttedTextMaxWidth50">
-                        <a @click.prevent="this.$store.dispatch('getPartSingle',part)" href="">
-                          {{ part.part_name }}
-                        </a>
-                      </h6>
-                      <div class="listign_review">
-                        <ul class="mb0">
-                          <li class="list-inline-item">Номер: {{ part.part_number }}</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="listing_footer" style="margin-bottom: -10px">
-                      <ul class="mb0">
-                        <li class="list-inline-item">Виробник: {{ part.part_brand }}</li>
-                      </ul>
-                    </div>
+                  <div class="listing_footer" style="margin-bottom: -10px">
+                    <ul class="mb0">
+                      <li class="list-inline-item">Виробник: {{ part.part_brand }}</li>
+                    </ul>
                   </div>
                 </div>
               </div>
+            </div>
             <div class="row" v-if="paginate && paginate.total > 12">
               <div class="col-lg-12">
                 <div class="mbp_pagination py-3 px-3">
@@ -199,7 +209,9 @@
               <h3 class="mt30">Фільтр</h3>
               <div class="widget_list">
                 <ul v-for="tag in tags" class="list_details">
-                  <input v-if="tag.count" type="checkbox" v-model="tagsFilter" :value="tag.id"> <span v-if="tag.count">{{ tag.title }} {{'(' + tag.count + ')' }}</span>
+                  <input v-if="tag.count" type="checkbox" v-model="tagsFilter" :value="tag.id"> <span v-if="tag.count">{{
+                    tag.title
+                  }} {{ '(' + tag.count + ')' }}</span>
                 </ul>
               </div>
             </div>
@@ -207,8 +219,9 @@
         </div>
       </div>
     </div>
-
   </section>
+
+
   <FooterComponent></FooterComponent>
 </template>
 
@@ -235,6 +248,8 @@ export default {
       paginate: null,
       dontShow: 1,
       recent_parts: JSON.parse(localStorage.getItem('recent')),
+      isPartsLoading: false,
+      error: null,
     }
   },
   mounted() {
@@ -255,20 +270,27 @@ export default {
   },
   methods: {
 
-    getPartsByCategory(page = 1) {
-      axios.post('/api/brand/show/' + this.$route.params.id + '?page=' + page, {
-        category_id: this.categoryId,
-        tags: this.tagsFilter,
-        orderBy: this.orderBy,
-      })
-          .then(res => {
-            this.tags = res.data.tags
-            this.brandimage = res.data.brand.image
-            this.parts = res.data.data
-            this.paginate = res.data.meta
-            this.categories = res.data.categories
-            $('#exampleModalToggle .btn-close').click()
-          })
+    async getPartsByCategory(page = 1) {
+      this.isPartsLoading = true
+      try {
+        await axios.post('/api/brand/show/' + this.$route.params.id + '?page=' + page, {
+          category_id: this.categoryId,
+          tags: this.tagsFilter,
+          orderBy: this.orderBy,
+        })
+            .then(res => {
+              this.tags = res.data.tags
+              this.brandimage = res.data.brand.image
+              this.parts = res.data.data
+              this.paginate = res.data.meta
+              this.categories = res.data.categories
+              $('#exampleModalToggle .btn-close').click()
+            })
+      } catch (e) {
+        this.error = 'Помилка при завантаженні запчастин'
+      } finally {
+        this.isPartsLoading = false
+      }
     },
 
     categoryFilter(id) {

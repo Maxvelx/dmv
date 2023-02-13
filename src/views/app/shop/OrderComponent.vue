@@ -53,13 +53,14 @@
                         <tbody class="table_body">
                         <tr v-for="part in parts">
                           <td>
+                            <a href=""
+                               @click.prevent="this.$store.dispatch('getPartSingle',part)">
                             <li class="list-inline-item" style="font-weight: 700;font-size: 16px">{{ part.number }}</li>
                             <br>
                             <li class="list-inline-item">
-                              <a href=""
-                                 @click.prevent="this.$store.dispatch('getPartSingle',part)">{{ part.name }}
-                              </a>
+                             {{ part.name }}
                             </li>
+                            </a>
                           </td>
                           <td>{{ part.price }}{{ part.currency }}</td>
                           <td><input class="cart_count text-center" min="1" v-model="part.qty" v-if="part.qty < 1 ? part.qty =1 : part.qty" type="number"></td>
@@ -185,6 +186,7 @@ $gl-lg: "screen and (max-width: 80em)"; // max 1280px
 
 table {
   border-spacing: 1px;
+  width: 100%;
   border-collapse: collapse;
   background: white;
   border-radius: 6px;
