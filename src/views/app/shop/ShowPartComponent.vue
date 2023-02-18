@@ -57,7 +57,8 @@
               <img v-if="this.$store.state.wishlistIds.includes(part.id)"
                    src="/images/etc/heartAfter.png">
             </button>
-            <button class="button4 list-inline-item" v-if="this.$store.state.authUser === null" href="#"
+            <button class="button4 list-inline-item"
+                    v-if="this.$store.state.authUser === null" href="#"
                     data-bs-toggle="modal"
                     data-bs-target="#logInModal">
               <img src="/images/etc/heartBefore.png">
@@ -196,10 +197,10 @@
                     <img v-if="this.$store.state.wishlistIds.includes(kit_part.id)"
                          src="/images/etc/heartAfter.png">
                   </a>
-                  <a v-if="this.$store.state.authUser === null">
-                    <router-link to="/">
-                      <img src="/images/etc/heartBefore.png">
-                    </router-link>
+                  <a v-if="this.$store.state.authUser === null" href="#"
+                     data-bs-toggle="modal"
+                     data-bs-target="#logInModal">
+                    <img src="/images/etc/heartBefore.png">
                   </a>
                 </h5>
                 <h6 class="title cuttedText2Line" @click.prevent="this.$store.dispatch('getPartSingle',kit_part)"
