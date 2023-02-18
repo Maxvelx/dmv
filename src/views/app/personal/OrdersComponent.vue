@@ -1,6 +1,18 @@
 <template>
   <div v-if="orders === null" class="preloader"></div>
   <!-- Our Dashbord -->
+  <section class="inner_page_breadcrumb">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="breadcrumb_content">
+            <h2 class="breadcrumb_title">Особистий кабінет</h2>
+            <p class="subtitle">Замовлення</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section>
     <div class="col-md-12 col-sm-12 row">
       <MenuComponent></MenuComponent>
@@ -156,10 +168,11 @@ export default {
     },
 
     getModal(order) {
-      $('#modal-container').removeAttr('class').addClass('one');
+      let modal = $('#modal-container')
+      modal.removeAttr('class').addClass('one');
       $('body').addClass('modal-active');
 
-      $('#modal-container').click(function () {
+      modal.click(function () {
         $(this).addClass('out');
         $('body').removeClass('modal-active');
       });
@@ -172,7 +185,7 @@ export default {
           'label': this.label,
         })
             .then(res => {
-              this.getUserOrders()
+              res.status === 200 ? this.getUserOrders() : ''
             })
       }
       this.orderId = null

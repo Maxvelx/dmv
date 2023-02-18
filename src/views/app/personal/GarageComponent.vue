@@ -1,9 +1,22 @@
 <template>
   <div class="preloader" v-if="cars === null"></div>
+  <section class="inner_page_breadcrumb">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="breadcrumb_content">
+            <h2 class="breadcrumb_title">Особистий кабінет</h2>
+            <p class="subtitle">Ваші автомобілі</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="our-dashbord dashbord">
     <div class="col-md-12 col-sm-12 row">
       <MenuComponent></MenuComponent>
-      <div class="col-md-10 col-sm-10 pt40 pl50 center-all">
+      <div class="col-md-10 col-sm-10 pl6 0 center-all">
         <div v-if="opencar === null" class="row">
           <div v-for="car in cars" class="owl-item zoom"
                style="min-width: 300px;max-width: 360px;border-radius: 10px;padding: 30px;">
@@ -421,7 +434,7 @@ button {
   border-radius: 5px;
   background: #183153;
   font-family: "Montserrat", sans-serif;
-  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.2);
   overflow: hidden;
   border: none;
 }

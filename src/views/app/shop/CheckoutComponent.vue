@@ -36,7 +36,7 @@
                         <div class="col-sm-6">
                           <div class="mb30">
                             <label class="form-label">Телефон *</label>
-                            <input v-model="phone_number" class="form-control form_control" type="text"
+                            <input v-model="phone_number" id="phone2" class="form-control form_control" type="text"
                                    required placeholder="формат: 093 123 45 67">
                           </div>
                         </div>
@@ -181,6 +181,7 @@ import FooterComponent from "@/views/app/etc/FooterComponent.vue";
 import api from "@/api";
 import router from "@/router";
 import axios from "axios";
+import Inputmask from "inputmask";
 
 export default {
   name: "CheckoutComponent",
@@ -264,6 +265,8 @@ export default {
       router.push('/')
     }
     this.getDeliveryCompany()
+    Inputmask({"mask": "(999) 999-9999"}).mask(document.getElementById("phone2"))
+
   },
   computed: {
 

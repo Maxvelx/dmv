@@ -73,11 +73,6 @@
     content: ' ';
     display: block;
     position: absolute;
-    top: var(--border-width);
-    left: var(--border-width);
-    right: var(--border-width);
-    bottom: var(--border-width);
-    border-radius: var(--radius);
     background-image: linear-gradient(120deg, #f5fbff 25%, rgba(255, 255, 255, 0) 50%), linear-gradient(300deg, #ADBAC8 14%, rgba(255, 255, 255, 0) 40%);
     z-index: -1;
 }
@@ -86,8 +81,8 @@
     content: ' ';
     display: block;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
@@ -274,7 +269,6 @@
 }
 
 .inputGroup {
-    /*font-family: 'Segoe UI', sans-serif;*/
     margin: 1em 0 1em 0;
     position: relative;
 }
@@ -302,7 +296,7 @@
 
 .inputGroup :is(input:focus, input:valid) ~ label {
     transform: translateY(-50%) scale(.9);
-    margin: 0em;
+    margin: 0;
     margin-left: 1.3em;
     padding: 0.4em;
     background-color: #fff;
@@ -322,11 +316,6 @@
     content: ' ';
     display: block;
     position: absolute;
-    top: var(--border-width);
-    left: var(--border-width);
-    right: var(--border-width);
-    bottom: var(--border-width);
-    border-radius: var(--radius);
     background-image: linear-gradient(120deg, #f5fbff 25%, rgba(255, 255, 255, 0) 50%), linear-gradient(300deg, #ADBAC8 14%, rgba(255, 255, 255, 0) 40%);
     z-index: -1;
 }
@@ -335,15 +324,15 @@
     content: ' ';
     display: block;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
 }
 
 .cuttedTextLine200 {
-    width: 200.8px;
+    width: 200px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -366,7 +355,6 @@
     padding-bottom: 7px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Work+Sans:wght@800&display=swap');
 
 .model_grid {
     width: 200px;
@@ -398,9 +386,8 @@
     height: 116px;
     left: 14px;
     top: 9px;
-    position: absolute;
     background-color: white;
-    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     position: relative;
 }
@@ -426,9 +413,8 @@
     height: 188px;
     left: 14px;
     top: 9px;
-    position: absolute;
     background-color: white;
-    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     position: relative;
 }
@@ -513,4 +499,16 @@
 .addToWish {
     margin-top: -10px;
     margin-right: 5px
+}
+
+.icon_about_us {
+    height: 40px;
+    margin-bottom: 5px;
+    margin-left: 10px
+}
+
+.logo {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }

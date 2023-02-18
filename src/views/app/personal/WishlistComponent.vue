@@ -1,13 +1,25 @@
 <template>
   <div v-if="parts === null" class="preloader"></div>
   <!-- Our Dashbord -->
+  <section class="inner_page_breadcrumb">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="breadcrumb_content">
+            <h2 class="breadcrumb_title">Особистий кабінет</h2>
+            <p class="subtitle">Бажані запчастини</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="our-dashbord dashbord">
     <div class="col-md-12 col-sm-12 col-lg-12 row">
       <MenuComponent></MenuComponent>
-      <div class="col-md-10 col-sm-10 col-lg-10 pt40 center-all">
+      <div class="col-md-10 col-sm-10 col-lg-10 center-all">
         <div class="row">
-          <div v-for="part in parts" class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4">
-            <div class="car-listing list_style border zoom">
+          <div v-for="part in parts" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4">
+            <div class="car-listing list_style border">
               <div class="thumb">
                 <img style="aspect-ratio:16/9;object-fit: contain;height: 200px;margin-top: -30px"
                      :src="part.image ? part.image :'/images/etc/zaglushkaPart.jpg'" alt="">
@@ -18,18 +30,18 @@
                     <h5 class="price">{{ part.price }}грн
                       <span style="float: right; margin-top: -10px">
                             <a @click.prevent="this.$store.dispatch('addToWishlist',part)" href="">
-                              <img v-if="!this.$store.state.wishlistIds.includes(part.id)"
+                              <img alt="" v-if="!this.$store.state.wishlistIds.includes(part.id)"
                                    src="/images/etc/heartBefore.png">
-                              <img v-if="this.$store.state.wishlistIds.includes(part.id)"
+                              <img alt="" v-if="this.$store.state.wishlistIds.includes(part.id)"
                                    src="/images/etc/heartAfter.png">
                             </a>
                            <a v-if="!this.$store.state.cartIds.includes(part.id)"
                               @click.prevent="this.$store.dispatch('addToOrder',part)" href="">
-                <img src="/images/etc/beforeCart.png">
+                <img alt="" src="/images/etc/beforeCart.png">
               </a>
               <router-link v-if="this.$store.state.cartIds.includes(part.id)"
                            :to="{name: 'order'}">
-                <img src="/images/etc/afterCart2.png">
+                <img alt="" src="/images/etc/afterCart2.png">
               </router-link>
                           </span>
                     </h5>

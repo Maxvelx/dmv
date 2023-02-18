@@ -14,32 +14,41 @@
         <div class="col-sm-6 col-xl-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s"
              style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s;">
           <div class="why_chose_us home7_style">
-            <div class="icon"><span><img src="/images/home/sausd.png" style="height: 40px;margin-top: 16px"></span></div>
+            <div class="icon"><span><img src="/images/home/parts.png" alt="" class="icon_about_us"></span>
+            </div>
             <div class="details">
-              <h5 class="title">Кращі ціни</h5>
-              <p>Ми працюємо напряму з дилером у оригінальних запчастинах, та з перевіреними брендами у замінниках, тому
-                у нас найкращі ціни, та бездоганна якість запчастин для Ваших авто.</p>
+              <h5 class="title">Великий вибір запчастин</h5>
+              <p>Ми пропонуємо величезний вибір оригінальних та неоригінальних запчастин для різних видів автомобілів.
+                Незалежно від того, чи ви шукаєте запчастини для європейських, азійських чи американських марок
+                автомобілів, ми маємо все, що вам потрібно. Наші запчастини забезпечують високу якість та надійність, що
+                забезпечує безпеку і комфорт управління автомобілем.</p>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-xl-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s"
              style="visibility: visible; animation-duration: 1s; animation-delay: 0.3s;">
           <div class="why_chose_us home7_style">
-            <div class="icon style2"><span><img src="/images/home/sausd.png" style="height: 40px;margin-top: 16px"></span></div>
+            <div class="icon style2"><span><img src="/images/home/graph.png" alt=""
+                                                class="icon_about_us"></span></div>
             <div class="details">
-              <h5 class="title">Нам довіряють</h5>
-              <p>Багаторічний досвід у підборі та доскональні знання механізму автомобілей дозволяють нам</p>
+              <h5 class="title">Доступні ціни</h5>
+              <p>Однією з головних переваг нашої компанії є те, що ми пропонуємо конкурентні ціни на всі наші запчастини.
+                Наші ціни набагато нижчі, ніж ціни у більшості автомобільних магазинів та сервісних центрів. Це дозволяє
+                нашим клієнтам заощаджувати кошти та мати доступ до високоякісних запчастин за доступними цінами.</p>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-xl-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"
              style="visibility: visible; animation-duration: 1s; animation-delay: 0.5s;">
           <div class="why_chose_us home7_style">
-            <div class="icon style3"><span><img src="/images/home/sausd.png" style="height: 40px;margin-top: 16px"></span></div>
+            <div class="icon style3"><span><img src="/images/home/truck.png" alt=""
+                                                class="icon_about_us"></span></div>
             <div class="details">
-              <h5 class="title">Еще что то</h5>
-              <p>Ми працюємо напряму з дилером у оригінальних запчастинах, та з перевіреними брендами у замінниках, тому
-                у нас найкращі ціни, та бездоганна якість запчастин для Ваших авто.</p>
+              <h5 class="title">Особистий підхід</h5>
+              <p>Ми розуміємо, що наші клієнти можуть мати різні потреби та запити, тому ми завжди намагаємося
+                забезпечити їхнє задоволення. Наша команда професіоналів готова надати консультації та допомогти в
+                підборі потрібної запчастини. Ми завжди стараємося надавати високоякісний сервіс, щоб наші клієнти
+                поверталися до нас знову та знову.</p>
             </div>
           </div>
         </div>
@@ -69,8 +78,8 @@
         <div v-for="brand in brands" class="col-6 col-sm-6 col-md-4 col-lg col-xl wow fadeInUp" data-wow-duration="1s"
              data-wow-delay="0.1s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s;">
           <router-link :to="{name: 'parts', params: {id: brand.id}}">
-            <div  class="category_item home7_style">
-                <img class="index_brand_grid" :src="brand.image" alt="1.png">
+            <div class="category_item home7_style">
+              <img class="index_brand_grid" :src="brand.image" alt="1.png">
               <div class="details">
                 <p class="title"><a href="">{{ brand.name }}</a></p>
               </div>

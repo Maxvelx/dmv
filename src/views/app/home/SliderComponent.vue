@@ -92,8 +92,7 @@ export default {
     if (localStorage.getItem('token')) {
       this.getUser()
     }
-    var selector = document.getElementById("phone");
-    Inputmask({"mask": "(999) 999-9999"}).mask(selector);
+    Inputmask({"mask": "(999) 999-9999"}).mask(document.getElementById("phone"))
   },
   methods: {
 

@@ -136,10 +136,10 @@
           <div v-for="kit_part in kit_parts">
             <div class="row border-bottom" style="width: 350px;display: flex;align-items: center">
               <p class="col-3" style="padding-top: 10px">{{ kit_part.part_number }}</p>
-              <div class="col-4" style="font-weight: 700">
+              <div class="col-4 cuttedText3Line" style="font-weight: 700">
               {{kit_part.part_name}}
               </div>
-              <div class="col-3">
+              <div class="col-3" style="word-wrap: break-word;white-space: normal;">
                 {{kit_part.part_brand}}
               </div>
               <div class="col-2">

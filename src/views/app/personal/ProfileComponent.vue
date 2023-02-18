@@ -1,21 +1,37 @@
 <template>
   <div v-if="loader === null" class="preloader"></div>
+
+  <section class="inner_page_breadcrumb">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="breadcrumb_content">
+            <h2 class="breadcrumb_title">Особистий кабінет</h2>
+            <p class="subtitle">Профіль</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="our-dashbord dashbord">
     <div class="container-fluid">
       <div class="row">
         <MenuComponent></MenuComponent>
-        <div class="col-md-7 col-sm-7 pt60 center-all">
+        <div class="col-md-7 col-sm-7 center-all">
           <div class="row">
             <div class="col-lg-12">
               <div class="new_property_form mb30 float">
                 <h4 class="title mb30">Ваш профіль</h4>
                 <div class="dp_user_thumb_content">
                   <div class="mb25">
-                    <img src="/images/testimonial/1.png">
+                    <img v-if="this.$store.state.userInfo && this.$store.state.userInfo.image"
+                         :src="this.$store.state.userInfo.image" alt="">
+                    <img v-else src="/images/etc/avatar_tor.png" alt="">
                     <label for="image1" class="labelBrowse">
-                      <span class="browseButton">Browse</span>
+                      <input type="file" @change="setFile">
                     </label>
-                    <small class="file_title">Max file size is 1MB</small>
+                    <small class="file_title">Max file size is 2MB</small>
                   </div>
                 </div>
                 <div v-if="message" class="text-success">{{ message }}</div>
@@ -47,7 +63,8 @@
                         <div class="col-sm-6">
                           <div class="mb20">
                             <label class="labelProfile">Телефон</label>
-                            <input name="form_name" class="form-control form_control" v-model="phone_number" type="text"
+                            <input name="form_name" id="phone3" class="form-control form_control" v-model="phone_number"
+                                   type="text"
                                    placeholder="Телефон">
                           </div>
                         </div>
@@ -60,9 +77,10 @@
                         </div>
                         <div class="mb20">
                           <label class="form-label">Виберіть перевізника *</label>
-                          <select style="font-size: 14px;height: 50px;" :selected="delivery_company" required v-model="delivery_company" class="form-select form-select-lg mb-3">
+                          <select style="font-size: 14px;height: 50px;" :selected="delivery_company" required
+                                  v-model="delivery_company" class="form-select form-select-lg mb-3">
                             <option v-for="company in deliveryCompanies" :value="company.id">
-                              {{company.title }}
+                              {{ company.title }}
                             </option>
                           </select>
                         </div>
@@ -116,6 +134,7 @@
 import MenuComponent from "@/views/app/personal/MenuComponent.vue";
 import api from "@/api";
 import axios from "axios";
+import Inputmask from "inputmask";
 
 export default {
   name: "ProfileComponent",
@@ -134,12 +153,15 @@ export default {
       password_confirmation: null,
       delivery_company: null,
       deliveryCompanies: null,
+      attached: null,
 
     }
   },
   mounted() {
     this.getUser()
     this.getDeliveryCompany()
+    Inputmask({"mask": "(999) 999-9999"}).mask(document.getElementById("phone3"))
+
   },
   methods: {
 
@@ -159,17 +181,23 @@ export default {
 
     editUser() {
       this.loader = null
-      api.post('/api/auth/edit', {
-        name: this.name,
-        lastName: this.lastName,
-        patronymic: this.patronymic,
-        phone_number: this.phone_number,
-        address: this.address,
-        delivery_company: this.delivery_company
-      })
+      let formData = new FormData()
+      let config = {'content-type': 'multipart/form-data'}
+
+      formData.append('name', this.name)
+      formData.append('lastName', this.lastName)
+      formData.append('patronymic', this.patronymic)
+      formData.append('phone_number', this.phone_number)
+      formData.append('address', this.name)
+      formData.append('delivery_company', this.delivery_company)
+      if (this.attached) {
+        formData.append('image', this.attached)
+      }
+
+      api.post('/api/auth/edit', formData, config)
           .then(res => {
-            this.message = res.data.message
-            this.loader = 1
+              this.message = res.data.message
+              this.loader = 1
           })
     },
 
@@ -179,6 +207,10 @@ export default {
             this.deliveryCompanies = res.data
           })
     },
+
+    setFile(e) {
+      this.attached = e.target.files[0]
+    }
 
   },
   computed: {

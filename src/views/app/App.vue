@@ -55,12 +55,14 @@
       <!-- Ace Responsive Menu -->
       <nav class="navbar navbar-expand-lg navbar-light col-10">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="/images/header-logo2.svg" alt="logo"></a>
+          <a class="navbar-brand" href="#" style="font-size: 16px;font-weight: 600">
+            <img  class="logo" src="/images/logo.jpg" alt="logo"> DMV-Avto Parts
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                   aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarText">
+          <div class="collapse navbar-collapse" id="navbarText" style="margin-top: -20px">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item pr5">
                 <router-link :to="{name: 'index'}"><a :class="{'active': this.$store.state.activeEl === 1}"
@@ -88,12 +90,12 @@
               </li>
             </ul>
             <ul style="margin-top: 15px;padding-right: 20px">
-              <a v-if="token !== null" href="" class="link_for_cabinet">
-                <img src="/images/etc/avatar_tor.png"
-                     class="user_image" alt="User Image">
-                <router-link :to="{name: 'personal'}" @click="menuPersonal" style="font-size: 14px">
+              <a @click="menuPersonal" v-if="token !== null" href="/personal" class="link_for_cabinet">
+                <img v-if="this.$store.state.userInfo && this.$store.state.userInfo.image"
+                     class="user_image" alt="User Image"
+                     :src="this.$store.state.userInfo.image">
+                <img v-else src="/images/etc/avatar_tor.png"  class="user_image" alt="User Image">
                   Мій кабінет
-                </router-link>
               </a>
               <li v-if="token !== null" class="list-inline-item"><a class="nav-link" style="font-size: 14px"
                                                                     @click.prevent="logout"
@@ -117,31 +119,6 @@
         </div>
       </nav>
     </header>
-    <!-- Sidebar Panel Start -->
-    <div class="listing_sidebar">
-      <div class="siderbar_left_home pt20">
-        <a class="sidebar_switch sidebar_close_btn float-end" href="#">X</a>
-        <div class="footer_contact_widget mt100">
-          <h3 class="title">Quick contact info</h3>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-            massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur.</p>
-        </div>
-        <div class="footer_contact_widget">
-          <h5 class="title">CONTACT</h5>
-          <div class="footer_phone">+1 670 936 46 70</div>
-          <p>hello@voiture.com</p>
-        </div>
-        <div class="footer_about_widget">
-          <h5 class="title">OFFICE</h5>
-          <p>Germany —<br>329 Queensberry Street,<br>North Melbourne VIC 3051</p>
-        </div>
-        <div class="footer_contact_widget">
-          <h5 class="title">OPENING HOURS</h5>
-          <p>Monday – Friday: 09:00AM – 09:00PM<br>Saturday: 09:00AM – 07:00PM<br>Sunday: Closed</p>
-        </div>
-      </div>
-    </div>
-    <!-- Sidebar Panel End -->
     <!-- Modal -->
     <div class="sign_up_modal modal fade" id="logInModal" data-backdrop="static" data-keyboard="false" tabindex="1"
          aria-hidden="true">
@@ -229,7 +206,7 @@
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label class="form-label">Телефон</label>
-                            <input type="tel" v-model="phone_number" class="form-control">
+                            <input type="tel" v-model="phone_number" id="phone1" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-12">
@@ -282,6 +259,7 @@
 import axios from "axios";
 import router from "@/router";
 import api from "@/api";
+import Inputmask from "inputmask";
 
 export default {
   name: "App.vue",
@@ -292,18 +270,24 @@ export default {
       password_confirmation: null,
       email: null,
       phone_number: null,
+      avatar: null,
       token: localStorage.getItem('token'),
       modal: null,
     }
   },
   mounted() {
+    if (localStorage.getItem('token')) {
+      this.$store.dispatch('getUser')
+    }
     this.$store.dispatch('getSiteInfo')
     this.$store.commit('increment')
+    Inputmask({"mask": "(999) 999-9999"}).mask(document.getElementById("phone1"))
   },
   computed: {
     isDisabledReg() {
       return this.name && this.password && this.password.length >= 8 && this.password_confirmation === this.password && this.email && this.phone_number
     },
+
     isDisabledLogin() {
       return this.email && this.password && this.password.length >= 8
     }
@@ -417,7 +401,7 @@ $(document).on('ready', function () {
 
 .link_for_cabinet:hover {
   /*display:block;*/
-  padding-block:25px;
+  padding-block: 25px;
   border-radius: 3px;
   background-image: linear-gradient(to right bottom, #f5c34b, #f7c54a, #f8c649, #fac847, #fbca46, #fbcc48, #fccd49, #fccf4b, #fcd250, #fbd455, #fbd75a, #fbd95f);
 }

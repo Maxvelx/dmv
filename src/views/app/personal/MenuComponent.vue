@@ -99,7 +99,7 @@ export default {
   padding-top: 25px;
   background: #ffffff;
   position: fixed;
-  top: 35%;
+  top: 50%;
   bottom: 0;
   height: 400px;
   left: 20px;
@@ -165,7 +165,7 @@ export default {
 .main-menu li:hover > a, nav.main-menu li.active > a, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .no-touch .dashboard-page nav.dashboard-menu ul li:hover a, .dashboard-page nav.dashboard-menu ul li.active a {
   color: #fff;
   background-image: linear-gradient(to right top, #ffc541, #ffc741, #ffc841, #ffca41, #ffcb41, #ffcd44, #fece46, #fed049, #fdd24f, #fcd554, #fcd75a, #fbd95f);
-  text-shadow: 0px 0px 0px;
+  text-shadow: 0 0 0;
   margin-left: -2px;
   opacity: 1;
   border-radius: 10px;
@@ -216,7 +216,7 @@ export default {
     background: #ffffff;
     position: fixed;
     margin-bottom: 30px;
-    top: 12%;
+    top: 40%;
     bottom: 0;
     height: 50px;
     left: 20px;

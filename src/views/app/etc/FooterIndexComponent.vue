@@ -5,7 +5,9 @@
       <div class="row">
         <div class="col-md-4 col-xl-7" style="z-index: 3">
           <div class="footer_about_widget home2 text-center text-md-start">
-            <div class="logo mb40 mb0-sm"><img src="/images/header-logo2.svg" alt="header-logo2.svg"></div>
+            <div class="mb40 mb0-sm" style="font-size: 16px;font-weight: 600">
+              <img class="logo" src="/images/logo.jpg" alt="header-logo2.svg"> DMV-Avto Parts
+            </div>
           </div>
         </div>
         <div class="col-md-8 col-xl-5" style="z-index: 3">
