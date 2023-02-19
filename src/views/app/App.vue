@@ -55,7 +55,7 @@
       <!-- Ace Responsive Menu -->
       <nav class="navbar navbar-expand-lg navbar-light col-10">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="font-size: 16px;font-weight: 600">
+          <a class="navbar-brand" href="/" style="font-size: 16px;font-weight: 600">
             <img  class="logo" src="/images/logo.jpg" alt="logo"> DMV-Avto Parts
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -352,6 +352,11 @@ $(document).on('ready', function () {
 </script>
 
 <style scoped>
+.logo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
 #button {
   color: white;
   display: inline-block;

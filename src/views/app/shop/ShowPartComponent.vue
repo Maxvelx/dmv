@@ -79,7 +79,7 @@
           </div>
         </div>
       </div>
-      <div style="position:relative" class="col-lg-10 col-md-10 col-xl-3">
+      <div style="position:relative" class="col-lg-10 col-md-10 col-xl-3 pb50">
         <div v-if="oem_parts && oem_parts.length > 0">
           <h4 class="pb10">Усі ціни виробника: {{ part.part_brand }}</h4>
           <div class="row" style="width: 350px;padding-bottom: 20px">
@@ -128,36 +128,36 @@
         </div>
         <div v-if="kit_parts && kit_parts.length > 0">
           <h4 class="pb10">Перелік запчастин у комплекті: {{ part.part_brand }}</h4>
-          <div class="row" style="width: 350px;padding-bottom: 20px">
+          <div class="row width_and_style_text">
             <div class="col-3">Номер</div>
             <div class="col-4">Назва</div>
-            <div class="col-3">Виробник</div>
-            <div class="col-2">Кількість</div>
+            <div class="col-4">Виробник</div>
+            <div class="col-1"></div>
           </div>
           <div v-for="kit_part in kit_parts">
-            <div class="row border-bottom" style="width: 350px;display: flex;align-items: center">
-              <p class="col-3" style="padding-top: 10px">{{ kit_part.part_number }}</p>
+            <div class="row border-bottom width_and_style_text">
+              <p class="col-3" style="padding-top: 10px;">{{ kit_part.part_number }}</p>
               <div class="col-4 cuttedText3Line" style="font-weight: 700">
-              {{kit_part.part_name}}
+                {{ kit_part.part_name }}
               </div>
-              <div class="col-3" style="word-wrap: break-word;white-space: normal;">
-                {{kit_part.part_brand}}
+              <div class="col-3">
+                {{ kit_part.part_brand }}
               </div>
               <div class="col-2">
-                {{kit_part.total}} од.
+                {{ kit_part.total }} од.
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div style="padding: 3%;margin-top: -50px" v-if="kit_parts && kit_parts.length > 0">
+    <div class="kit_parts" v-if="kit_parts && kit_parts.length > 0">
       <h3>Запчастини які входять до комплекту {{ part.part_name }}:</h3>
       <div style="display: flex;flex-wrap: wrap">
         <div v-for="kit_part in kit_parts" class="zoom">
           <div class="car-listing border" style="width: 230px;">
             <div class="total_widget">
-                x{{ kit_part.total }}
+              x{{ kit_part.total }}
             </div>
             <div class="thumb">
               <div class="tag"
@@ -221,7 +221,7 @@
         </div>
       </div>
     </div>
-    <div class="pt20 mt20" style="padding: 3%" v-if="replace_parts && replace_parts.length > 0">
+    <div class="pt20 mt20 pb30" style="padding: 3%" v-if="replace_parts && replace_parts.length > 0">
       <h3>Замінники для цієї запчастини</h3>
       <div style="display: flex;flex-wrap: wrap">
         <div v-for="replace_part in replace_parts" class="zoom">
@@ -333,6 +333,19 @@ export default {
 </script>
 
 <style scoped>
+.width_and_style_text {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.kit_parts {
+  padding: 3%;
+  margin-top: -50px;
+  padding-bottom: 60px
+}
 
 .total_widget {
   color: white;
@@ -350,7 +363,6 @@ export default {
   height: 40px;
   border-radius: 50%;
 }
-
 
 
 .fnt700 {

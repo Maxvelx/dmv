@@ -24,17 +24,17 @@
           </div>
         </div>
         <div class="row pl30">
-          <div class="col-sm-6 col-lg-4" style="max-width: 400px">
-            <div class="ff_one float less_transparent">
-              <div class="icon"><i class="fa fa-briefcase"></i></div>
-              <div class="detais text-end">
-                <div v-if="!order">Завантаження...</div>
-                <div class="timer">{{ order }}</div>
-                <p class="para">Кількість замовлень</p>
+          <router-link :to="{name: 'personal_orders'}" class="col-sm-6 col-lg-4" style="max-width: 400px">
+              <div class="ff_one float less_transparent">
+                <div class="icon"><i class="fa fa-briefcase"></i></div>
+                <div class="detais text-end">
+                  <div v-if="!order">Завантаження...</div>
+                  <div class="timer">{{ order }}</div>
+                  <p class="para">Кількість замовлень</p>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4" style="max-width: 400px">
+          </router-link>
+          <router-link :to="{name: 'personal_garage'}" class="col-sm-6 col-lg-4" style="max-width: 400px">
             <div class="ff_one float less_transparent">
               <div class="icon"><i class="fa fa-car"></i></div>
               <div class="detais text-end">
@@ -43,8 +43,8 @@
                 <p class="para">Кількість доданих авто</p>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-lg-4" style="max-width: 400px">
+          </router-link>
+          <router-link :to="{name: 'personal_wishlist'}" class="col-sm-6 col-lg-4" style="max-width: 400px">
             <div class="ff_one float less_transparent">
               <div class="icon"><i class="fa fa-star"></i></div>
               <div class="detais text-end">
@@ -53,7 +53,7 @@
                 <p class="para">Кількість бажаних запчастин</p>
               </div>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>

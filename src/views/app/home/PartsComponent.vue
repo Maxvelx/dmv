@@ -34,10 +34,10 @@
               <div class="tab-pane fade" id="nav-home" role="tabpanel"
                    aria-labelledby="nav-home-tab">
                 <div class="row justify-content-center container_hover">
-                  <div v-for="part in parts_kit" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl zoom item_for_container_hover">
+                  <div v-for="part in parts_kit" style="max-width: 270px" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl zoom item_for_container_hover">
                     <div class="car-listing border">
                       <div class="thumb">
-                        <div class="tag">Новинка</div>
+                        <div class="tag" style="background-color: teal">Комплект</div>
                         <img style="aspect-ratio:3/2;object-fit: contain;height: 200px"
                              :src="part.image ? part.image :'/images/etc/zaglushkaPart.jpg'" alt="1.jpg">
                         <div class="thmb_cntnt2">
@@ -92,7 +92,7 @@
               <div class="tab-pane fade show active" id="nav-shopping" role="tabpanel"
                    aria-labelledby="nav-shopping-tab">
                 <div class="row justify-content-center container_hover">
-                  <div v-for="part in parts" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl zoom item_for_container_hover">
+                  <div v-for="part in parts" style="max-width: 270px" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl zoom item_for_container_hover">
                     <div class="car-listing border">
                       <div class="thumb">
                         <div class="tag">Новинка</div>
