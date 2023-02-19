@@ -95,7 +95,8 @@
                         </div>
                         <div class="col-sm-6">
                           <label class="form-label">Виберіть перевізника *</label>
-                          <select style="font-size: 14px;height: 50px;" required :selected="delivery_company" v-model="delivery_company" class="form-select form-select-lg mb-3">
+                          <select style="font-size: 14px;height: 50px;" required :selected="delivery_company"
+                                  v-model="delivery_company" class="form-select form-select-lg mb-3">
                             <option v-for="company in deliveryCompanies" :value="company.id">
                               {{ company.title }}
                             </option>
@@ -212,6 +213,11 @@ export default {
 
     completeOrder() {
       api.post('/api/order', {
+        total: [
+          this.totalUAH ? this.totalUAH + ' ₴' : '',
+          this.totalUSD ? this.totalUSD + ' ₴' : '',
+          this.totalEURO ? this.totalEURO + ' €' : '',
+        ],
         parts: this.parts,
         name: this.name,
         phone_number: this.phone_number,
